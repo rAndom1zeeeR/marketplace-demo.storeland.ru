@@ -2732,13 +2732,13 @@ function coupons() {
 // Функция показать больше для Акции на главной странице
 function pdtCatalog() {
   $('#catalog .owl-carousel').owlCarousel({
-    items: 4,
-    margin: 20,
+    items: 8,
+    margin: 32,
     loop: false,
     rewind: true,
     lazyLoad: true,
-    nav: false,
-    navContainer: '',
+    nav: true,
+    navContainer: '#catalog .owl-nav',
     navText: [ , ],
     dots: false,
     autoHeight: false,
@@ -2758,7 +2758,8 @@ function pdtCatalog() {
       641:{items:3},
       768:{items:3},
       992:{items:4},
-      1200:{items:4}
+      1200:{items:6},
+      1440:{items:8}
     }
   });
 }
@@ -3013,7 +3014,7 @@ function slideShow() {
     nav: false,
     navText: [ , ],
     navContainer: '',
-    dots: true,
+    dots: false,
     dotsContainer: '',
     URLhashListener: true,
     autoplay: false,
@@ -3025,8 +3026,8 @@ function slideShow() {
     mouseDrag: true,
     touchDrag: true,
     pullDrag: true,
-    animateOut: 'slideOutUp',
-    animateIn: 'slideInUp'
+    animateOut: 'slideOutLeft',
+    animateIn: 'slideInRight'
   });
 }
 // Новости

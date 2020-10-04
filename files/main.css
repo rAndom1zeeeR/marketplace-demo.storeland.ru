@@ -201,9 +201,9 @@ input.square:after, .CompareCheckbox:after {content: "\e876";font-family: 'Mater
 /******************************************************************************
   Кнопки
 *******************************************************************************/
-.button, button, .paymentFormSubmitLink, .paymentFormTbodySubmitButton {display: inline-block;position: relative;padding: 0 2rem;line-height: 58px;color: #fff;background: #8da5db;font-size: 1rem;font-weight: 700;font-family: 'Nunito', sans-serif;text-transform: none;border-width: 5px;border-style: solid;border-color: #ffffff;border-radius: 20px;box-shadow: none;overflow: visible;text-align: center;margin: 0;outline: 0;cursor: pointer;white-space: nowrap;text-shadow: none;backface-visibility: hidden;transform: translateZ(0);-webkit-appearance: none;-moz-appearance: none;appearance: none;transition: all 0.3s ease;}
+.button, button, .paymentFormSubmitLink, .paymentFormTbodySubmitButton {display: inline-block;position: relative;padding: 0 2.25rem;line-height: 56px;color: #fff;background: #9085f7;font-size: 1rem;font-weight: 400;font-family: 'Gotham Pro', sans-serif;text-transform: none;border-width: 0;border-style: solid;border-color: transparent;border-radius: 1rem;box-shadow: none;overflow: visible;text-align: center;margin: 0;outline: 0;cursor: pointer;white-space: nowrap;text-shadow: none;backface-visibility: hidden;transform: translateZ(0);-webkit-appearance: none;-moz-appearance: none;appearance: none;transition: all 0.3s ease;}
 .paymentFormSubmitLink {padding: 0 1rem;}
-.button:hover, .button.added, button:hover, button.added, .paymentFormSubmitLink:hover, .paymentFormTbodySubmitButton:hover {color: #ffffff;background: #925ab5;box-shadow: none;}
+.button:hover, .button.added, button:hover, button.added, .paymentFormSubmitLink:hover, .paymentFormTbodySubmitButton:hover {color: #ffffff;background: #614ccb;box-shadow: none;}
 .button2 {color: #ffffff;background: #925ab5;}
 .button2:hover, .button2.added {color: #fff;background: #8da5db;}
 .button3 {color: #ffffff;background: #e192e5;}
@@ -264,6 +264,32 @@ input.square:after, .CompareCheckbox:after {content: "\e876";font-family: 'Mater
 /******************************************************************************
 *******************************************************************************
 *******************************************************************************/
+
+/*** Основные блоки ***/
+section {margin: 2rem 0;}
+@media all and (max-width: 640px) {
+}
+
+/*** Заголовки ***/
+.block__title {margin-bottom: 2rem;position: relative;}
+.block__title .title {font-size: 30px;font-weight: bold;}
+/* Заголовки с навигацией */
+.block__nav {display: flex;flex-wrap: wrap;align-items: center;justify-content: space-between;}
+.block__nav .owl-nav {width: 120px;}
+@media all and (max-width: 991px) {
+.block__title {margin-bottom: 1rem;}
+}
+@media all and (max-width: 640px) {
+.block__title .title {font-size: 24px;}
+.block__nav {padding: 0 2.5rem;justify-content: center;}
+.block__nav .owl-nav {width: auto;}
+.block__nav .owl-nav [class^="owl-"] {position: absolute;top: calc(50% - 1rem);background: transparent;height: 2rem;width: 2rem;color: #001b59;}
+.block__nav .owl-nav [class^="owl-"]:hover {color: #915cb6;}
+}
+@media all and (max-width: 480px) {
+.modal__title .title {font-size: 21px;}
+}
+
 
 /*** Шапка ***/
 .header__top {padding: 1.25rem 0;border-bottom: 1px solid #e2e6f1;display: flex;align-items: center;flex-wrap: wrap;}
@@ -380,12 +406,27 @@ header .search {position: relative;flex-grow: 1;}
 }
 
 
-/** Слайдер **/
-#slideshow {margin-top: 0;}
-.slider {width: 100%;position: relative;}
-.slider__item {height: 380px;}
-.slider__title {font-size: 48px;font-weight: bold;}
-.slider__subtitle {font-size: 24px;font-weight: bold;}
+/*** Слайдер ***/
+#slideshow .owl-item {overflow: hidden;}
+.slider {width: 65%;padding-right: 1rem;position: relative;}
+.slider__item {height: 380px;padding: 0 6rem;border-radius: 1rem;background-repeat: no-repeat;background-position: center center;display: flex;flex-direction: column;justify-content: center;align-items: flex-start;}
+.slider__title {font-size: 48px;font-weight: bold;margin-bottom: 1rem;}
+.slider__subtitle {font-size: 24px;font-weight: bold;margin-bottom: 2rem;}
+/** Баннеры **/
+.cat-banners {width: 35%;padding-left: 1rem;position: relative;display: flex;align-items: stretch;}
+.cat-banners__item {width: 50%;height: 380px;border-radius: 1rem;text-align: center;display: flex;align-items: flex-end;justify-content: center;}
+.cat-banners__item:hover {opacity: 0.6;}
+.cat-banners__item:nth-child(1) {margin-right: 1rem;}
+.cat-banners__item:nth-child(2) {margin-left: 1rem;}
+.cat-banners__title {background: #FFFFFF;padding: 1rem;border-radius: 1rem 1rem 0 0;}
+.cat-banners__name {font-size: 18px;font-weight: bold;}
+.cat-banners__subname {color: #a5acc0;margin-top: 0.25rem;}
+
+/*** Каталог ***/
+#catalog {position: relative;}
+#catalog .catalog__name {font-size: 18px;display: block;text-align: center;}
+
+
 
 	/******************************************************************************
 			*******************************************************************************/
