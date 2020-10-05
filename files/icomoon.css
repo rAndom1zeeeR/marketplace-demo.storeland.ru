@@ -25,7 +25,7 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-back:before {
+.icon-navigate_before:before {
   content: "\e900";
 }
 .icon-chat:before {

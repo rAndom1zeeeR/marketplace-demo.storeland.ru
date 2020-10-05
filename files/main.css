@@ -227,18 +227,18 @@ input.square:after, .CompareCheckbox:after {content: "\e876";font-family: 'Mater
 .add-compare, .add-favorites, .quickview {color: #925ab5;}
 .add-compare:hover, .add-favorites:hover, .quickview:hover {color: #001b59;}
 .add-compare.added, .add-favorites.added {color: #001b59;}
-.add-favorites:before {content: '\e917';}
-.add-compare:before {content: '\e914';}
-.add-cart:after, .add-mod:after {content: "\e90f";}
-.add-notify:after {content: "\e922";}
+.add-favorites:before {content: '\e90f';}
+.add-compare:before {content: '\e903';}
+.add-cart:after, .add-mod:after {content: "\e91d";}
+.add-notify:after {content: "\e91d";}
 
 /*** Навигация ***/
-.navigation > div, .owl-nav [class^="owl-"] {width: 50px;height: 50px;background: #FFFFFF;border-radius: 100%;color: #915cb6;font-size: 1.25rem;line-height: 2rem;font-family: 'icomoon';font-weight: normal;display: flex;align-items: center;justify-content: center;box-shadow: none;border: 0;padding: 0;cursor: pointer;z-index: 2;transition: all 0.3s ease;}
+.navigation > div, .owl-nav [class^="owl-"] {width: 50px;height: 50px;background-color: #e5e0fe;color: #4c515f;border-radius: 100%;font-size: 1.25rem;line-height: 2rem;font-family: 'icomoon';font-weight: normal;display: flex;align-items: center;justify-content: center;box-shadow: none;border: 0;padding: 0;cursor: pointer;z-index: 2;transition: all 0.3s ease;}
 .navigation .prev, .owl-nav .owl-prev {float: left;left: 0;}
 .navigation .next, .owl-nav .owl-next {float: right;right: 0;}
-.navigation .prev:before, .owl-nav .owl-prev:before {content: '\e90c';}
-.navigation .next:before, .owl-nav .owl-next:before {content: '\e90d';}
-.navigation div:hover, .owl-nav [class^="owl-"]:hover {background: #925ab5;color: #FFFFFF;}
+.navigation .prev:before, .owl-nav .owl-prev:before {content: '\e900';}
+.navigation .next:before, .owl-nav .owl-next:before {content: '\e900';}
+.navigation div:hover, .owl-nav [class^="owl-"]:hover {background-color: #9085f7;color: #FFFFFF;}
 .navigation div.disable, .navigation div.disable:hover {cursor: default;color: #dddddd;}
 .owl-nav.disabled {display: none;}
 /*** Иконки Новинка, Хит, Скидка ***/
@@ -254,11 +254,9 @@ input.square:after, .CompareCheckbox:after {content: "\e876";font-family: 'Mater
 .ico__new {background: #04524d;}
 .ico__new:before {content: 'New';}
 /*** Цена ****/
-.price__now {font-size: 1.25rem;font-weight: 800;line-height: 1;white-space: nowrap;}
-.price__now:after {display: none;font-size: 80%;line-height: 1;font-family: "icomoon";font-weight: 400;}
-.price__old {color: #a2b9ed;font-size: 1rem;font-weight: 800;line-height: 1;white-space: nowrap;text-decoration: line-through;}
-.price__old:after {display: none;font-size: 80%;line-height: 1;font-family: "icomoon";font-weight: 300;}
-.RUB .price__now:after, .RUB .price__old:after {content: "Р";display: none;}
+.price__now {font-weight: 700;line-height: 1;white-space: nowrap;}
+.price__old {margin-leftЖ 0.5rem;color: #a5acc0;font-weight: 400;line-height: 1;white-space: nowrap;text-decoration: line-through;}
+.RUB .price__now:after, .RUB .price__old:after {content: "Р";font-size: 80%;line-height: 1;font-weight: 400;}
 .RUB .price__now span + span, .RUB .price__old span + span {display: none;}
 
 /******************************************************************************
@@ -482,6 +480,31 @@ footer .logo {margin-bottom: 2rem;}
 .contacts__icon {width: 30px;margin-right: 0.25rem;font-size: 18px;}
 .contacts__block a {display: block;}
 .contacts__block a + a {margin-top: 0.5rem;}
+
+/*** Товары на главной ***/
+.index .container {position: relative;}
+.products__grid.owl-carousel .product__item {display: block;width: auto;margin: 0;}
+/*** Товары таблицей ***/
+.products__grid {position: relative;width: 100%;display: flex;align-items: stretch;flex-wrap: wrap;justify-content: flex-start;}
+.products__grid .product__item {width: calc(25% - 1.25rem);margin: 1.25rem 0.625rem 0 0.625rem;padding: 0;border: 0px solid transparent;position: relative;background: transparent;transition: all 0.3s ease;}
+.products__grid .product__item:nth-child(-n+4) {margin-top: 0;}
+.product__item [class^="product__form-"] {position: relative;z-index: 2;}
+.product__item .product__image {position: relative;overflow: hidden;margin-bottom: 1rem;}
+.product__item .product__image a {background: #FFFFFF;position: relative;display: flex;flex-wrap: wrap;align-items: center;justify-content: center;padding: 1px;overflow: hidden;height: {SETTINGS_GOODS_IMAGES_SIZE_MEDIUM | divide("2")}px;}
+.product__item .product__image a img {max-width: 100%;max-height: 100%;width: auto;}
+.product__item .product__img--hover {opacity: 0;position: absolute;top: -100%;left: 0;width: 100%;height: 100%;background-color: #FFFFFF;border-radius: 20px;overflow: hidden;display: flex;align-items: center;justify-content: center;transition: all 0.3s ease;}
+.product__item .product__image:hover .product__img--hover {opacity: 1;filter: alpha(opacity=100);top: 0;left: 0;}
+.product__item .product__name {margin-top: 1rem;line-height: 1.5rem;max-height: 4.5rem;overflow: hidden;}
+.product__item .product__addto {opacity: 0;position: absolute;top: 1rem;right: 1rem;transition: all 0.3s ease;}
+.product__item:hover .product__addto {opacity: 1;}
+.product__item .product__addto a {display: block;font-size: 18px;margin-bottom: 0.5rem;}
+
+
+
+
+
+
+
 
 
 
