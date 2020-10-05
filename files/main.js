@@ -2729,7 +2729,7 @@ function coupons() {
 }
 
 
-// Функция показать больше для Акции на главной странице
+// Функция показать больше для Каталога на главной странице
 function pdtCatalog() {
   $('#catalog .owl-carousel').owlCarousel({
     items: 8,
@@ -2765,10 +2765,10 @@ function pdtCatalog() {
 }
 
 // Функция показать больше для Акции на главной странице
-function pdtPromo() {
-  $('#promo .owl-carousel').owlCarousel({
-    items: 4,
-    margin: 20,
+function pdtBrands() {
+  $('#brands .owl-carousel').owlCarousel({
+    items: 8,
+    margin: 32,
     loop: false,
     rewind: true,
     lazyLoad: true,
@@ -2778,7 +2778,7 @@ function pdtPromo() {
     dots: false,
     autoHeight: false,
     autoHeightClass: 'owl-height',
-    autoplay: false,
+    autoplay: true,
     autoplayHoverPause: true,
     smartSpeed: 500,
     mouseDrag: true,
@@ -2793,7 +2793,8 @@ function pdtPromo() {
       641:{items:3},
       768:{items:3},
       992:{items:4},
-      1200:{items:4}
+      1200:{items:6},
+      1440:{items:8}
     }
   });
 }

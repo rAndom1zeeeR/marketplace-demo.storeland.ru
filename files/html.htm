@@ -301,7 +301,7 @@
 		</div>
 	</section>
 	
-	<!-- Каталог -->
+	<!-- Категории -->
 	<section id="catalog">
 		<div class="container">
 			<div class="block__title block__nav">
@@ -320,6 +320,8 @@
 			</div>
 		</div>
 	</section>
+	
+	<!-- Специально для Вас! -->
 	
 	<!-- Баннеры -->
 	<section id="banners">
@@ -340,6 +342,34 @@
 			</div>
 		</div>
 	</section>
+	
+	<!-- Распродажа -->
+	<!-- Новинки -->
+	<!-- Лучшие подброрки от редакции(это новости) -->
+	<!-- Бренды -->
+	<section id="brands">
+		<div class="container">
+			<div class="owl-carousel">
+				<a href="{CATALOG_URL}" class="brands__item" title=""><img src="{ASSETS_IMAGES_PATH}zippo.png?design=nails"/></a>
+				<a href="{CATALOG_URL}" class="brands__item" title=""><img src="{ASSETS_IMAGES_PATH}philips.png?design=nails"/></a>
+				<a href="{CATALOG_URL}" class="brands__item" title=""><img src="{ASSETS_IMAGES_PATH}asics.png?design=nails"/></a>
+				<a href="{CATALOG_URL}" class="brands__item" title=""><img src="{ASSETS_IMAGES_PATH}fila.png?design=nails"/></a>
+				<a href="{CATALOG_URL}" class="brands__item" title=""><img src="{ASSETS_IMAGES_PATH}mango.png?design=nails"/></a>
+				<a href="{CATALOG_URL}" class="brands__item" title=""><img src="{ASSETS_IMAGES_PATH}chanel.png?design=nails"/></a>
+				<a href="{CATALOG_URL}" class="brands__item" title=""><img src="{ASSETS_IMAGES_PATH}reebok.png?design=nails"/></a>
+				<a href="{CATALOG_URL}" class="brands__item" title=""><img src="{ASSETS_IMAGES_PATH}prada.png?design=nails"/></a>
+				<a href="{CATALOG_URL}" class="brands__item" title=""><img src="{ASSETS_IMAGES_PATH}zippo.png?design=nails"/></a>
+				<a href="{CATALOG_URL}" class="brands__item" title=""><img src="{ASSETS_IMAGES_PATH}philips.png?design=nails"/></a>
+				<a href="{CATALOG_URL}" class="brands__item" title=""><img src="{ASSETS_IMAGES_PATH}asics.png?design=nails"/></a>
+				<a href="{CATALOG_URL}" class="brands__item" title=""><img src="{ASSETS_IMAGES_PATH}fila.png?design=nails"/></a>
+				<a href="{CATALOG_URL}" class="brands__item" title=""><img src="{ASSETS_IMAGES_PATH}mango.png?design=nails"/></a>
+				<a href="{CATALOG_URL}" class="brands__item" title=""><img src="{ASSETS_IMAGES_PATH}chanel.png?design=nails"/></a>
+				<a href="{CATALOG_URL}" class="brands__item" title=""><img src="{ASSETS_IMAGES_PATH}reebok.png?design=nails"/></a>
+				<a href="{CATALOG_URL}" class="brands__item" title=""><img src="{ASSETS_IMAGES_PATH}prada.png?design=nails"/></a>
+			</div>
+		</div>
+	</section>
+	<!-- Хиты продаж -->
 	
 	<!-- Описание на Главной -->
 	<section id="mainbody">
@@ -664,7 +694,7 @@
 		pdtSales();
 		pdtSale();
 		pdtCatalog();
-		pdtPromo();
+		pdtBrands();
 	});
 	{% ELSE %}
 	$(document).ready(function () {
