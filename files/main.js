@@ -3218,28 +3218,52 @@ function goodsModRest() {
 
 // Отсчет даты до окончания акции
 function counterDate() {
-// Устанавливаем дату обратного отсчета ММ-ДД-ГГ
-var end = $('.counter').attr('end');
-var countDownDate = new Date(end).getTime();
-// Обновление счетчика каждую секунду
-var x = setInterval(function() {
-  var now = new Date().getTime();
-  var distance = countDownDate - now;
-  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-  // Вывод
-  $('.counter .days span').text(days);
-  $('.counter .hours span').text(hours);
-  $('.counter .minutes span').text(minutes);
-  $('.counter .seconds span').text(seconds);
-  // Счетчик завершен
-  if (distance < 0) {
-    clearInterval(x);
-    $('.counter').hide();
+  // Устанавливаем дату обратного отсчета ММ-ДД-ГГ
+  let end = $('.counter').attr('end');
+  let countDownDate = new Date(end).getTime();
+  // Обновление счетчика каждую секунду
+  let x = setInterval(function() {
+    let now = new Date().getTime();
+    let distance = countDownDate - now;
+    let days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    // Вывод
+    $('.counter .days span').text(days);
+    $('.counter .hours span').text(hours);
+    $('.counter .minutes span').text(minutes);
+    $('.counter .seconds span').text(seconds);
+    // Счетчик завершен
+    if (distance < 0) {
+      clearInterval(x);
+      $('.counter').hide();
+    }
+  }, 1000);
+}
+
+// Разница в цене в процентах %
+function priceDiff() {
+  let old = parseFloat($('.productView .price__old .num').text().replace(' ',''));
+  let now = parseFloat($('.productView .price__now .num').text().replace(' ',''));
+  let diff = 0;
+  if(old > now){
+    diff = (((old - now)/old)*100).toFixed();
+    $('.productView .ico__sales').text('-' + diff + '%');
+  }else{
+    $('.productView .ico__sales').hide();
   }
-}, 1000);
+  $('.product__item').each(function(){
+    let old = parseFloat($(this).find('.price__old .num').text().replace(' ',''));
+    let now = parseFloat($(this).find('.price__now .num').text().replace(' ',''));
+    let diff = 0;
+    if(old > now){
+      diff = (((old - now)/old)*100).toFixed();
+      $(this).find('.ico__sales').text('-' + diff + '%');
+    }else{
+      $(this).find('.ico__sales').hide();
+    }
+  });
 }
 
 // Загрузка основных функций шаблона
@@ -3251,6 +3275,7 @@ $(document).ready(function(){
   quickViewMod();
   goodsModRest();
   quantity();
+  priceDiff();
   // Ленивая загрузка
   $(function(){
     const observer = lozad(); // lazy loads elements with default selector as '.lozad'

@@ -349,7 +349,10 @@
 								{% ENDFOR %}
 							</a>
 							<div class="product__ico">
+								{% IF index_page_goods.MIN_PRICE_OLD>index_page_goods.MIN_PRICE_NOW %}<span class="ico__sales"></span>{% ENDIF %}
 								{% IF index_page_goods.IS_PLACE_ON_INDEX_PAGE %}<span class="ico__sale"></span>{% ENDIF %}
+								{% IF index_page_goods.IS_TOP %}<span class="ico__best"></span>{% ENDIF %}
+								{% IF index_page_goods.IS_NEW %}<span class="ico__new"></span>{% ENDIF %}
 							</div>
 						</div>
 						<!-- Цена для поисковиков -->
@@ -544,6 +547,9 @@
 							</a>
 							<div class="product__ico">
 								{% IF index_page_new_goods.IS_PLACE_ON_INDEX_PAGE %}<span class="ico__sale"></span>{% ENDIF %}
+								{% IF index_page_new_goods.IS_TOP %}<span class="ico__best"></span>{% ENDIF %}
+								{% IF index_page_new_goods.IS_NEW %}<span class="ico__new"></span>{% ENDIF %}
+								{% IF index_page_new_goods.MIN_PRICE_OLD>index_page_new_goods.MIN_PRICE_NOW %}<span class="ico__sales"></span>{% ENDIF %}
 							</div>
 						</div>
 						<!-- Цена для поисковиков -->
@@ -742,6 +748,9 @@
 							</a>
 							<div class="product__ico">
 								{% IF index_page_favorites_goods.IS_PLACE_ON_INDEX_PAGE %}<span class="ico__sale"></span>{% ENDIF %}
+								{% IF index_page_favorites_goods.IS_TOP %}<span class="ico__best"></span>{% ENDIF %}
+								{% IF index_page_favorites_goods.IS_NEW %}<span class="ico__new"></span>{% ENDIF %}
+								{% IF index_page_favorites_goods.MIN_PRICE_OLD>index_page_favorites_goods.MIN_PRICE_NOW %}<span class="ico__sales"></span>{% ENDIF %}
 							</div>
 						</div>
 						<!-- Цена для поисковиков -->
