@@ -245,6 +245,7 @@ input.square:after, .CompareCheckbox:after {content: "\e876";font-family: 'Mater
 .product__ico {position: absolute;top: 0;left: 1rem;display: flex;align-items: center;}
 .product__ico label {display: none;}
 .product__ico span {padding: 0 0.5rem;line-height: 21px;border-radius: 5px;font-size: 12px;color: #fff;text-transform: lowercase;display: flex;align-items: center;justify-content: center;}
+.product__ico span + span {margin-left: 0.5rem;}
 .ico__sales {background: #ff6711;}
 .ico__sale {background: #9085f7;}
 .ico__sale:before {content: 'Акция';}
