@@ -2934,6 +2934,70 @@ function pdtSlider() {
   });
 }
 
+// Слайдер для главной страницы
+function slideShow() {
+  // Слайдер на главной
+  let owlS = $('#slideshow .owl-carousel');
+  owlS.owlCarousel({
+    items: 1,
+    loop: true,
+    rewind: true,
+    lazyLoad: true,
+    nav: false,
+    navText: [ , ],
+    navContainer: '',
+    dots: false,
+    dotsContainer: '',
+    URLhashListener: true,
+    autoplay: false,
+    autoplayHoverPause: true,
+    autoHeight: false,
+    autoHeightClass: 'owl-height',
+    smartSpeed: 500,
+    dotsSpeed: 400,
+    mouseDrag: true,
+    touchDrag: true,
+    pullDrag: true,
+    animateOut: 'slideOutLeft',
+    animateIn: 'slideInRight'
+  });
+}
+// Новости
+function newsCarousel() {
+  $("#news .owl-carousel").owlCarousel({
+    items: 8,
+    margin: 32,
+    loop: false,
+    rewind: true,
+    lazyLoad: true,
+    nav: false,
+    navContainer: '#news .owl-nav',
+    navText: [ , ],
+    dots: false,
+    autoHeight: false,
+    autoHeightClass: 'owl-height',
+    autoplay: false,
+    autoplayHoverPause: true,
+    smartSpeed: 500,
+    mouseDrag: true,
+    touchDrag: true,
+    pullDrag: true,
+    responsiveClass: true,
+    responsiveRefreshRate: 100,
+    responsive: {
+      0:{items:1},
+      320:{items:2, margin: 16},
+      481:{items:3, margin: 16},
+      641:{items:3, margin: 16},
+      768:{items:4, margin: 16},
+      992:{items:5, margin: 16},
+      1200:{items:6},
+      1440:{items:7},
+      1680:{items:8}
+    }
+  });
+}
+
 // Функции для главной страницы
 function recViewed() {
   // Функция слайдера для Хитов продаж на главной странице
@@ -2969,196 +3033,6 @@ function recViewed() {
   });
 }
 
-// Функции для главной страницы
-function slideShow() {
-  // Слайдер на главной
-  let owlS = $('#slideshow .owl-carousel');
-  owlS.owlCarousel({
-    items: 1,
-    loop: true,
-    rewind: true,
-    lazyLoad: true,
-    nav: false,
-    navText: [ , ],
-    navContainer: '',
-    dots: false,
-    dotsContainer: '',
-    URLhashListener: true,
-    autoplay: false,
-    autoplayHoverPause: true,
-    autoHeight: false,
-    autoHeightClass: 'owl-height',
-    smartSpeed: 500,
-    dotsSpeed: 400,
-    mouseDrag: true,
-    touchDrag: true,
-    pullDrag: true,
-    animateOut: 'slideOutLeft',
-    animateIn: 'slideInRight'
-  });
-}
-// Новости
-function newsCarousel() {
-  if ($("#news .news_list_all.owl-carousel").length){
-    $("#news .news_list_all.owl-carousel").owlCarousel({
-      items: 4,
-      margin: 20,
-      loop: false,
-      rewind: true,
-      lazyLoad: true,
-      nav: false,
-      navContainer: '',
-      navText: [ , ],
-      dots: false,
-      autoHeight: false,
-      autoHeightClass: 'owl-height',
-      autoplay: false,
-      autoplayHoverPause: true,
-      smartSpeed: 500,
-      mouseDrag: true,
-      touchDrag: true,
-      pullDrag: true,
-      responsiveClass: true,
-      responsiveRefreshRate: 100,
-      responsive: {
-        0:{items:1},
-        320:{items:1},
-        481:{items:2},
-        641:{items:3},
-        768:{items:3},
-        992:{items:4},
-        1200:{items:4}
-      },
-      onInitialized: carouselInitialized,
-      onChanged: carouselInitialized
-    });
-  }else{
-    $("#news .news_list_articles.owl-carousel").owlCarousel({
-      items: 4,
-      margin: 20,
-      loop: false,
-      rewind: true,
-      lazyLoad: true,
-      nav: false,
-      navContainer: '',
-      navText: [ , ],
-      dots: false,
-      autoHeight: false,
-      autoHeightClass: 'owl-height',
-      autoplay: false,
-      autoplayHoverPause: true,
-      smartSpeed: 500,
-      mouseDrag: true,
-      touchDrag: true,
-      pullDrag: true,
-      responsiveClass: true,
-      responsiveRefreshRate: 100,
-      responsive: {
-        0:{items:1},
-        320:{items:1},
-        481:{items:2},
-        641:{items:3},
-        768:{items:3},
-        992:{items:4},
-        1200:{items:4}
-      },
-      onInitialize: carouselInitialized,
-      onInitialized: carouselInitialized,
-      onChanged: carouselInitialized
-    });
-    $("#news .news_list_mass_media.owl-carousel").owlCarousel({
-      items: 4,
-      margin: 20,
-      loop: false,
-      rewind: true,
-      lazyLoad: true,
-      nav: false,
-      navContainer: '',
-      navText: [ , ],
-      dots: false,
-      autoHeight: false,
-      autoHeightClass: 'owl-height',
-      autoplay: false,
-      autoplayHoverPause: true,
-      smartSpeed: 500,
-      mouseDrag: true,
-      touchDrag: true,
-      pullDrag: true,
-      responsiveClass: true,
-      responsiveRefreshRate: 100,
-      responsive: {
-        0:{items:1},
-        320:{items:1},
-        481:{items:2},
-        641:{items:3},
-        768:{items:3},
-        992:{items:4},
-        1200:{items:4}
-      },
-      onInitialize: carouselInitialized,
-      onInitialized: carouselInitialized,
-      onChanged: carouselInitialized
-    });
-    $("#news .news_list_shop.owl-carousel").owlCarousel({
-      items: 4,
-      margin: 20,
-      loop: false,
-      rewind: true,
-      lazyLoad: true,
-      nav: false,
-      navContainer: '',
-      navText: [ , ],
-      dots: false,
-      autoHeight: false,
-      autoHeightClass: 'owl-height',
-      autoplay: false,
-      autoplayHoverPause: true,
-      smartSpeed: 500,
-      mouseDrag: true,
-      touchDrag: true,
-      pullDrag: true,
-      responsiveClass: true,
-      responsiveRefreshRate: 100,
-      responsive: {
-        0:{items:1},
-        320:{items:1},
-        481:{items:2},
-        641:{items:3},
-        768:{items:3},
-        992:{items:4},
-        1200:{items:4}
-      },
-      onInitialize: carouselInitialized,
-      onInitialized: carouselInitialized,
-      onChanged: carouselInitialized
-    });
-  }
-  // Кнопки навигации
-  function carouselInitialized(event){
-    if (event.item.count > event.page.size) {
-      $('#news .block__nav .owl-nav').css('display', 'block');
-    }else{
-      $('#news .block__nav .owl-nav').css('display', 'none');
-    }
-  }
-  $('#news .block__nav .owl-prev').click(function(event) {
-    $('#news .owl-carousel').trigger('prev.owl.carousel');
-  });
-  $('#news .block__nav .owl-next').click(function(event) {
-    $('#news .owl-carousel').trigger('next.owl.carousel');
-  });
-  // Табы в новостях
-  $('#news .nav__tab').on('click', function (event) {
-    event.preventDefault();
-    let content = $(this).attr('data-content');
-    $('#news [class^="news_list_"]').prepend('<div class="preloader small"><div class="loading"></div></div>');
-    preload();
-    $('#news .nav__tab').removeClass('active')
-    $('#news [class^="news_list_"]').removeClass('active');
-    $(this).addClass('active');
-    $('#news [class^="news_list_"][data-content="'+ content +'"').addClass('active');
-  });
-}
 
 // Открытие Контактов, Меню, Сравнения, Избранного
 function OpenMenu() {

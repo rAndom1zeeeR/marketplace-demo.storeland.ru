@@ -872,7 +872,47 @@
 	{% ENDIF %}
 	
 	<!-- Лучшие подброрки от редакции(это новости) -->
-	
+	{% IF news_list_all_empty=0 || news_list_shop_empty=0 || news_list_articles_empty=0 || news_list_mass_media_empty=0 %}
+	<section id="news">
+		<div class="container">
+			<div class="preloader"><div class="loading"></div></div>
+			<div class="block__title block__nav">
+				<a href="{NEWS_URL}" class="title">Лучшие подброрки от редакции</a>
+				<div class="owl-nav"></div>
+			</div>
+			<!-- Список ВСЕХ новостей магазина. Если в настройках отмечено "Группировать новости в блоке навигации на сайте" -->
+			{% IFNOT news_list_all_empty %}
+			<div class="news_list_all owl-carousel" data-content="news_list_all">
+				{% FOR news_list_all %}
+				<div class="news__item">
+					<a class="news__image" href="{news_list_all.URL}" title="Перейти к странице &laquo;{news_list_all.TITLE}&raquo;">
+						<img src="{% IF news_list_all.IMG %}{news_list_all.IMG}{% ELSE %}{ASSETS_IMAGES_PATH}news1.png?design=nails{% ENDIF %}" alt="{news_list_all.TITLE}" />
+					</a>
+					{% IF news_list_all.SHOW_TIME %}<div class="news__date">{news_list_all.TIME | date("d.m.y")}</div>{% ENDIF %}
+					<a class="news__title" href="{news_list_all.URL}" title="Перейти к странице &laquo;{news_list_all.TITLE}&raquo;"><span>{news_list_all.TITLE}</span></a>
+					{% IF news_list_all.TEXT_SHORT %}<div class="news__text">{news_list_all.TEXT_SHORT}</div>{% ENDIF %}
+				</div>
+				{% ENDFOR %}
+			</div>
+			{% ENDIF %}
+			<!-- Список Новости -->
+			{% IFNOT news_list_shop_empty %}
+			<div class="news_list_shop owl-carousel" data-content="news_list_shop">
+				{% FOR news_list_shop %}
+				<div class="news__item">
+					<a class="news__image" href="{news_list_shop.URL}" title="Перейти к странице &laquo;{news_list_shop.TITLE}&raquo;">
+						<img src="{% IF news_list_shop.IMG %}{news_list_shop.IMG}{% ELSE %}{ASSETS_IMAGES_PATH}news1.png?design=nails{% ENDIF %}" alt="{news_list_shop.TITLE}" />
+					</a>
+					{% IF news_list_shop.SHOW_TIME %}<div class="news__date">{news_list_shop.TIME | date("d.m.y")}</div>{% ENDIF %}
+					<a class="news__title" href="{news_list_shop.URL}" title="Перейти к странице &laquo;{news_list_shop.TITLE}&raquo;"><span>{news_list_shop.TITLE}</span></a>
+					{% IF news_list_shop.TEXT_SHORT %}<div class="news__text">{news_list_shop.TEXT_SHORT}</div>{% ENDIF %}
+				</div>
+				{% ENDFOR %}
+			</div>
+			{% ENDIF %}
+		</div>
+	</section>
+	{% ENDIF %}
 	
 	<!-- Бренды -->
 	<section id="brands">
