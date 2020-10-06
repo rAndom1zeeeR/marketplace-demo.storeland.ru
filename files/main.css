@@ -237,7 +237,7 @@ input.square:after, .CompareCheckbox:after {content: "\e876";font-family: 'Mater
 .navigation .prev, .owl-nav .owl-prev {float: left;left: 0;}
 .navigation .next, .owl-nav .owl-next {float: right;right: 0;}
 .navigation .prev:before, .owl-nav .owl-prev:before {content: '\e900';}
-.navigation .next:before, .owl-nav .owl-next:before {content: '\e900';}
+.navigation .next:before, .owl-nav .owl-next:before {content: '\e906';}
 .navigation div:hover, .owl-nav [class^="owl-"]:hover {background-color: #9085f7;color: #FFFFFF;}
 .navigation div.disable, .navigation div.disable:hover {cursor: default;color: #dddddd;}
 .owl-nav.disabled {display: none;}
