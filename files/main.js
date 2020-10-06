@@ -2943,7 +2943,7 @@ function slideShow() {
     loop: true,
     rewind: true,
     lazyLoad: true,
-    nav: false,
+    nav: true,
     navText: [ , ],
     navContainer: '',
     dots: false,
