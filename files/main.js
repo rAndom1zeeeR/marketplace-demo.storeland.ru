@@ -2753,13 +2753,14 @@ function pdtCatalog() {
     responsiveRefreshRate: 100,
     responsive: {
       0:{items:1},
-      320:{items:2},
-      481:{items:2},
-      641:{items:3},
-      768:{items:3},
-      992:{items:4},
+      320:{items:2, margin: 16},
+      481:{items:3, margin: 16},
+      641:{items:3, margin: 16},
+      768:{items:4, margin: 16},
+      992:{items:5, margin: 16},
       1200:{items:6},
-      1440:{items:8}
+      1440:{items:7},
+      1680:{items:8}
     }
   });
 }

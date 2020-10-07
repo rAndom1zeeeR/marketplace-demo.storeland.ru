@@ -54,11 +54,34 @@
 	<header id="header">
 		<div class="container">
 			<div class="header__top">
+				<div class="addto">
+					<!-- Сравнение -->
+					{% IFNOT MOD_LNAME = compare && SETTINGS_COMPARE_DISABLE=0 %}
+					<div class="compare {% IF COMPARE_GOODS_COUNT > 0 %}hasItems{% ENDIF %}">
+						<a href="{COMPARE_URL}" class="addto__label compare__icon" title="Сравнение" data-open="compare">
+							<i class="icon-compare"></i>
+						</a>
+					</div>
+					{% ENDIF %}
+					<!-- Избранное -->
+					<div class="favorites {% IF FAVORITES_GOODS_COUNT > 0 %}hasItems{% ENDIF %}">
+						<a href="{FAVORITES_URL}" class="addto__label favorites__icon" title="Избранное" data-open="favorites">
+							<i class="icon-favorites_border"></i>
+						</a>
+					</div>
+					<!-- Войти -->
+					<div class="login">
+						<a href="{USER_LOGIN_URL}" class="login__icon" title="Личный кабинет">
+							<i class="icon-login"></i>
+						</a>
+					</div>
+				</div>
 				<div class="region__delivery">
 					<span>Ваш регион доставки: Нижний Новгород</span>
 				</div>
 				<div class="region__contacts">
 					<span>Наши контакты в вашем регионе</span>
+					<span>Контакты</span>
 				</div>
 				<div class="header__menu">
 					<div class="menu__icon">
