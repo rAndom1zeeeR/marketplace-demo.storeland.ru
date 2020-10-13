@@ -76,27 +76,27 @@
 						</a>
 					</div>
 				</div>
+				{% IF SETTINGS_STORE_REGION %}
 				<div class="region__delivery">
-					<span>Ваш регион доставки: Нижний Новгород</span>
+					<span>Ваш регион доставки: {SETTINGS_STORE_REGION}</span>
 				</div>
+				{% ENDIF %}
 				<div class="region__contacts">
 					<span>Наши контакты в вашем регионе</span>
 					<span>Контакты</span>
 				</div>
 				<div class="header__menu">
-					<div class="menu__icon">
+					<div class="menu__icon dropdown__open" data-open="menu">
 						<i class="icon-menu"></i>
 						<span>Меню</span>
 					</div>
 					<div class="mainnav__list" itemscope itemtype="https://schema.org/SiteNavigationElement">
 						{% FOR menu %}
-						{% FOR header %}
-						{% FOR links %}
-						<div class="mainnav__item {% IF menu.header.links.NAME = Каталог %}mainnav__catalog{% ENDIF %}">
-							<a href="{menu.header.links.URL}" class="mainnav__link {% IF menu.header.links.SELECTED %}active{%ENDIF%}" title="{% IF menu.header.links.TITLE %}{menu.header.links.TITLE}{% ELSE%}{menu.header.links.NAME}{% ENDIF %}" itemprop="url"><span itemprop="name">{menu.header.links.NAME}</span></a>
-						</div>
-						{% ENDFOR %}
-						{% ENDFOR %}
+							{% FOR header %}
+								{% FOR links %}
+									<a href="{menu.header.links.URL}" class="mainnav__link {% IF menu.header.links.SELECTED %}active{%ENDIF%}" title="{% IF menu.header.links.TITLE %}{menu.header.links.TITLE}{% ELSE%}{menu.header.links.NAME}{% ENDIF %}" itemprop="url"><span itemprop="name">{menu.header.links.NAME}</span></a>
+								{% ENDFOR %}
+							{% ENDFOR %}
 						{% ENDFOR %}
 					</div>
 				</div>
@@ -148,9 +148,8 @@
 					<div id="search__result" style="display: none;">
 						<div class="inner">
 							<div class="result__category"></div>
-							<div class="result__goods">
-								<div class="result__showAll button button4">все результаты</div>
-							</div>
+							<div class="result__goods"></div>
+							<div class="result__showAll button button4">все результаты</div>
 						</div>
 					</div>
 				</div>
@@ -164,6 +163,7 @@
 							<span class="compare__count" data-count="{COMPARE_GOODS_COUNT}">{COMPARE_GOODS_COUNT}</span>
 						</a>
 						<div id="addtoCompare" class="addto__compare dropdown__content" data-open="compare">
+							<div class="addto__title">В Сравнении</div>
 							<div class="addto__items">
 								{% FOR compare_goods %}
 								<div class="addto__item" data-id="{compare_goods.ID}">
@@ -186,8 +186,8 @@
 								<a href="{CATALOG_URL}" class="button addto__close" title="Продолжить покупки">Продолжить покупки</a>
 							</div>
 							<div class="addto__buttons">
-								<a href="{COMPARE_RESET_URL}" onclick="removeFromCompareAll($(this))" class="button removeAll" title="Очистить список сравнения"><span>Очистить</span></a>
-								<a href="{COMPARE_URL}" class="button button2" title="Перейти к Сравнению">В Сравнение</a>
+								<a href="{COMPARE_RESET_URL}" onclick="removeFromCompareAll($(this))" class="button button3 removeAll" title="Очистить список сравнения"><span>Очистить сравнение</span></a>
+								<a href="{COMPARE_URL}" class="button" title="Перейти к Сравнению">Перейти к Сравнению</a>
 							</div>
 						</div>
 					</div>
@@ -200,6 +200,7 @@
 							<span class="favorites__count" data-count="{FAVORITES_GOODS_COUNT}">{FAVORITES_GOODS_COUNT}</span>
 						</a>
 						<div id="addtoFavorites" class="addto__favorites dropdown__content" data-open="favorites">
+							<div class="addto__title">В Избранном</div>
 							<div class="addto__items">
 								{% FOR favorites_goods %}
 								<div class="addto__item" data-id="{favorites_goods.ID}">
@@ -222,17 +223,60 @@
 								<a href="{CATALOG_URL}" class="button addto__close" title="Продолжить покупки">Продолжить покупки</a>
 							</div>
 							<div class="addto__buttons">
-								<a href="{FAVORITES_RESET_URL}" onclick="removeFromFavoritesAll($(this))" class="button removeAll" title="Очистить список Избранного"><span>Очистить</span></a>
-								<a href="{FAVORITES_URL}" class="button button2" title="Перейти к Избранному">В Избранное</a>
+								<a href="{FAVORITES_RESET_URL}" onclick="removeFromFavoritesAll($(this))" class="button button3 removeAll" title="Очистить список Избранного"><span>Очистить Избранное</span></a>
+								<a href="{FAVORITES_URL}" class="button" title="Перейти к Избранному">Перейти к Избранному</a>
 							</div>
 						</div>
 					</div>
 					<!-- Войти -->
-					<div class="login">
-						<a href="{USER_LOGIN_URL}" class="login__icon" title="Личный кабинет">
+					<div class="login dropdown">
+						<a href="{USER_LOGIN_URL}" class="addto__label dropdown__open login__icon" title="Личный кабинет" data-open="login">
 							<i class="icon-login"></i>
 							<span>Войти</span>
 						</a>
+						<div id="addtoLogin" class="addto__login dropdown__content" data-open="login">
+							<div class="addto__title">Личный кабинет</div>
+							{% IF CLIENT_IS_LOGIN %}
+							<!-- ЛК для авторизованных пользователей -->
+							<div class="mainnav__links">
+								<a href="{USER_SETTINGS_URL}" title="Личный кабинет" rel="nofollow"><span>Мой кабинет</span></a>
+								<a href="{USER_HISTORY_LIST_URL}" title="История заказов" rel="nofollow"><span>История</span></a>
+								<a href="{FAVORITES_URL}" title="Избранные товары" rel="nofollow"><span>Избранное</span></a>
+								{% IF SETTINGS_COMPARE_DISABLE=0 %}<a href="{COMPARE_URL}" title="Сравнение" rel="nofollow">Сравнение</a>{% ENDIF %}
+								<a href="{USER_LOGOUT_URL}" title="Выход" rel="nofollow"><span>Выход</span></a>
+							</div>
+							{% ELSE %}
+							<!-- Форма входа и регистрации -->
+							<form action="{USER_LOGIN_URL}" method="post" class="form__client">
+								<input type="hidden" name="hash" value="{HASH}" />
+								<input type="hidden" name="from" value="{FROM}" />
+								<!-- Набор полей которые не видит пользователь, но видят боты. Когда они их заполняют мы точно знаем, что их прислал нам бот и мы не сохраняем подобный отзыв о товаре, а боту отправившему отзыв сообщаем, что отзыв добавлен успешно, но будет отображён здесь после прохождения модерации -->
+								{ANTISPAM_CODE}
+								<div class="form__list">
+									<div class="form__fields">
+										<label for="sites_client_mail" class="required">Электронная почта <em>*</em></label>
+										<input type="email" name="form[sites_client_mail]" value="{FORM_SITES_CLIENT_MAIL}" id="sites_client_mail"  maxlength="255" class="form__input email" placeholder="Email" required/>
+									</div>
+									<div class="form__fields">
+										<label for="sites_client_pass" class="required">Пароль: <em>*</em></label>
+										<input type="password" id="sites_client_pass" name="form[sites_client_pass]" value="{FORM_SITES_CLIENT_PASS}" maxlength="50" minlength="6" class="form__input" placeholder="Пароль" onkeyup="checkCapsWarning(event)" onfocus="checkCapsWarning(event)" onblur="removeCapsWarning()" required/>
+										{% IFNOT user_agent_ie %}
+										<div class="showPassBlock"><a href="#" rel="Скрыть пароль" class="showPass">Показать пароль</a></div>
+										{% ENDIF %}
+										<div id="capslock">
+											<div><i class="material-icons">warning</i></div>
+											<div><strong>Caps Lock включен.</strong></div>
+											<div>Пароль может быть введен неверно.</div>
+										</div>
+									</div>
+								</div>
+								<div class="client__buttons addto__buttons">
+									<button type="submit" name="send" class="button" title="Войти">Войти</button>
+									<a href="{USER_REGISTER_URL}" class="button button4">Зарегистрироваться</a>
+								</div>
+							</form>
+							{% ENDIF %}
+						</div>
 					</div>
 					<!-- Корзина -->
 					<div class="cart dropdown {% IF CART_COUNT_TOTAL > 0 %}hasItems{% ENDIF %}">
@@ -242,6 +286,7 @@
 						</a>
 						<div id="addtoCart" class="addto__cart dropdown__content" data-open="cart">
 							{% IFNOT cart_items_empty %}
+							<div class="addto__title">В Корзине</div>
 							<div class="addto__items">
 								{% FOR cart_items %}
 								<div class="addto__item" data-id="{cart_items.GOODS_ID}">
@@ -260,14 +305,18 @@
 								</div>
 								{% ENDFOR %}
 							</div>
+							<div class="addto__total {CURRENCY_CHAR_CODE}">
+								<span>Итого:</span>
+								<span class="price__now">{CART_SUM_NOW}</span>
+							</div>
 							{% ENDIF %}
 							<div class="addto__empty">
 								<div class="addto__title">В корзине пока ничего нет</div>
 								<a href="{CATALOG_URL}" class="button addto__close" title="Продолжить покупки">Продолжить покупки</a>
 							</div>
 							<div class="addto__buttons">
-								<a href="{CATALOG_URL}" class="button addto__close" title="Продолжить покупки">Продолжить покупки</a>
-								<a href="{CART_URL}" class="button button2" title="Перейти в Корзину">В корзину</a>
+								<a href="{CART_TRUNCATE_URL}" onclick="removeFromCartAll($(this))" class="button button3 removeAll" title="Очистить корзину"><span>Очистить корзину</span></a>
+								<a href="{CART_URL}" class="button" title="Перейти в Корзину"><span>Оформить заказ</span></a>
 							</div>
 						</div>
 					</div>
@@ -284,27 +333,27 @@
 				<!-- Слайдер -->
 				<div class="slider owl-carousel">
 					<div class="slider__item lozad" data-background-image="{ASSETS_IMAGES_PATH}slide1.png?design=nails" data-slide="1">
-						<div class="slider__title"><span>Скидка 20%</span></div>
+						<a href="{CATALOG_URL}" class="slider__title"><span>Скидка 20%</span></a>
 						<div class="slider__subtitle"><span>на всю бытовую технику</span></div>
 						<a href="{CATALOG_URL}" class="slider__button button" title="Подробнее"><span>Подробнее</span></a>
 					</div>
 					<div class="slider__item lozad" data-background-image="{ASSETS_IMAGES_PATH}slide2.png?design=nails" data-slide="2">
-						<div class="slider__title"><span>Скидка 20%</span></div>
+						<a href="{CATALOG_URL}" class="slider__title"><span>Скидка 20%</span></a>
 						<div class="slider__subtitle"><span>на всю бытовую технику</span></div>
 						<a href="{CATALOG_URL}" class="slider__button button" title="Подробнее"><span>Подробнее</span></a>
 					</div>
 					<div class="slider__item lozad" data-background-image="{ASSETS_IMAGES_PATH}slide3.png?design=nails" data-slide="3">
-						<div class="slider__title"><span>Скидка 20%</span></div>
+						<a href="{CATALOG_URL}" class="slider__title"><span>Скидка 20%</span></a>
 						<div class="slider__subtitle"><span>на всю бытовую технику</span></div>
 						<a href="{CATALOG_URL}" class="slider__button button" title="Подробнее"><span>Подробнее</span></a>
 					</div>
 					<div class="slider__item lozad" data-background-image="{ASSETS_IMAGES_PATH}slide4.png?design=nails" data-slide="4">
-						<div class="slider__title"><span>Скидка 20%</span></div>
+						<a href="{CATALOG_URL}" class="slider__title"><span>Скидка 20%</span></a>
 						<div class="slider__subtitle"><span>на всю бытовую технику</span></div>
 						<a href="{CATALOG_URL}" class="slider__button button" title="Подробнее"><span>Подробнее</span></a>
 					</div>
 					<div class="slider__item lozad" data-background-image="{ASSETS_IMAGES_PATH}slide5.png?design=nails" data-slide="5">
-						<div class="slider__title"><span>Скидка 20%</span></div>
+						<a href="{CATALOG_URL}" class="slider__title"><span>Скидка 20%</span></a>
 						<div class="slider__subtitle"><span>на всю бытовую технику</span></div>
 						<a href="{CATALOG_URL}" class="slider__button button" title="Подробнее"><span>Подробнее</span></a>
 					</div>
@@ -338,7 +387,7 @@
 			<div class="catalog__items owl-carousel">
 				{% FOR catalog_full %}
 					{% IF catalog_full.LEVEL = 0 %}
-					<div class="catalog__item">
+					<div class="catalog__item" data-id="{catalog_full.ID}">
 						<a href="{catalog_full.URL}" class="catalog__image"><img src="{% IF catalog_full.IMAGE_SMALL %}{catalog_full.IMAGE_SMALL}{% ELSE %}{ASSETS_IMAGES_PATH}no-photo-small.png?design=nails{% ENDIF %}" class="goods-image-medium"/></a>
 						<a href="{catalog_full.URL}" class="catalog__name">{catalog_full.NAME}</a>
 					</div>
@@ -367,13 +416,6 @@
 						<div class="product__image">
 							<a href="{index_page_goods.URL_MIN_PRICE_NOW | url_amp}" class="product__img" title="{index_page_goods.NAME}" itemprop="url">
 								<img class="goods-image-medium lozad" src="{ASSETS_IMAGES_PATH}placeholder.png?design=nails" data-src="{% IF index_page_goods.IMAGE_EMPTY %}{ASSETS_IMAGES_PATH}no-photo.png?design=nails{% ELSE %}{index_page_goods.IMAGE_MEDIUM}{% ENDIF %}" alt="{index_page_goods.NAME}" itemprop="image">
-								{% FOR images %}
-								{% IF index_page_goods.images.index = 2 %}
-								<div class="product__img--hover">
-									<img class="goods-image-medium lozad" src="{ASSETS_IMAGES_PATH}placeholder.png?design=nails" data-src="{index_page_goods.images.MEDIUM}" alt="{index_page_goods.NAME}" title="{index_page_goods.NAME}">
-								</div>
-								{% ENDIF %}
-								{% ENDFOR %}
 							</a>
 							<div class="product__ico">
 								{% IF index_page_goods.MIN_PRICE_OLD>index_page_goods.MIN_PRICE_NOW %}<span class="ico__sales"></span>{% ENDIF %}
@@ -563,13 +605,6 @@
 						<div class="product__image">
 							<a href="{index_page_sale_goods.URL_MIN_PRICE_NOW | url_amp}" class="product__img" title="{index_page_sale_goods.NAME}" itemprop="url">
 								<img class="goods-image-medium lozad" src="{ASSETS_IMAGES_PATH}placeholder.png?design=nails" data-src="{% IF index_page_sale_goods.IMAGE_EMPTY %}{ASSETS_IMAGES_PATH}no-photo.png?design=nails{% ELSE %}{index_page_sale_goods.IMAGE_MEDIUM}{% ENDIF %}" alt="{index_page_sale_goods.NAME}" itemprop="image">
-								{% FOR images %}
-								{% IF index_page_sale_goods.images.index = 2 %}
-								<div class="product__img--hover">
-									<img class="goods-image-medium lozad" src="{ASSETS_IMAGES_PATH}placeholder.png?design=nails" data-src="{index_page_sale_goods.images.MEDIUM}" alt="{index_page_sale_goods.NAME}" title="{index_page_sale_goods.NAME}">
-								</div>
-								{% ENDIF %}
-								{% ENDFOR %}
 							</a>
 							<div class="product__ico">
 								{% IF index_page_sale_goods.MIN_PRICE_OLD>index_page_sale_goods.MIN_PRICE_NOW %}<span class="ico__sales"></span>{% ENDIF %}
@@ -742,13 +777,6 @@
 						<div class="product__image">
 							<a href="{index_page_new_goods.URL_MIN_PRICE_NOW | url_amp}" class="product__img" title="{index_page_new_goods.NAME}" itemprop="url">
 								<img class="goods-image-medium lozad" src="{ASSETS_IMAGES_PATH}placeholder.png?design=nails" data-src="{% IF index_page_new_goods.IMAGE_EMPTY %}{ASSETS_IMAGES_PATH}no-photo.png?design=nails{% ELSE %}{index_page_new_goods.IMAGE_MEDIUM}{% ENDIF %}" alt="{index_page_new_goods.NAME}" itemprop="image">
-								{% FOR images %}
-								{% IF index_page_new_goods.images.index = 2 %}
-								<div class="product__img--hover">
-									<img class="goods-image-medium lozad" src="{ASSETS_IMAGES_PATH}placeholder.png?design=nails" data-src="{index_page_new_goods.images.MEDIUM}" alt="{index_page_new_goods.NAME}" title="{index_page_new_goods.NAME}">
-								</div>
-								{% ENDIF %}
-								{% ENDFOR %}
 							</a>
 							<div class="product__ico">
 								{% IF index_page_new_goods.MIN_PRICE_OLD>index_page_new_goods.MIN_PRICE_NOW %}<span class="ico__sales"></span>{% ENDIF %}
@@ -953,14 +981,12 @@
 				<a href="{CATALOG_URL}" class="brands__item" title=""><img src="{ASSETS_IMAGES_PATH}chanel.png?design=nails"/></a>
 				<a href="{CATALOG_URL}" class="brands__item" title=""><img src="{ASSETS_IMAGES_PATH}reebok.png?design=nails"/></a>
 				<a href="{CATALOG_URL}" class="brands__item" title=""><img src="{ASSETS_IMAGES_PATH}prada.png?design=nails"/></a>
-				<a href="{CATALOG_URL}" class="brands__item" title=""><img src="{ASSETS_IMAGES_PATH}zippo.png?design=nails"/></a>
-				<a href="{CATALOG_URL}" class="brands__item" title=""><img src="{ASSETS_IMAGES_PATH}philips.png?design=nails"/></a>
-				<a href="{CATALOG_URL}" class="brands__item" title=""><img src="{ASSETS_IMAGES_PATH}asics.png?design=nails"/></a>
-				<a href="{CATALOG_URL}" class="brands__item" title=""><img src="{ASSETS_IMAGES_PATH}fila.png?design=nails"/></a>
-				<a href="{CATALOG_URL}" class="brands__item" title=""><img src="{ASSETS_IMAGES_PATH}mango.png?design=nails"/></a>
-				<a href="{CATALOG_URL}" class="brands__item" title=""><img src="{ASSETS_IMAGES_PATH}chanel.png?design=nails"/></a>
-				<a href="{CATALOG_URL}" class="brands__item" title=""><img src="{ASSETS_IMAGES_PATH}reebok.png?design=nails"/></a>
-				<a href="{CATALOG_URL}" class="brands__item" title=""><img src="{ASSETS_IMAGES_PATH}prada.png?design=nails"/></a>
+				{% FOR catalog_full %}
+					<!-- Используйте data-id нужной категории для вывода на главной -->
+					{% IF catalog_full.PARENT_ID = 7467469 %}
+						<a href="{catalog_full.URL}" class="brands__item"><img src="{% IF catalog_full.IMAGE_SMALL %}{catalog_full.IMAGE_SMALL}{% ELSE %}{ASSETS_IMAGES_PATH}no-photo-small.png?design=nails{% ENDIF %}" class="goods-image-medium"/></a>
+					{% ENDIF %}
+				{% ENDFOR %}
 			</div>
 		</div>
 	</section>
@@ -984,13 +1010,6 @@
 						<div class="product__image">
 							<a href="{index_page_favorites_goods.URL_MIN_PRICE_NOW | url_amp}" class="product__img" title="{index_page_favorites_goods.NAME}" itemprop="url">
 								<img class="goods-image-medium lozad" src="{ASSETS_IMAGES_PATH}placeholder.png?design=nails" data-src="{% IF index_page_favorites_goods.IMAGE_EMPTY %}{ASSETS_IMAGES_PATH}no-photo.png?design=nails{% ELSE %}{index_page_favorites_goods.IMAGE_MEDIUM}{% ENDIF %}" alt="{index_page_favorites_goods.NAME}" itemprop="image">
-								{% FOR images %}
-								{% IF index_page_favorites_goods.images.index = 2 %}
-								<div class="product__img--hover">
-									<img class="goods-image-medium lozad" src="{ASSETS_IMAGES_PATH}placeholder.png?design=nails" data-src="{index_page_favorites_goods.images.MEDIUM}" alt="{index_page_favorites_goods.NAME}" title="{index_page_favorites_goods.NAME}">
-								</div>
-								{% ENDIF %}
-								{% ENDFOR %}
 							</a>
 							<div class="product__ico">
 								{% IF index_page_favorites_goods.MIN_PRICE_OLD>index_page_favorites_goods.MIN_PRICE_NOW %}<span class="ico__sales"></span>{% ENDIF %}
@@ -1247,7 +1266,7 @@
 								<input class="form__input" type="hidden" name="form[{ANTISPAM_FORM_FIELD_NAME_CALLBACK_PHONE}]" value="Подписаться" placeholder="Ваш телефон" autocomplete="off" />
 								<div class="form__field">
 									<input class="form__input form__email" type="email" name="form[{ANTISPAM_FORM_FIELD_NAME_CALLBACK_EMAIL}]" value="{FORM_CALLBACK_EMAIL}" placeholder="email@email.ru *" autocomplete="off"  />
-									<button type="submit" title="Отправить" class="form__button button"><i class="icon-right-arrow"></i></button>
+									<button type="submit" title="Отправить" class="form__button button"><i class="icon-arrow-right"></i></button>
 								</div>
 							</form>
 						</div>
