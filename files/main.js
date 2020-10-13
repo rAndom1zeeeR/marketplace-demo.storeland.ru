@@ -1275,15 +1275,15 @@ $('.productView__form, .goodsListForm').off('submit').submit(function() {
           if(typeof(Noty) == "function") {
             new Noty({
               text: '<div class="noty__addto"><i class="icon-warning"></i><div class="noty__message">'+ $(data).html() + '</div></div>',
-              layout:"topCenter",
+              layout:"bottomCenter",
               type:"warning",
               theme:"",
               closeWith: ['click'],
               textAlign:"center",
               easing:"swing",
               animation: {
-                open: 'animated fadeInDown',
-                close: 'animated fadeOutUp',
+                open: 'animated fadeInUp',
+                close: 'animated fadeOutDown',
                 easing: 'swing',
                 speed: 400
               },
@@ -1302,15 +1302,15 @@ $('.productView__form, .goodsListForm').off('submit').submit(function() {
           if(typeof(Noty) == "function") {
             new Noty({
               text: '<div class="noty__addto"><i class="icon-check"></i><div class="noty__message">'+ $(data).html() + '</div></div>',
-              layout:"topCenter",
+              layout:"bottomCenter",
               type:"success",
               theme:"",
               closeWith: ['click'],
               textAlign:"center",
               easing:"swing",
               animation: {
-                open: 'animated fadeInDown',
-                close: 'animated fadeOutUp',
+                open: 'animated fadeInUp',
+                close: 'animated fadeOutDown',
                 easing: 'swing',
                 speed: 400
               },
@@ -1394,8 +1394,8 @@ $('.add-compare').off('click').click(function(){
               '<a href="'+ pUrl +'" title="'+ pName +'" class="addto__image"><img src="'+ pImg +'" class="goods-image-icon" /></a>' +
               '<div class="addto__shop">' +
                 '<a href="'+ pUrl +'" class="addto__name" title="'+ pName +'"><span>'+ pName +'</span></a>' +
-                '<div class="addto__priceBox  '+ pDataChar +'">' +
-                  '<div class="addto__price price__now"><span title="'+ pDataPrice +' российских рублей"><span class="num">'+ pDataPrice +'</span> <span>р.</span></span></div>' +
+                '<div class="addto__price  '+ pDataChar +'">' +
+                  '<div class="price__now"><span title="'+ pDataPrice +' российских рублей"><span class="num">'+ pDataPrice +'</span> <span>р.</span></span></div>' +
                   '<a href="'+ delUrl +'?id='+ pDataMod +'" data-goods-mod-id="'+ pDataMod +'" class="addto__remove remove" title="Убрать товар из списка сравнения" onclick="removeFromCompare($(this))"><span>Удалить</span></a>' +
                 '</div>' +
               '</div>' +
@@ -1461,15 +1461,15 @@ $('.add-compare').off('click').click(function(){
           if(typeof(Noty) == "function") {
             new Noty({
               text: '<div class="noty__addto"><i class="icon-check"></i><div class="noty__message">'+ data.message + '</div></div>',
-              layout:"topCenter",
+              layout:"bottomCenter",
               type:"success",
               theme:"",
               closeWith: ['click'],
               textAlign:"center",
               easing:"swing",
               animation: {
-                open: 'animated fadeInDown',
-                close: 'animated fadeOutUp',
+                open: 'animated fadeInUp',
+                close: 'animated fadeOutDown',
                 easing: 'swing',
                 speed: 400
               },
@@ -1488,15 +1488,15 @@ $('.add-compare').off('click').click(function(){
           if(typeof(Noty) == "function") {
             new Noty({
               text: '<div class="noty__addto"><i class="icon-warning"></i><div class="noty__message">'+ data.message + '</div></div>',
-              layout:"topCenter",
+              layout:"bottomCenter",
               type:"warning",
               theme:"",
               closeWith: ['click'],
               textAlign:"center",
               easing:"swing",
               animation: {
-                open: 'animated fadeInDown',
-                close: 'animated fadeOutUp',
+                open: 'animated fadeInUp',
+                close: 'animated fadeOutDown',
                 easing: 'swing',
                 speed: 400
               },
@@ -1575,8 +1575,8 @@ $('.add-favorites').off('click').click(function(){
             '<div class="addto__item" data-id="'+ pDataid +'">' +
               '<a href="'+ pUrl +'" title="'+ pName +'" class="addto__image"><img src="'+ pImg +'" class="goods-image-icon" /></a>' +
               '<div class="addto__shop"><a href="'+ pUrl +'" class="addto__name" title="'+ pName +'"><span>'+ pName +'</span></a>' +
-                '<div class="addto__priceBox '+ pDataChar +'">' +
-                  '<div class="addto__price price__now"><span title="'+ pDataPrice +' российских рублей"><span class="num">'+ pDataPrice +'</span> <span>р.</span></span></div>' +
+                '<div class="addto__price '+ pDataChar +'">' +
+                  '<div class="price__now"><span title="'+ pDataPrice +' российских рублей"><span class="num">'+ pDataPrice +'</span> <span>р.</span></span></div>' +
                   '<a href="'+ delUrl +'?id='+ pDataMod +'" data-goods-mod-id="'+ pDataMod +'" class="addto__remove remove" title="Убрать товар из списка избранного" onclick="removeFromFavorites($(this))"><span>Удалить</span></a>' +
                 '</div>' +
               '</div>' +
@@ -1642,15 +1642,15 @@ $('.add-favorites').off('click').click(function(){
           if(typeof(Noty) == "function") {
             new Noty({
               text: '<div class="noty__addto"><i class="icon-check"></i><div class="noty__message">'+ data.message + '</div></div>',
-              layout:"topCenter",
+              layout:"bottomCenter",
               type:"success",
               theme:"",
               closeWith: ['click'],
               textAlign:"center",
               easing:"swing",
               animation: {
-                open: 'animated fadeInDown',
-                close: 'animated fadeOutUp',
+                open: 'animated fadeInUp',
+                close: 'animated fadeOutDown',
                 easing: 'swing',
                 speed: 400
               },
@@ -1669,15 +1669,15 @@ $('.add-favorites').off('click').click(function(){
           if(typeof(Noty) == "function") {
             new Noty({
               text: '<div class="noty__addto"><i class="icon-warning"></i><div class="noty__message">'+ data.message + '</div></div>',
-              layout:"topCenter",
+              layout:"bottomCenter",
               type:"warning",
               theme:"",
               closeWith: ['click'],
               textAlign:"center",
               easing:"swing",
               animation: {
-                open: 'animated fadeInDown',
-                close: 'animated fadeOutUp',
+                open: 'animated fadeInUp',
+                close: 'animated fadeOutDown',
                 easing: 'swing',
                 speed: 400
               },
@@ -1703,7 +1703,7 @@ $('.add-favorites').off('click').click(function(){
 function removeFromFavorites(e){
   event.preventDefault();
   if(confirm('Вы точно хотите удалить товар из Избранного?')){
-    e.parent().parent().parent().fadeOut().remove();
+    e.parent().parent().fadeOut().remove();
     let href = e.attr('href');
     let oldCount = $('.favorites__count').attr('data-count');
     let goodsModId = e.attr('data-goods-mod-id');
@@ -1763,7 +1763,7 @@ function removeFromFavoritesAll(e){
 function removeFromCompare(e){
   event.preventDefault();
   if(confirm('Вы точно хотите удалить товар из сравнения?')){
-    e.parent().parent().parent().fadeOut().remove();
+    e.parent().parent().fadeOut().remove();
     let href = e.attr('href');
     let oldCount = $('.compare__count').attr('data-count');
     let goodsModId = e.attr('data-goods-mod-id');
@@ -1823,7 +1823,7 @@ function removeFromCompareAll(e){
 function removeFromCart(e){
   event.preventDefault();
   if(confirm('Вы точно хотите удалить товар из корзины?')){
-  e.parent().parent().parent().fadeOut().remove();
+  e.parent().parent().fadeOut().remove();
   let href = e.attr('href');
   let qty = e.data('qty');
   let oldCount = $('.cart__count').attr('data-count');

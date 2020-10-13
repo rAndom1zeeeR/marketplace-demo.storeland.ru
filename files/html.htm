@@ -172,8 +172,8 @@
 										<!-- Название -->
 										<a href="{compare_goods.URL}" class="addto__name" title="{compare_goods.NAME}"><span>{compare_goods.NAME}</span></a>
 										<!-- Цена -->
-										<div class="addto__priceBox {CURRENCY_CHAR_CODE}">
-											<div class="addto__price price__now">{compare_goods.MIN_PRICE_NOW | money_format}</div>
+										<div class="addto__price {CURRENCY_CHAR_CODE}">
+											<div class="price__now">{compare_goods.MIN_PRICE_NOW | money_format}</div>
 											<!-- Удаление -->
 											<a href="{COMPARE_DELETE_URL}?id={compare_goods.MIN_PRICE_NOW_ID}" data-goods-mod-id="{compare_goods.MIN_PRICE_NOW_ID}" class="addto__remove remove" title="Убрать товар из списка сравнения" onclick="removeFromCompare($(this))"><span>Удалить</span></a>
 										</div>
@@ -209,8 +209,8 @@
 										<!-- Название -->
 										<a href="{favorites_goods.URL}" class="addto__name" title="{favorites_goods.NAME}">{favorites_goods.NAME}</a>
 										<!-- Цена -->
-										<div class="addto__priceBox {CURRENCY_CHAR_CODE}">
-											<div class="addto__price price__now">{favorites_goods.MIN_PRICE_NOW | money_format}</div>
+										<div class="addto__price {CURRENCY_CHAR_CODE}">
+											<div class="price__now">{favorites_goods.MIN_PRICE_NOW | money_format}</div>
 											<!-- Удаление -->
 											<a href="{FAVORITES_DELETE_URL}?id={favorites_goods.MIN_PRICE_NOW_ID}" data-goods-mod-id="{favorites_goods.MIN_PRICE_NOW_ID}" class="addto__remove remove" title="Убрать товар из списка избранного" onclick="removeFromFavorites($(this))"><span>Удалить</span></a>
 										</div>
@@ -296,8 +296,8 @@
 										<a href="{cart_items.GOODS_URL}" class="addto__name" title="{cart_items.GOODS_NAME}"><span>{cart_items.GOODS_NAME}</span></a>
 										{% IFNOT cart_items.distinctive_properties_empty %}<div class="addto__mod">({% FOR distinctive_properties %}{cart_items.distinctive_properties.NAME}: {cart_items.distinctive_properties.VALUE}{% IFNOT cart_items.distinctive_properties.last %}, {% ENDIF %}{% ENDFOR %})</div>{% ENDIF %}
 										<!-- Цена -->
-										<div class="addto__priceBox {CURRENCY_CHAR_CODE}">
-											<div class="addto__price price__now" data-price="{cart_items.GOODS_MOD_PRICE_NOW}">{cart_items.GOODS_MOD_PRICE_NOW | money_format}</div>
+										<div class="addto__price {CURRENCY_CHAR_CODE}">
+											<div class="price__now" data-price="{cart_items.GOODS_MOD_PRICE_NOW}">{cart_items.GOODS_MOD_PRICE_NOW | money_format}</div>
 											<!-- Удаление -->
 											<a class="addto__remove remove" href="{cart_items.ORDER_LINE_DELETE_URL}" data-qty="{cart_items.ORDER_LINE_QUANTITY}" title="Удалить позицию" onclick="removeFromCart($(this))"><span>Удалить</span></a>
 										</div>
@@ -554,6 +554,10 @@
 								{% ENDIF %}
 								{% ENDIF %}
 							</div>
+						</div>
+						<!-- Смотреть -->
+						<div class="product__quickview">
+							<a class="quickview" title="Смотреть &laquo;{index_page_goods.NAME}&raquo;" rel="nofollow" href="{index_page_goods.URL_MIN_PRICE_NOW}"><span>Смотреть</span></a>
 						</div>
 					</form>
 				</div>
@@ -1492,13 +1496,13 @@
 	{% IF FORM_NOTICE %}
 	new Noty({
 		text: '<div class="noty__addto"><i class="icon-{% IF FORM_NOTICE_IS_GOOD %}check{% ELSE %}warning{% ENDIF %}"></i><div class="noty__message">{FORM_NOTICE | nl2br}</div></div>',
-		layout: "topCenter",
+		layout: "bottomCenter",
 		type: "{% IF FORM_NOTICE_IS_GOOD %}success{% ELSE %}warning{% ENDIF %}",
 		theme: "",
 		textAlign: "center",
 		animation: {
-			open: 'animated fadeInDown',
-			close: 'animated fadeOutUp',
+			open: 'animated fadeInUp',
+			close: 'animated fadeOutDown',
 			easing: 'swing',
 			speed: 400
 		},
