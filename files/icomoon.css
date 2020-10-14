@@ -70,7 +70,7 @@
 .icon-favorites_border:before {
   content: "\e90f";
 }
-.icon-grid:before {
+.icon-grid:before, .icon-list:before {
   content: "\e910";
 }
 .icon-location:before {

@@ -3075,6 +3075,19 @@ function OpenMenu() {
     $('#overlay').removeClass('opened');
   });
 
+  // Открытие селектов в тулбаре
+  $('.select label').on('click', function(event){
+    event.preventDefault();
+    if ($(this).parent().hasClass('opened')){
+      $(this).removeClass('opened');
+      $(this).parent().removeClass('opened');
+      $('#overlay').removeClass('opened');
+    }else{
+      $(this).addClass('opened');
+      $(this).parent().addClass('opened');
+      $('#overlay').addClass('opened');
+    }
+  });
 }
 
 

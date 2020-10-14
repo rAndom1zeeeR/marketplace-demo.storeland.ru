@@ -92,10 +92,10 @@ input.error + i, select.error + i, textarea.error + i {color: #4c515f;}
 textarea {height: auto;line-height: 1;padding: 1rem;}
 select {cursor: pointer;-webkit-appearance: menulist;}
 input[type="file"] {margin-top: 0.25rem;height: auto;line-height: 1;border: 0;padding: 0;border-radius: 0;background: transparent;}
-.selectBox {position: relative;height: 68px;background: #ffffff;border-radius: 1rem;border: 5px solid #ffffff;display: flex;align-items: center;justify-content: flex-start;}
-.selectBox:after {content: '\e90b';font-family: 'icomoon';position: absolute;top: 0;right: 0;line-height: 1;color: #ffffff;border-radius: 1rem;background-color: #9085f7;width: 58px;height: 58px;background-repeat: no-repeat;background-size: 20px;background-position: center center;display: flex;align-items: center;justify-content: center;transition: all 0.3s ease;pointer-events: none;box-sizing: border-box;}
-.selectBox:hover:after {background-color: #8776d9;}
-.selectBox select, .selectBox .select {padding: 0 4rem 0 1.5rem;border: 0;font-size: 1rem;font-weight: bold;height: 58px;line-height: 1;-webkit-appearance: none;-moz-appearance: none;appearance: none;}
+.selectBox {position: relative;height: auto;display: flex;align-items: center;justify-content: flex-start;}
+.selectBox:after {content: '\e909';font-family: 'icomoon';position: absolute;top: 0;right: 0;line-height: 1;display: flex;align-items: center;justify-content: center;transition: all 0.3s ease;pointer-events: none;box-sizing: border-box;}
+.selectBox:hover:after {color: #8776d9;}
+.selectBox select, .selectBox .select {padding: 0 1rem 0 0rem;border: 0;font-size: 1rem;font-weight: bold;height: auto;line-height: 1;-webkit-appearance: none;-moz-appearance: none;appearance: none;}
 /* Текст в не активном инпуте */
 ::-webkit-input-placeholder {color: #a6a1bb;}
 ::-moz-placeholder          {color: #a6a1bb;}
@@ -324,7 +324,7 @@ section {margin: 2rem 0;}
 .addto__price {margin-top: 0.75rem;flex-wrap: wrap;width: 100%;padding: 0;}
 .addto__buttons {flex-direction: column;}
 .addto__buttons a, .addto__empty a {width: 90%;line-height: 48px;padding: 0;}
-.addto__buttons a + a {margin-top: 1rem;}
+.addto__buttons a + a {margin: 1rem 0 0 0;}
 }
 
 /*** Добавление в корзину ***/
@@ -341,6 +341,7 @@ section {margin: 2rem 0;}
 /*** Заголовки ***/
 .block__title {margin-bottom: 2rem;position: relative;}
 .block__title .title {font-size: 30px;font-weight: bold;}
+#page__title .block__title {margin-bottom: 1rem;}
 /* Заголовки с навигацией */
 .block__nav {display: flex;flex-wrap: wrap;align-items: center;justify-content: space-between;}
 .block__nav .owl-nav {width: 120px;}
@@ -358,6 +359,18 @@ section {margin: 2rem 0;}
 @media all and (max-width: 480px) {
 .modal__title .title {font-size: 21px;}
 }
+
+/*** Хлебные крошки ***/
+#breadcrumbs {display: block;position: relative;margin-bottom: 2rem;background: #ffffff;border-radius: 10px;overflow-x: auto;}
+#breadcrumbs ul {margin: 0;padding: 0;list-style: none;display: flex;flex-wrap: nowrap;align-items: center;justify-content: flex-start;}
+#breadcrumbs ul li {display: flex;align-items: center;line-height: 2rem;}
+#breadcrumbs ul li:before {content: "\e906";font-family: 'icomoon';font-size: 10px;display: block;margin: 0 1.5rem;}
+#breadcrumbs ul li:first-child:before {display: none;}
+#breadcrumbs ul li span {text-overflow: ellipsis;white-space: nowrap;overflow: hidden;max-width: 300px;}
+#breadcrumbs ul li:last-child {color: #7e6cd6;padding-right: 1rem;}
+#breadcrumbs::-webkit-scrollbar {width: 0;height: 0.5rem;}
+#breadcrumbs::-webkit-scrollbar-thumb {border-radius: 0.5rem;background-color: #9085f7;}
+#breadcrumbs::-webkit-scrollbar-track {border-radius: 0.5rem;background-color: #edf2ff;}
 
 /*** Личный кабинет ***/
 .client, .form__client {width: 100%;display: flex;flex-wrap: wrap;justify-content: space-between;}
@@ -504,7 +517,7 @@ section {margin: 2rem 0;}
 header .menu__icon {display: none;}
 header .mainnav__list {margin: 0;padding: 0;display: flex;align-items: center;justify-content: flex-end;}
 header .mainnav__list a {padding: 0 1rem;}
-header .mainnav__list a:hover, header .mainnav__list a.active {color: #7e6cd6;}
+header .mainnav__list a.active {color: #7e6cd6;}
 /** Логотип **/
 .logo .title {font-size: 36px;font-weight: bold;padding-left: 1rem;display: flex;align-items: flex-start;justify-content: center;flex-direction: column;}
 .logo span + span {font-size: 14px;font-weight: normal;color: #929bb0;margin-top: 0.25rem;display: block;}
@@ -890,11 +903,31 @@ footer .form__button {position: absolute;top: 0;right: 0;padding: 0;width: 60px;
 }
 
 
-
-
-
-
-
+/*** Тулбар ***/
+.toolbar {margin-bottom: 2rem;}
+.form__toolbar {display: flex;flex-wrap: wrap;align-items: center;}
+.form__toolbar > div + div {margin-left: 2rem;}
+.view__type {display: flex;flex-wrap: wrap;justify-content: flex-end;flex-grow: 1;}
+.view__icon {width: 60px;height: 60px;border: 0;font-size: 1rem;background-color: #FFFFFF;border-radius: 1rem;box-shadow: 0px 0px 100px 0px #e6e0fe;display: flex;align-items: center;justify-content: center;}
+.view__icon:hover, .view__icon.active {background: #f1eeff;color: #8d81f7;}
+.view__icon + .view__icon {margin-left: 1rem;font-size: 1.5rem;}
+.select {position: relative;display: flex;align-items: center;}
+.select select {display: none;}
+.select__value {display: none;}
+.select__value + i {margin-left: 0.25rem;display: none;vertical-align: middle;}
+.select__label {color: #929bb0;}
+.select__items a {margin-left: 1rem;}
+.select__items a:hover, .select__items a.active {color: #8d81f7;}
+@media all and (max-width: 991px) {
+.select__value {margin-left: 0.5rem;display: inline-block;cursor: pointer;}
+.select__value:hover {color: #8d81f7;}
+.select__value + i {display: inline-block;}
+.select__value:hover + i {color: #8d81f7;}
+.select__items {display: none;position: absolute;top: 100%;right: 0;padding: 1rem;background: #fff;border-radius: 1rem;box-shadow: 0px 0px 100px 0px #e6e0fe;z-index: 10;}
+.opened .select__items {display: block;margin-top: 1rem;}
+.select__items a {margin: 0;display: block;padding: 0.75rem 1.25rem;border-radius: 1rem;line-height: 1.2;}
+.select__items a:hover {background: #f1eeff;}
+}
 
 	/******************************************************************************
 			*******************************************************************************/

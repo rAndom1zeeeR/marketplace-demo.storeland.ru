@@ -34,15 +34,51 @@
       {% FOR goods_filters %}
         <input type="hidden" name="{goods_filters.NAME}" value="{goods_filters.VALUE}" />
       {% ENDFOR %}
-      {% IF SHOW_GOODS_PRICE_FILTERS || goods_filters_empty=1 %}
+      <!--{% IF SHOW_GOODS_PRICE_FILTERS || goods_filters_empty=1 %}
       <div class="filters__icon selectBox">
         <span>Фильтр</span>
       </div>
-      {% ENDIF %}
+      {% ENDIF %}-->
       <!-- Сортировать по: (Поле сортировки товаров по умолчанию) -->
-      <div class="sort-by selectBox">
+      <div class="sort-by select">
+	      <label>
+		      <span class="select__label">Сортировать по:</span>
+		      <span class="select__value">
+			      {% IF GOODS_SEARCH_FIELD_ID = 1%}
+	            Цена ↓
+	          {% ELSEIF GOODS_SEARCH_FIELD_ID = 2 %}
+	            Цена ↑
+	          {% ELSEIF GOODS_SEARCH_FIELD_ID = 5 %}
+	           Наличие
+	          {% ELSEIF GOODS_SEARCH_FIELD_ID = 11 %}
+	            Рейтинг
+	          {% ELSEIF GOODS_SEARCH_FIELD_ID = 13 %}
+	            Отзывы
+	          {% ENDIF %}
+		      </span>
+		      <i class="icon-arrow-down"></i>
+	      </label>
+	      <div class="select__items">
+		      {% FOR goods_order_fields %}
+			      {% IF goods_order_fields.ID = 1 || goods_order_fields.ID = 2 || goods_order_fields.ID = 5 || goods_order_fields.ID = 11 || goods_order_fields.ID = 13 %}
+		          <a href="?goods_search_field_id={goods_order_fields.ID}&per_page={PER_PAGE}" title="{goods_order_fields.NAME}" {% IF goods_order_fields.SELECTED %}class="active"{% ENDIF %}>
+			          {% IF goods_order_fields.ID = 1%}
+			            Цена ↓
+			          {% ELSEIF goods_order_fields.ID = 2 %}
+			            Цена ↑
+			          {% ELSEIF goods_order_fields.ID = 5 %}
+			           Наличие
+			          {% ELSEIF goods_order_fields.ID = 11 %}
+			            Рейтинг
+			          {% ELSEIF goods_order_fields.ID = 13 %}
+			            Отзывы
+			          {% ENDIF %}
+		          </a>
+			      {% ENDIF %}
+		      {% ENDFOR %}
+	      </div>
         <!-- Сортировка выпадающим списком	-->
-        <select class="select" name="goods_search_field_id" title="Название сортировки" onchange="this.form.submit();">
+        <!--<select class="select" name="goods_search_field_id" title="Название сортировки" onchange="this.form.submit();">
           {% FOR goods_order_fields %}
             {% IF goods_order_fields.ID = 1 || goods_order_fields.ID = 2 || goods_order_fields.ID = 5 || goods_order_fields.ID = 11 || goods_order_fields.ID = 13 %}
             <option value="{goods_order_fields.ID}" title="{goods_order_fields.NAME}" {% IF goods_order_fields.SELECTED %}selected="selected"{% ENDIF %}>
@@ -60,16 +96,26 @@
             </option>
             {% ENDIF %}
           {% ENDFOR %}
-        </select>
+        </select>-->
       </div>
       <!-- /END Сортировать по: -->
       <!-- Показывать по: (Шаг для выбора пользователем лимита выдачи товаров на страницу от 1 до 100) -->
-      <div class="show-by selectBox">
-        <select class="select" name="per_page" title="Лимит товаров на странице" onchange="this.form.submit();">
+      <div class="show-by select">
+	      <label>
+		      <span class="select__label">Показать по:</span>
+		      <span class="select__value">{PER_PAGE}</span>
+		      <i class="icon-arrow-down"></i>
+	      </label>
+	      <div class="select__items">
+		      {% FOR goods_per_page_list %}
+		      <a href="?goods_search_field_id={GOODS_SEARCH_FIELD_ID}&per_page={goods_per_page_list.LIMIT}" {% IF goods_per_page_list.SELECTED %}class="active"{% ENDIF %}>{goods_per_page_list.LIMIT}</a>
+		      {% ENDFOR %}
+	      </div>
+        <!--<select class="select" name="per_page" title="Лимит товаров на странице" onchange="this.form.submit();">
           {% FOR goods_per_page_list %}
             <option value="{goods_per_page_list.LIMIT}" {% IF goods_per_page_list.SELECTED %}selected="selected"{% ENDIF %}>{goods_per_page_list.LIMIT}</option>
           {% ENDFOR %}
-        </select>
+        </select>-->
       </div>
       <!-- /END Показывать по: -->
       <!-- Вид Таблица/Список -->
@@ -84,67 +130,6 @@
       </div>
       <!-- /END Вид Таблица/Список -->
     </form>
-    {% IF SHOW_GOODS_PRICE_FILTERS || goods_filters_empty=1 %}
-    <form action="" method="get" class="form__filters">
-      <div class="filter__lists">
-        <!-- Если есть возможность фильтрации товаров по ценам -->
-        {% IF SHOW_GOODS_PRICE_FILTERS %}
-        <div class="filter__list collapsible filters-price">
-          <div class="filter__name collapsible__click"><span>Цена</span></div>
-          <div class="filter__items collapsible__content">
-            <div class="priceSlider">
-              <input type="hidden" name="form[filter][available_price][min]" value="{GOODS_FILTER_MIN_AVAILABLE_PRICE}" />
-              <input type="hidden" name="form[filter][available_price][max]" value="{GOODS_FILTER_MAX_AVAILABLE_PRICE}" />
-              <!-- Фильтры по цене -->
-              <div class="goodsFilterPriceRangePointers">
-                <span class="min" style="display:none;">{GOODS_FILTER_MIN_AVAILABLE_PRICE}</span>
-                <span class="max" style="display:none;">{GOODS_FILTER_MAX_AVAILABLE_PRICE}</span>
-                <input id="goods-filter-min-price" class="inputText" type="text" name="form[filter][price][min]" value="{% IF GOODS_FILTER_MIN_PRICE %}{GOODS_FILTER_MIN_PRICE}{% ELSE %}{GOODS_FILTER_MIN_AVAILABLE_PRICE}{% ENDIF %}" min="1" onkeypress="return keyPress(this, event);" onpaste="return false;" />
-                <input id="goods-filter-max-price" class="inputText" type="text" name="form[filter][price][max]" value="{% IF GOODS_FILTER_MAX_PRICE %}{GOODS_FILTER_MAX_PRICE}{% ELSE %}{GOODS_FILTER_MAX_AVAILABLE_PRICE}{% ENDIF %}" min="1" onkeypress="return keyPress(this, event);" onpaste="return false;" />
-              </div>
-              <div id="goods-filter-price-slider"></div>
-              <div class="goodsFilterPriceSubmit">
-                <button class="button small" type="submit" title="Показать"><span>Показать</span></button>
-                <a href="{PAGE_CANONICAL}" class="clear" title="Очистить фильры"><span>Сбросить</span></a>
-              </div>
-            </div>
-          </div>
-        </div>
-        {% ENDIF %}
-        <!-- Фильтры по характеристикам товаров (Например: Производитель, разрешение экрана, заряд аккомулятора) -->
-        {% FOR filter_attr_list %}
-        <div class="filter__list collapsible {% FOR values %}{% IF filter_attr_list.values.CHECKED %}active actived {% ENDIF %}{% ENDFOR %}">
-          <div class="filter__name collapsible__click"><span>{filter_attr_list.NAME}:</span></div>
-          <div class="filter__items collapsible__content">
-            {% FOR values %}
-            <div class="filter__item {% IF filter_attr_list.values.CHECKED %}checked{% ELSEIF filter_attr_list.values.NB_GOODS_FILTERED=0 %}disabled{% ENDIF %}">
-              <input type="checkbox" name="form[filter][attr][{filter_attr_list.ID}][{filter_attr_list.values.ID}]" value="1" id="filterAttrVal{filter_attr_list.values.ID}" class="square" {% IF filter_attr_list.values.CHECKED %}checked="checked"{% ELSEIF filter_attr_list.values.NB_GOODS_FILTERED=0 %}disabled="disabled"{% ENDIF %} />
-              <label for="filterAttrVal{filter_attr_list.values.ID}"><span>{filter_attr_list.values.VALUE}</span></label>
-            </div>
-            {% ENDFOR %}
-          </div>
-        </div>
-        {% ENDFOR %}
-        <!-- Фильтры по свойствам товарных модификаций (Например: Цвет, размер, модификация) -->
-        {% FOR filter_prop_list %}
-        <div class="filter__list collapsible {% FOR values %}{% IF filter_prop_list.values.CHECKED %}active actived {% ENDIF %}{% ENDFOR %}">
-          <div class="filter__name collapsible__click"><span>{filter_prop_list.NAME}:</span></div>
-          <div class="filter__items collapsible__content">
-            {% FOR values %}
-            <div class="filter__item {% IF filter_prop_list.values.CHECKED %}checked{% ELSEIF filter_prop_list.values.NB_GOODS_FILTERED=0 %}disabled{% ENDIF %}">
-              <input type="checkbox" name="form[filter][prop][{filter_prop_list.ID}][{filter_prop_list.values.ID}]" value="1" id="filterPropVal{filter_prop_list.values.ID}" class="square" {% IF filter_prop_list.values.CHECKED %}checked="checked"{% ELSEIF filter_prop_list.values.NB_GOODS_FILTERED=0 %}disabled="disabled"{% ENDIF %} />
-              <label for="filterPropVal{filter_prop_list.values.ID}"><span>{filter_prop_list.values.VALUE}</span></label>
-            </div>
-            {% ENDFOR %}
-          </div>
-        </div>
-        {% ENDFOR %}
-      </div>
-      <div class="filters__buttons">
-        <a href="{PAGE_CANONICAL}" class="goodsFilterClear button button3 small" title="Очистить фильры"><span>Очистить фильры</span></a>
-      </div>
-    </form>
-    {% ENDIF %}
   </div>
   <!-- END Верхний блок, изменяющий отображение данных выдачи товаров -->
   <!-- Вывод товаров -->
@@ -161,13 +146,6 @@
           <div class="product__image">
             <a href="{goods.URL_MIN_PRICE_NOW | url_amp}" class="product__img" title="{goods.NAME}" itemprop="url">
               <img class="goods-image-medium lozad" src="{ASSETS_IMAGES_PATH}placeholder.png?design=florist" data-src="{% IF goods.IMAGE_EMPTY %}{ASSETS_IMAGES_PATH}no-photo.png?design=florist{% ELSE %}{goods.IMAGE_MEDIUM}{% ENDIF %}" alt="{goods.NAME}" itemprop="image">
-              {% FOR images %}
-              {% IF goods.images.index = 2 %}
-              <div class="product__img--hover">
-                <img class="goods-image-medium lozad" src="{ASSETS_IMAGES_PATH}placeholder.png?design=florist" data-src="{goods.images.MEDIUM}" alt="{goods.NAME}" title="{goods.NAME}">
-              </div>
-              {% ENDIF %}
-              {% ENDFOR %}
             </a>
             <div class="product__ico">
               {% IF goods.IS_PLACE_ON_INDEX_PAGE %}
