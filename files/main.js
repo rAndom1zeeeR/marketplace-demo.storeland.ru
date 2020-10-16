@@ -759,7 +759,7 @@ function catalogpage() {
   $('.toolbar .sort-by.selectBox .select .label span').text(selectText);
   
   // Боковое меню сохранение открытой вложенности
-  $('.collapsible:not(".active")').find('.collapsible__content').css('display', 'none');
+  /*$('.collapsible:not(".active")').find('.collapsible__content').css('display', 'none');*/
   $('.collapsible__click').click(function(event){
   event.preventDefault();
     if ($(this).closest('.collapsible').hasClass('active')) {
@@ -775,11 +775,11 @@ function catalogpage() {
 
   $('.filters__icon').click(function(event){
     event.preventDefault();
-    if ($(this).parent().parent().hasClass('opened')) {
-      $(this).parent().parent().removeClass('opened');
+    if ($(this).parents().find('.sidebar').hasClass('opened')) {
+      $(this).parents().find('.sidebar').removeClass('opened');
       $('#overlay').removeClass('opened');
     } else {
-      $(this).parent().parent().addClass('opened');
+      $(this).parents().find('.sidebar').addClass('opened');
       $('#overlay').addClass('opened');
     }
   });
@@ -1361,7 +1361,7 @@ $('.add-compare').off('click').click(function(){
   let atl = $(this).closest('.product__links');
   let atlS = $(this).closest('.product__shop');
   let flag = 0;
-  $('.addto__compare .addto__item').each(function(){
+  $('.compare .addto__item').each(function(){
     if($(this).attr('data-id') == pDataid){
       flag = 1;
     }
@@ -1389,7 +1389,7 @@ $('.add-compare').off('click').click(function(){
       },
       success: function(data) {
         if(flag == 0){
-          $('.addto__compare .addto__items').prepend('' +
+          $('.compare .addto__items').prepend('' +
             '<div class="addto__item" data-id="'+ pDataid +'">' +
               '<a href="'+ pUrl +'" title="'+ pName +'" class="addto__image"><img src="'+ pImg +'" class="goods-image-icon" /></a>' +
               '<div class="addto__shop">' +
@@ -1543,7 +1543,7 @@ $('.add-favorites').off('click').click(function(){
   let atl = $(this).closest('.product__links');
   let atlS = $(this).closest('.product__shop');
   let flag = 0;
-  $('.addto__favorites .addto__item').each(function(){
+  $('.favorites .addto__item').each(function(){
     if($(this).attr('data-id') == pDataid){
       flag = 1;
     }
@@ -1571,7 +1571,7 @@ $('.add-favorites').off('click').click(function(){
       },
       success: function(data) {
         if(flag == 0){   
-          $('.addto__favorites .addto__items').prepend('' +
+          $('.favorites .addto__items').prepend('' +
             '<div class="addto__item" data-id="'+ pDataid +'">' +
               '<a href="'+ pUrl +'" title="'+ pName +'" class="addto__image"><img src="'+ pImg +'" class="goods-image-icon" /></a>' +
               '<div class="addto__shop"><a href="'+ pUrl +'" class="addto__name" title="'+ pName +'"><span>'+ pName +'</span></a>' +
@@ -1715,7 +1715,7 @@ function removeFromFavorites(e){
         $('.favorites__count').attr('data-count', newCount).text(newCount);
         let flag = 0;
         if(newCount != 0){
-          $('.addto__favorites .addto__item').each(function(){
+          $('.favorites .addto__item').each(function(){
             if(flag == 0){
               if($(this).css('display') == 'none'){
                 $(this).css('display', 'flex');
@@ -1751,8 +1751,8 @@ function removeFromFavoritesAll(e){
     success: function(d){
       $('.favorites').removeClass("hasItems");
       $('.favorites__count').attr('data-count', '0').text("0");
-      $('.addto__favorites .addto__item').remove();
-      $('.addto__favorites .preloader').hide();
+      $('.favorites .addto__item').remove();
+      $('.favorites .preloader').hide();
       $('.add-favorites').removeAttr("title").removeClass("added");
     }
   });
@@ -1775,7 +1775,7 @@ function removeFromCompare(e){
         $('.compare__count').attr('data-count', newCount).text(newCount);
         let flag = 0;
         if(newCount != 0){
-          $('.addto__compare .addto__item').each(function(){
+          $('.compare .addto__item').each(function(){
             if(flag == 0){
               if($(this).css('display') == 'none'){
                 $(this).css('display', 'flex');
@@ -1811,8 +1811,8 @@ function removeFromCompareAll(e){
     success: function(d){
       $('.compare').removeClass("hasItems");
       $('.compare__count').attr('data-count', '0').text("0");
-      $('.addto__compare .addto__item').remove();
-      $('.addto__compare .preloader').hide();
+      $('.compare .addto__item').remove();
+      $('.compare .preloader').hide();
       $('.add-compare').removeAttr("title").removeClass("added");
     }
   });

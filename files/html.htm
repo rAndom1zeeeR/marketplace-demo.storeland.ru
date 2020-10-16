@@ -298,9 +298,9 @@
 										<!-- Цена -->
 										<div class="addto__price {CURRENCY_CHAR_CODE}">
 											<div class="price__now" data-price="{cart_items.GOODS_MOD_PRICE_NOW}">{cart_items.GOODS_MOD_PRICE_NOW | money_format}</div>
-											<!-- Удаление -->
-											<a class="addto__remove remove" href="{cart_items.ORDER_LINE_DELETE_URL}" data-qty="{cart_items.ORDER_LINE_QUANTITY}" title="Удалить позицию" onclick="removeFromCart($(this))"><span>Удалить</span></a>
 										</div>
+										<!-- Удаление -->
+										<a class="addto__remove remove" href="{cart_items.ORDER_LINE_DELETE_URL}" data-qty="{cart_items.ORDER_LINE_QUANTITY}" title="Удалить позицию" onclick="removeFromCart($(this))"><span>Удалить</span></a>
 									</div>
 								</div>
 								{% ENDFOR %}
@@ -1309,7 +1309,166 @@
 					{% ENDIF %}
 				</ul>
 			</div>
-			<div class="body">{BODY}</div>
+			<div class="inner">
+				{% IF SHOW_GOODS_FILTERS || SHOW_GOODS_PRICE_FILTERS %}
+				<div class="block__left">
+					<!-- Если в тарифном плане подключен модуль фильтров по товарам -->
+					<div id="filters" class="{% FOR filter_attr_list %}{% FOR values %}{% IF filter_attr_list.values.CHECKED %}hasFilters {% ENDIF %}{% ENDFOR %}{% ENDFOR %} {% FOR filter_prop_list %}{% FOR values %}{% IF filter_prop_list.values.CHECKED %}hasFilters {% ENDIF %}{% ENDFOR %}{% ENDFOR %}">
+						<div class="filters__title sidebar__title">
+							<i class="icon-control"></i>
+							<span class="filters__label">Фильтры</span>
+						</div>
+						<form action="" method="get" class="form__filters">
+							<!-- Если есть возможность фильтрации товаров по ценам -->
+							{% IF SHOW_GOODS_PRICE_FILTERS %}
+							<div class="filter__list collapsible filters-price">
+								<div class="filter__name collapsible__click"><span>Цена</span></div>
+								<div class="filter__items collapsible__content">
+									<div class="priceSlider">
+										<input type="hidden" name="form[filter][available_price][min]" value="{GOODS_FILTER_MIN_AVAILABLE_PRICE}" />
+										<input type="hidden" name="form[filter][available_price][max]" value="{GOODS_FILTER_MAX_AVAILABLE_PRICE}" />
+										<div id="goods-filter-price-slider"></div>
+										<!-- Фильтры по цене -->
+										<div class="goodsFilterPriceRangePointers">
+											<span class="min" style="display:none;">{GOODS_FILTER_MIN_AVAILABLE_PRICE}</span>
+											<span class="max" style="display:none;">{GOODS_FILTER_MAX_AVAILABLE_PRICE}</span>
+											<input id="goods-filter-min-price" class="inputText" type="text" name="form[filter][price][min]" value="{% IF GOODS_FILTER_MIN_PRICE %}{GOODS_FILTER_MIN_PRICE}{% ELSE %}{GOODS_FILTER_MIN_AVAILABLE_PRICE}{% ENDIF %}" min="1" onkeypress="return keyPress(this, event);" onpaste="return false;" />
+											<input id="goods-filter-max-price" class="inputText" type="text" name="form[filter][price][max]" value="{% IF GOODS_FILTER_MAX_PRICE %}{GOODS_FILTER_MAX_PRICE}{% ELSE %}{GOODS_FILTER_MAX_AVAILABLE_PRICE}{% ENDIF %}" min="1" onkeypress="return keyPress(this, event);" onpaste="return false;" />
+										</div>
+										<div class="goodsFilterPriceSubmit">
+											<button class="button small" type="submit" title="Показать"><i class="icon-check"></i><span>Показать</span></button>
+											<a href="{PAGE_CANONICAL}" class="clear" title="Очистить фильры"><i class="material-icons">close</i><span>Сбросить</span></a>
+										</div>
+									</div>
+								</div>
+							</div>
+							{% ENDIF %}
+							<!-- Фильтры по характеристикам товаров (Например: Производитель, разрешение экрана, заряд аккомулятора) -->
+							{% FOR filter_attr_list %}
+							<div class="filter__list collapsible {% FOR values %}{% IF filter_attr_list.values.CHECKED %}active actived {% ENDIF %}{% ENDFOR %}">
+								<div class="filter__name collapsible__click"><span>{filter_attr_list.NAME}</span></div>
+								<div class="filter__items collapsible__content">
+									{% FOR values %}
+									<div class="filter__item {% IF filter_attr_list.values.CHECKED %}checked{% ELSEIF filter_attr_list.values.NB_GOODS_FILTERED=0 %}disabled{% ENDIF %}">
+										<input type="checkbox" name="form[filter][attr][{filter_attr_list.ID}][{filter_attr_list.values.ID}]" value="1" id="filterAttrVal{filter_attr_list.values.ID}" class="square" {% IF filter_attr_list.values.CHECKED %}checked="checked"{% ELSEIF filter_attr_list.values.NB_GOODS_FILTERED=0 %}disabled="disabled"{% ENDIF %} />
+										<label for="filterAttrVal{filter_attr_list.values.ID}"><span>{filter_attr_list.values.VALUE}</span></label>
+									</div>
+									{% ENDFOR %}
+								</div>
+							</div>
+							{% ENDFOR %}
+							<!-- Фильтры по свойствам товарных модификаций (Например: Цвет, размер, модификация) -->
+							{% FOR filter_prop_list %}
+							<div class="filter__list collapsible {% FOR values %}{% IF filter_prop_list.values.CHECKED %}active actived {% ENDIF %}{% ENDFOR %}">
+								<div class="filter__name collapsible__click"><span>{filter_prop_list.NAME}</span></div>
+								<div class="filter__items collapsible__content">
+									{% FOR values %}
+									<div class="filter__item {% IF filter_prop_list.values.CHECKED %}checked{% ELSEIF filter_prop_list.values.NB_GOODS_FILTERED=0 %}disabled{% ENDIF %}">
+										<input type="checkbox" name="form[filter][prop][{filter_prop_list.ID}][{filter_prop_list.values.ID}]" value="1" id="filterPropVal{filter_prop_list.values.ID}" class="square" {% IF filter_prop_list.values.CHECKED %}checked="checked"{% ELSEIF filter_prop_list.values.NB_GOODS_FILTERED=0 %}disabled="disabled"{% ENDIF %} />
+										<label for="filterPropVal{filter_prop_list.values.ID}"><span>{filter_prop_list.values.VALUE}</span></label>
+									</div>
+									{% ENDFOR %}
+								</div>
+							</div>
+							{% ENDFOR %}
+							<div class="filter__list filters__buttons">
+								<a href="{PAGE_CANONICAL}" class="goodsFilterClear button button3 small" title="Очистить фильры"><span>Очистить фильры</span></a>
+							</div>
+						</form>
+					</div>
+				</div>
+				{% ENDIF %}
+				<div class="block__right {% IF SHOW_GOODS_FILTERS || SHOW_GOODS_PRICE_FILTERS %}hasLeft{% ELSE %}full{% ENDIF %}">
+					<div>{BODY}</div>
+					<!--Сайдбар. Вы смотрели, Избранное, Сравнение-->
+					<div class="sidebar">
+						<!--Избранное-->
+						<div class="sidebar__block favorites">
+							<div class="sidebar__title"><i class="icon-favorites"></i><span>Избранное</span></div>
+							<div class="sidebar__content">
+								<div class="addto__items">
+									{% FOR favorites_goods %}
+									<div class="addto__item" data-id="{favorites_goods.ID}">
+										<a href="{favorites_goods.URL}" title="{favorites_goods.NAME}" class="addto__image"><img src="{% IF favorites_goods.IMAGE_EMPTY %}{ASSETS_IMAGES_PATH}no-photo-icon.png?design=nails{% ELSE %}{favorites_goods.IMAGE_ICON}{% ENDIF %}" class="goods-image-icon" /></a>
+										<div class="addto__shop">
+											<!-- Название -->
+											<a href="{favorites_goods.URL}" class="addto__name" title="{favorites_goods.NAME}"><span>{favorites_goods.NAME}</span></a>
+											<!-- Цена -->
+											<div class="addto__price {CURRENCY_CHAR_CODE}">
+												<div class="price__now">{favorites_goods.MIN_PRICE_NOW | money_format}</div>
+												{% IF favorites_goods.MIN_PRICE_OLD > favorites_goods.MIN_PRICE_MIN %}<div class="price__old">{favorites_goods.MIN_PRICE_OLD | money_format}</div>{% ENDIF %}
+											</div>
+										</div>
+									</div>
+									{% ENDFOR %}
+								</div>
+								<div class="addto__empty">
+									<div class="addto__title">Ваш список избранного пуст</div>
+								</div>
+								<div class="addto__buttons">
+									<a href="{FAVORITES_URL}" title="Перейти к Избранному">Показать все</a>
+									<a href="{FAVORITES_RESET_URL}" onclick="removeFromFavoritesAll($(this))" class="removeAll" title="Очистить список Избранного"><span>Очистить Избранное</span></a>
+								</div>
+							</div>
+						</div>
+						<!-- Сравнение -->
+						{% IFNOT MOD_LNAME = compare && SETTINGS_COMPARE_DISABLE=0 %}
+						<div class="sidebar__block compare {% IF COMPARE_GOODS_COUNT > 0 %}hasItems{% ENDIF %}">
+							<div class="sidebar__title"><i class="icon-compare"></i><span>Сравнение</span></div>
+							<div class="sidebar__content">
+								<div class="addto__items">
+									{% FOR compare_goods %}
+									<div class="addto__item" data-id="{compare_goods.ID}">
+										<a href="{compare_goods.URL}" title="{compare_goods.NAME}" class="addto__image"><img src="{% IF compare_goods.IMAGE_EMPTY %}{ASSETS_IMAGES_PATH}no-photo-icon.png?design=nails{% ELSE %}{compare_goods.IMAGE_ICON}{% ENDIF %}" class="goods-image-icon" /></a>
+										<div class="addto__shop">
+											<!-- Название -->
+											<a href="{compare_goods.URL}" class="addto__name" title="{compare_goods.NAME}"><span>{compare_goods.NAME}</span></a>
+											<!-- Цена -->
+											<div class="addto__price {CURRENCY_CHAR_CODE}">
+												<div class="price__now">{compare_goods.MIN_PRICE_NOW | money_format}</div>
+												{% IF compare_goods.MIN_PRICE_OLD > compare_goods.MIN_PRICE_MIN %}<div class="price__old">{compare_goods.MIN_PRICE_OLD | money_format}</div>{% ENDIF %}
+											</div>
+										</div>
+									</div>
+									{% ENDFOR %}
+								</div>
+								<div class="addto__empty">
+									<div class="addto__title">Ваш список сравнения пуст</div>
+								</div>
+								<div class="addto__buttons">
+									<a href="{COMPARE_URL}" title="Перейти к Сравнению">Показать все</a>
+									<a href="{COMPARE_RESET_URL}" onclick="removeFromCompareAll($(this))" class="removeAll" title="Очистить список сравнения"><span>Очистить</span></a>
+								</div>
+							</div>
+						</div>
+						{% ENDIF %}
+						<!-- Вы смотрели -->
+						{% IFNOT recently_viewed_goods_empty %}
+						<div class="sidebar__block viewed">
+							<div class="sidebar__title"><i class="icon-eye"></i><span>Вы смотрели</span></div>
+							<div class="sidebar__content">
+								<div class="addto__items">
+									{% FOR recently_viewed_goods %}
+									<div class="addto__item" data-id="{recently_viewed_goods.ID}">
+										<a href="{recently_viewed_goods.URL}" title="{recently_viewed_goods.NAME}" class="addto__image"><img src="{% IF recently_viewed_goods.IMAGE_EMPTY %}{ASSETS_IMAGES_PATH}no-photo-icon.png?design=nails{% ELSE %}{recently_viewed_goods.IMAGE_ICON}{% ENDIF %}" class="goods-image-icon" /></a>
+										<div class="addto__shop">
+											<!-- Название -->
+											<a href="{recently_viewed_goods.URL}" class="addto__name" title="{recently_viewed_goods.NAME}"><span>{recently_viewed_goods.NAME}</span></a>
+											<!-- Цена -->
+											<div class="addto__price {CURRENCY_CHAR_CODE}">
+												<div class="price__now">{recently_viewed_goods.MIN_PRICE_NOW | money_format}</div>
+												{% IF recently_viewed_goods.MIN_PRICE_OLD > recently_viewed_goods.MIN_PRICE_MIN %}<div class="price__old">{recently_viewed_goods.MIN_PRICE_OLD | money_format}</div>{% ENDIF %}
+											</div>
+										</div>
+									</div>
+									{% ENDFOR %}
+								</div>
+							</div>
+						</div>
+						{% ENDIF %}
+					</div>
+				</div>
+			</div>
 		</div>
 	</section>
 	
