@@ -13,17 +13,14 @@
         <div class="form__list">
           <div class="form__fields">
             <label for="sites_client_person" class="required"><span>Ваше Имя</span><em>*</em></label>
-            <i class="icon-user"></i>
             <input id="sites_client_person" type="text" name="form[contact][person]" value="{ORDER_FORM_CONTACT_PERSON}" maxlength="100" class="form__input" type="text" placeholder="ФИО *" required/>
           </div>
           <div class="form__fields">
             <label for="sites_client_phone" class="required"><span>Телефон</span><em>*</em></label>
-            <i class="icon-phone"></i>
             <input id="sites_client_phone" type="tel" name="form[contact][phone]" value="{ORDER_FORM_CONTACT_PHONE}" maxlength="255" class="form__input form__phone" type="text" placeholder="Телефон *" required/>
           </div>
           <div class="form__fields email">
             <label for="sites_client_email" {% IF ORDER_FORM_CONTACT_WANT_REGISTER %}class="required"{% ENDIF %}><span>Ваш E-mail</span><em>*</em></label>
-            <i class="icon-mail"></i>
             <input id="sites_client_email" type="email" name="form[contact][email]" value="{ORDER_FORM_CONTACT_EMAIL}" maxlength="255" class="form__input" type="text" placeholder="Электронная почта" {% IF ORDER_FORM_CONTACT_WANT_REGISTER %}required{% ENDIF %}/>
           </div>
           <!-- Если в тарифном плане подключен раздел личного кабинета -->
@@ -40,14 +37,6 @@
               <div><strong>Caps Lock включен.</strong></div>
               <div>Пароль может быть введен неверно.</div>
             </div>
-          </div>
-          {% ENDIF %}
-          <!-- Если поле комментарии запрашивается -->
-          {% IF SETTINGS_ORDER_FIELDS_COMMENT < 3 %}
-          <div class="form__fields fields-1 fields__comment {% IF SETTINGS_ORDER_FIELDS_COMMENT=1 %}required{% ENDIF %}">
-            <label for="quickDeliveryComment" {% IF SETTINGS_ORDER_FIELDS_COMMENT=1 %}class="required"{% ENDIF %}><span>Комментарий</span><em>*</em></label>
-            <i class="icon-chat"></i>
-            <textarea cols="100" rows="6" id="quickDeliveryComment" name="form[delivery][comment]" class="textarea" placeholder="Комментарий {% IF SETTINGS_ORDER_FIELDS_COMMENT=1 %}*{% ENDIF %}" {% IF SETTINGS_ORDER_FIELDS_COMMENT=1 %}required{% ENDIF %}>{ORDER_FORM_DELIVERY_COMMENT}</textarea>
           </div>
           {% ENDIF %}
         </div>
@@ -125,6 +114,13 @@
             </div>
           </div>
           {% ENDIF %}
+	        <!-- Если поле комментарии запрашивается -->
+	        {% IF SETTINGS_ORDER_FIELDS_COMMENT < 3 %}
+	        <div class="form__fields fields-1 fields__comment {% IF SETTINGS_ORDER_FIELDS_COMMENT=1 %}required{% ENDIF %}">
+		        <label for="quickDeliveryComment" {% IF SETTINGS_ORDER_FIELDS_COMMENT=1 %}class="required"{% ENDIF %}><span>Комментарий</span><em>*</em></label>
+		        <textarea cols="100" rows="6" id="quickDeliveryComment" name="form[delivery][comment]" class="textarea" placeholder="Комментарий {% IF SETTINGS_ORDER_FIELDS_COMMENT=1 %}*{% ENDIF %}" {% IF SETTINGS_ORDER_FIELDS_COMMENT=1 %}required{% ENDIF %}>{ORDER_FORM_DELIVERY_COMMENT}</textarea>
+	        </div>
+	        {% ENDIF %}
         </div>
       </div>
       {% ENDIF %}
@@ -132,7 +128,7 @@
       <div class="delivery" order="3"> 
         <h3 class="title" title="Выберите удобный для вас способ доставки"><span>Cпособ доставки</span></h3>
         <!-- Старый скрытый вариант способа доставки -->
-        <div class="delivery__selects">
+        <div class="delivery__selects" style="display: none;">
           <div class="delivery__select selectBox form__fields">
             <select class="form__input">
               {% FOR order_delivery %}
@@ -152,16 +148,16 @@
             {% ENDIF %}
           {% ENDFOR %}
           <div class="delivery__descriptionBlock">
+	          <div class="delivery__description"></div>
             <div class="delivery__price">
               <span class="label">Стоимость доставки:</span>
               <span class="changeprice"></span>
               <span class="currency">{CURRENCY_NAME}</span>
             </div>
-            <div class="delivery__description"></div>
           </div>
         </div>
-        <!-- Новый Cпособ доставки -->
-        <div class="order__delivery" style="display: none;">
+        <!-- Новый Способ доставки -->
+        <div class="order__delivery">
           {% FOR order_delivery %}
             <div class="delivery__option" rel="{order_delivery.ID}">
               <input type="radio" id="deliveryId{order_delivery.ID}" name="form[delivery][id]" value="{order_delivery.ID}" class="deliveryRadio square delivery__radio"
@@ -175,8 +171,8 @@
                 checked="checked"
               {% ENDIF %}
               />
-              <div class="delivery__desc">{order_delivery.DESC}</div>
               <label for="deliveryId{order_delivery.ID}" class="delivery__name">{order_delivery.NAME}</label>
+	            {% IF order_delivery.DESC %}<div class="delivery__desc">{order_delivery.DESC}</div>{% ENDIF %}
               <div class="delivery__fields">
                 <label>Стоимость доставки:</label><span class="delivery__price">{order_delivery.END_PRICE | money_format}</span>
               </div>
@@ -198,7 +194,7 @@
                     {% ENDIF %}
                   />
                   <label class="zones__name" for="deliveryZoneId{order_delivery.zone_list.ID}">{order_delivery.zone_list.NAME}</label>
-                  <span class="zones__price">{order_delivery.zone_list.END_PRICE | money_format}</span>
+                  <div>Стоимость доставки: <span class="zones__price">{order_delivery.zone_list.END_PRICE | money_format}</span></div>
                 </div>
                 {% ENDFOR %}
               </div>
@@ -210,9 +206,10 @@
       <!-- Способ оплаты -->
       <div class="payment" order="4">
         <!-- Старый скрытый способ оплаты -->
+	      <div class="order__selects" style="display: none;">
         {% FOR order_delivery %}
           {% IFNOT order_delivery.available_payment_list_empty  %}
-            <div class="order__payment" rel="{order_delivery.ID}"> 
+            <div class="order__payment" rel="{order_delivery.ID}" style="display: none;">
               <h3 class="title" title="Выберите удобный для вас способ оплаты заказа"><span>Cпособ оплаты</span></h3>
               <div class="order__paymentSelect selectBox form__fields">
                 <select class="paymentSelect form__input">
@@ -230,19 +227,19 @@
             </div>
           {% ENDIF %}
         {% ENDFOR %}
+	      </div>
         <!-- Новый способ оплаты -->
-        <div class="hiddenRadio" style="display: none;">
+        <div class="order__radio">
         {% FOR order_delivery %}
           {% IFNOT order_delivery.available_payment_list_empty %}
-            <div class="order__payment" rel="{order_delivery.ID}" style="display: none;">
+            <div class="order__payment" rel="{order_delivery.ID}">
+	            <h3 class="title" title="Выберите удобный для вас способ оплаты заказа"><span>Cпособ оплаты</span></h3>
               {% FOR available_payment_list %}  
               <div class="payment__option">
-                <label for="quickPaymentId{order_delivery.ID}_{order_delivery.available_payment_list.ID}" class="payment__name">{order_delivery.available_payment_list.NAME}</label>
                 <input type="radio" id="quickPaymentId{order_delivery.ID}_{order_delivery.available_payment_list.ID}" name="form[payment][id]" deliveryid="{order_delivery.available_payment_list.ID}" value="{order_delivery.available_payment_list.ID}" class="paymentRadio square required" {% IFNOT ORDER_FORM_PAYMENT_ID %}{% IF order_delivery.available_payment_list.first %}checked="checked"{% ENDIF %}{% ELSEIF order_delivery.available_payment_list.ID = ORDER_FORM_PAYMENT_ID %}checked="checked"{% ENDIF %}/>
+	              <label for="quickPaymentId{order_delivery.ID}_{order_delivery.available_payment_list.ID}" class="payment__name">{order_delivery.available_payment_list.NAME}</label>
                 <!-- Сообщение для пользователя -->
-                {% IF order_delivery.available_payment_list.MESSAGE %}
-                  <div class="payment__desc">{order_delivery.available_payment_list.MESSAGE}</div>
-                {% ENDIF %}
+                {% IF order_delivery.available_payment_list.MESSAGE %}<div class="payment__desc">{order_delivery.available_payment_list.MESSAGE}</div>{% ENDIF %}
               </div>
               {% ENDFOR %}
             </div>
@@ -250,7 +247,6 @@
         {% ENDFOR %}
         </div>
       </div>
-
       <!-- Если скидки по купонам активированы в панели управления магазином -->
       {% IF ORDER_DISCOUNT_COUPON_IS_ENABLED %}
       <div class="coupons" order="5">
@@ -265,53 +261,11 @@
       </div>
       {% ENDIF %}
       <!-- END Если скидки по купонам активированы в панели управления магазином -->
-      <div class="cart__total">
-        <div class="total__items">
-          <div class="total__title">
-            <span>Детали заказа:</span>
-          </div>
-          <!-- Скидки, действующие на заказ -->
-          {% FOR cart_discount %}
-          {% IF cart_discount.DISCOUNT_IS_ENABLED %}
-          <div class="total__item total__discount">
-            <div class="total__label"><span>{cart_discount.DISCOUNT_NAME}</span>:</div>
-            <div class="total__price"><span class="discount__value" data-value="{cart_discount.DISCOUNT_VALUE}">{cart_discount.DISCOUNT_VALUE}</span>{% IF cart_discount.IS_PERCENT %}<span class="percent">%</span>{% ELSE %}<span class="rub"> руб.</span>{% ENDIF %}</div>
-          </div>
-          {% ENDIF %}
-          {% ENDFOR %}
-          <div class="total__item total__coupons" style="display: none;">
-            <div class="total__label"><span>Купон</span>:</div>
-            <div class="total__price"><span class="cartSumCoupons" data-value=""></span></div>
-          </div>
-          <div class="total__item total__delivery">
-            <div class="total__label"><span>Стоимость доставки</span>:</div>
-            <div class="total__price"><span class="cartSumDelivery" data-value="{CART_SUM_DELIVERY}">{CART_SUM_DELIVERY | money_format}</span></div>
-          </div>
-          <!-- Оплата -->
-          <div class="total__payments">
-            <i class="icon-visa"></i>
-            <i class="icon-yandex"></i>
-            <i class="icon-mastercard"></i>
-            <i class="icon-paypal"></i>
-            <i class="icon-webmoney"></i>
-            <i class="icon-citibank"></i>
-          </div>
-        </div>
-        <div class="total__buttons">
-          <input type="hidden" name="hash" value="{HASH}" />
-          <div class="total__item total__cart">
-            <div class="total__label">Итого:</div>
-            <div class="total__price cartSumTotal" data-value="{CART_SUM_NOW_WITH_DISCOUNT}">{CART_SUM_NOW_WITH_DISCOUNT | money_format}</div>
-            <div style="display: none;" class="total__price cartSum" data-value="{CART_SUM_NOW}">{CART_SUM_NOW | money_format}</div>
-            <div style="display: none;" class="total__price cartSumTotalHide" data-value="{CART_SUM_NOW_WITH_DISCOUNT}">{CART_SUM_NOW_WITH_DISCOUNT | money_format}</div>
-          </div>
-          <div class="total__buttons">
-            <a id="closeOrder" class="button button" title="Отменить заказ"><span>Отменить </span><span>заказ</span></a>
-            <button type="submit" class="button button2 disabled" titleOFF="Оформить заказ" data-tooltip="Заполните все поля"><span>Оформить </span><span>заказ</span></button>
-          </div>
-          <div class="total__pp">Нажимая на кнопку &laquo;Оформить заказ&raquo;, Вы соглашаетесь с <a data-fancybox data-src="#fancybox__pp" href="javascript:;">правилами обработки данных</a></div>
-        </div>
-      </div>
+	    <div class="total__buttons">
+		    <a id="closeOrder" class="button button3" title="Отменить заказ"><span>Отменить </span><span>заказ</span></a>
+		    <button type="submit" class="button button2 disabled" titleOFF="Оформить заказ" data-tooltip="Заполните все поля"><span>Оформить </span><span>заказ</span></button>
+		    <div class="total__pp">Нажимая на кнопку &laquo;Оформить заказ&raquo;, Вы соглашаетесь с <a data-fancybox data-src="#fancybox__pp" href="javascript:;">правилами обработки данных</a></div>
+	    </div>
     </form>
   </div>
   {% ENDIF %}
@@ -334,10 +288,7 @@
 				{% IFNOT cart_items.distinctive_properties_empty %}<div class="addto__mod">({% FOR distinctive_properties %}{cart_items.distinctive_properties.NAME}: {cart_items.distinctive_properties.VALUE}{% IFNOT cart_items.distinctive_properties.last %}, {% ENDIF %}{% ENDFOR %})</div>{% ENDIF %}
 				<!-- Цена -->
 				<div class="addto__price {CURRENCY_CHAR_CODE}">
-					<div class="price__now" data-price="{cart_items.ORDER_LINE_PRICE_OLD}">{cart_items.GOODS_MOD_PRICE_NOW | money_format}</div>
-					{% IF cart_items.ORDER_LINE_PRICE_OLD>cart_items.GOODS_MOD_PRICE_NOW %}
-					<div class="price__old" data-price="{cart_items.GOODS_MOD_PRICE_OLD}">{cart_items.GOODS_MOD_PRICE_OLD | money_format}</div>
-					{% ENDIF %}
+					<div class="price__now" data-price="{cart_items.GOODS_MOD_PRICE_NOW}">{cart_items.GOODS_MOD_PRICE_NOW | money_format}</div>
 				</div>
 				<!-- Удаление -->
 				<a class="addto__remove remove" href="{cart_items.ORDER_LINE_DELETE_URL}" data-qty="{cart_items.ORDER_LINE_QUANTITY}" title="Удалить позицию" onclick="removeFromCart($(this))"><span>Удалить</span></a>
@@ -349,6 +300,7 @@
 		<span>Итого:</span>
 		<span class="price__now">{CART_SUM_NOW}</span>
 	</div>
+	{% ENDIF %}
 	<div class="addto__empty">
 		<div class="addto__title">В корзине пока ничего нет</div>
 		<a href="{CATALOG_URL}" class="button addto__close" title="Продолжить покупки">Продолжить покупки</a>

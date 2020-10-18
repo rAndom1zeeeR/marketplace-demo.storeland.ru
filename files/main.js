@@ -1175,7 +1175,7 @@ function goodsModification() {
 function Compare() {
   let owlCompare = $('.CompareGoodsTableTbody .owl-carousel');
   owlCompare.owlCarousel({
-    items: 4,
+    items: 6,
     margin: 15,
     loop: false,
     rewind: false,
@@ -1201,7 +1201,8 @@ function Compare() {
       641:{items:3},
       768:{items:3},
       992:{items:4},
-      1200:{items:4}
+      1200:{items:4},
+      1440:{items:6}
     },
     onInitialized: carouselInitialized,
     onChanged: carouselInitialized
@@ -2432,8 +2433,8 @@ function OrderScriptsSelect() {
     $('.order__payment').hide();
     $('.order__payment[rel="'+ selectedDelId +'"]').show();
     startInputId = $('.delivery__radio:checked').attr('value');
-    $('.hiddenRadio .order__payment input').attr('checked',false);
-    $('.hiddenRadio .order__payment[rel="'+startInputId+'"] input').each(function(){
+    $('.order__radio .order__payment input').attr('checked',false);
+    $('.order__radio .order__payment[rel="'+startInputId+'"] input').each(function(){
       $(this).click();
       return false;
     });
@@ -2441,7 +2442,7 @@ function OrderScriptsSelect() {
     $('.delivery__description').html(DeliveryDescription);
     $('.order__paymentSelect option:first-child').prop('selected', true);
     // Вывод описания оплаты
-    PaymentDescription = $('.hiddenRadio .paymentRadio:checked').next('.payment__desc').html();
+    PaymentDescription = $('.order__radio .paymentRadio:checked').next('.payment__desc').html();
     $('.payment__description').html(PaymentDescription);
     if (PaymentDescription == undefined ) {
       $('.payment__description').css("display", "none");
@@ -2469,8 +2470,8 @@ function OrderScriptsSelect() {
     $('.order__payment').hide();
     $('.order__payment[rel="'+ selectedDelId +'"]').show();
     startInputId = $('.delivery__radio:checked').attr('value');
-    $('.hiddenRadio .order__payment input').attr('checked',false);
-    $('.hiddenRadio .order__payment[rel="'+startInputId+'"] input').each(function(){
+    $('.order__radio .order__payment input').attr('checked',false);
+    $('.order__radio .order__payment[rel="'+startInputId+'"] input').each(function(){
       $(this).click();
       return false;
     });
@@ -2478,7 +2479,7 @@ function OrderScriptsSelect() {
     $('.delivery__description').html(DeliveryDescription);
     $('.order__paymentSelect option:first-child').prop('selected', true);
     // Вывод описания оплаты
-    PaymentDescription = $('.hiddenRadio .paymentRadio:checked').next('.payment__desc').html();
+    PaymentDescription = $('.order__radio .paymentRadio:checked').next('.payment__desc').html();
     $('.payment__description').html(PaymentDescription);
     if (PaymentDescription == undefined ) {
       $('.payment__description').css("display", "none");
@@ -2506,8 +2507,8 @@ function OrderScriptsSelect() {
   // Выбор оплаты
   $('.paymentSelect').change(function(){
     selectedDelId = $(this).find('option:selected').attr('value');
-    $('.hiddenRadio .paymentRadio[value="'+selectedDelId+'"]').click();
-    PaymentDescription = $('.hiddenRadio .paymentRadio:checked').next('.payment__desc').html();
+    $('.order__radio .paymentRadio[value="'+selectedDelId+'"]').click();
+    PaymentDescription = $('.order__radio .paymentRadio:checked').next('.payment__desc').html();
     $('.payment__description').html(PaymentDescription);
     if (PaymentDescription == undefined ) {
       $('.payment__description').css("display", "none");

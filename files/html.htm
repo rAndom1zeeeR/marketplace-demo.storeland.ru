@@ -1383,7 +1383,7 @@
 					<!--Сайдбар. Вы смотрели, Избранное, Сравнение-->
 					<div class="sidebar">
 						<!--Избранное-->
-						<div class="sidebar__block favorites">
+						<div class="sidebar__block favorites {% IF FAVORITES_GOODS_COUNT > 0 %}hasItems{% ENDIF %}">
 							<div class="sidebar__title"><i class="icon-favorites"></i><span>Избранное</span></div>
 							<div class="sidebar__content">
 								<div class="addto__items">
@@ -1407,7 +1407,7 @@
 								</div>
 								<div class="addto__buttons">
 									<a href="{FAVORITES_URL}" title="Перейти к Избранному">Показать все</a>
-									<a href="{FAVORITES_RESET_URL}" onclick="removeFromFavoritesAll($(this))" class="removeAll" title="Очистить список Избранного"><span>Очистить Избранное</span></a>
+									<a href="{FAVORITES_RESET_URL}" onclick="removeFromFavoritesAll($(this))" class="removeAll" title="Очистить список Избранного"><span>Очистить</span></a>
 								</div>
 							</div>
 						</div>

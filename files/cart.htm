@@ -20,7 +20,7 @@
             <div class="cart__actions">
               <div class="cart__price">
 		            <div class="price__now cartPriceTotal">{cart_items.ORDER_LINE_PRICE_NOW | money_format}</div>
-	              {% IF cart_items.ORDER_LINE_PRICE_OLD > cart_items.ORDER_LINE_PRICE_NOW %}<div class="price__old">{cart_items.ORDER_LINE_PRICE_OLD | money_format}</div>{% ENDIF %}
+	              {% IF cart_items.GOODS_MOD_PRICE_OLD > cart_items.GOODS_MOD_PRICE_NOW %}<div class="price__old">{cart_items.GOODS_MOD_PRICE_OLD | money_format}</div>{% ENDIF %}
               </div>
               <div class="cart__qty qty">
                 <a href="javascript:void(0)" class="qty__minus unselectable" title="Уменьшить"><i class="icon-minus"></i></a>

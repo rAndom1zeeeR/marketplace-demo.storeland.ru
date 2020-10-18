@@ -137,7 +137,7 @@
                     {% ENDIF %}
                   />
                   <label class="zones__name" for="deliveryZoneId{order_delivery.zone_list.ID}">{order_delivery.zone_list.NAME}</label>
-                  <span class="zones__price">{order_delivery.zone_list.END_PRICE | money_format}</span>
+	                <div>Стоимость доставки: <span class="zones__price">{order_delivery.zone_list.END_PRICE | money_format}</span></div>
                 </div>
                 {% ENDFOR %}
               </div>
