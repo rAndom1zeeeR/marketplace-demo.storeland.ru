@@ -45,9 +45,9 @@
 				<!-- Цена -->
 				<div class="addto__price {CURRENCY_CHAR_CODE}">
 					<div class="price__now" data-price="{cart_items.GOODS_MOD_PRICE_NOW}">{cart_items.GOODS_MOD_PRICE_NOW | money_format}</div>
+					<!-- Удаление -->
+					<a class="addto__remove remove" href="{cart_items.ORDER_LINE_DELETE_URL}" data-qty="{cart_items.ORDER_LINE_QUANTITY}" title="Удалить позицию" onclick="removeFromCart($(this))"><span>Удалить</span></a>
 				</div>
-				<!-- Удаление -->
-				<a class="addto__remove remove" href="{cart_items.ORDER_LINE_DELETE_URL}" data-qty="{cart_items.ORDER_LINE_QUANTITY}" title="Удалить позицию" onclick="removeFromCart($(this))"><span>Удалить</span></a>
 			</div>
 		</div>
 		{% ENDFOR %}

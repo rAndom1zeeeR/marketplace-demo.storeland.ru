@@ -298,9 +298,9 @@
 										<!-- Цена -->
 										<div class="addto__price {CURRENCY_CHAR_CODE}">
 											<div class="price__now" data-price="{cart_items.GOODS_MOD_PRICE_NOW}">{cart_items.GOODS_MOD_PRICE_NOW | money_format}</div>
+											<!-- Удаление -->
+											<a class="addto__remove remove" href="{cart_items.ORDER_LINE_DELETE_URL}" data-qty="{cart_items.ORDER_LINE_QUANTITY}" title="Удалить позицию" onclick="removeFromCart($(this))"><span>Удалить</span></a>
 										</div>
-										<!-- Удаление -->
-										<a class="addto__remove remove" href="{cart_items.ORDER_LINE_DELETE_URL}" data-qty="{cart_items.ORDER_LINE_QUANTITY}" title="Удалить позицию" onclick="removeFromCart($(this))"><span>Удалить</span></a>
 									</div>
 								</div>
 								{% ENDFOR %}
@@ -1230,6 +1230,8 @@
 				<div class="block__title"><h1 class="title"><a href="{CATALOG_URL}" title="{CATEGORY_NAME}">{CATEGORY_NAME}</a></h1></div>
 				{% ELSEIF MOD_LNAME=cart %}
 				<div class="block__title"><h1 class="title"><a href="{CART_URL}" title="Корзина">Корзина</a></h1></div>
+				{% ELSEIF MOD_LNAME=goods %}
+				<div class="block__title"><h1 class="title">{GOODS_NAME}</h1></div>
 				{% ENDIF %}
 			</div>
 			<!-- Хлебные крошки -->
