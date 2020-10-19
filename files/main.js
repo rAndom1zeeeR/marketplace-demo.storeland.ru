@@ -537,7 +537,7 @@ function preload() {
 function goodspage() {
   // Слайдер доп. изображений
   $('.thumblist .owl-carousel').owlCarousel({
-    items: 3,
+    items: 5,
     margin: 16,
     loop: false,
     rewind: true,
@@ -561,7 +561,8 @@ function goodspage() {
       768:{items:4},
       992:{items:2},
       1200:{items:3},
-      1400:{items:3}
+      1440:{items:4},
+      1680:{items:5}
     }
   });
   // Сопутствующие товары Слайдер
