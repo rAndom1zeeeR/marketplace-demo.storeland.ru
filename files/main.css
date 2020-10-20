@@ -341,7 +341,6 @@ section {margin: 2rem 0;}
 .icon-warning:before {content: "\e902";}
 .icon-check:before {content: "\e925";}
 .noty_type__success a, .noty_type__success a:visited, .noty_type__success a:focus, .noty_type__success a:hover {color: inherit;}
-#noty_layout__bottomCenter {box-shadow: 0px 0px 100px 0px #e6e0fe;}
 
 
 /*** Заголовки ***/
@@ -980,7 +979,7 @@ footer .form__button {position: absolute;top: 0;right: 0;padding: 0;width: 60px;
 .categories__name {margin-top: 1rem;font-size: 18px;font-weight: bold;text-align: center;display: block;}
 .categories__item:hover .categories__name {color: #7e6cd6;}
 .categories__image {background: #FFFFFF;position: relative;display: flex;flex-wrap: wrap;align-items: center;justify-content: center;overflow: hidden;height: {SETTINGS_GOODS_IMAGES_SIZE_MEDIUM | divide("2")}px;}
-.categories__image img {max-width: 100%;max-height: 100%;width: auto;}
+.categories__list .categories__image img {max-width: 100%;max-height: 100%;width: auto;}
 .categories__item:hover .categories__image {opacity: 0.5;}
 @media all and (max-width: 1680px) {
 .full .categories__item {width: calc(16.666666% - 1rem);}
