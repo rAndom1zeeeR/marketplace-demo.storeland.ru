@@ -236,7 +236,7 @@ input.square:checked:after, .CompareCheckbox:checked:after {content: "\e061";fon
 .add-notify:after {content: "\e908";}
 
 /*** Навигация ***/
-.navigation > div, .owl-nav [class^="owl-"] {width: 50px;height: 50px;background-color: #e5e0fe;color: #4c515f;border-radius: 100%;font-size: 1.25rem;line-height: 2rem;font-family: 'icomoon';font-weight: normal;display: flex;align-items: center;justify-content: center;box-shadow: none;border: 0;padding: 0;cursor: pointer;z-index: 2;transition: all 0.3s ease;}
+.navigation > div, .owl-nav [class^="owl-"] {width: 50px;height: 50px;background-color: #e5e0fe;color: #4c515f;border-radius: 100%;font-size: 14px;line-height: 2rem;font-family: 'icomoon';font-weight: normal;display: flex;align-items: center;justify-content: center;box-shadow: none;border: 0;padding: 0;cursor: pointer;z-index: 2;transition: all 0.3s ease;}
 .navigation .prev, .owl-nav .owl-prev {float: left;left: 0;}
 .navigation .next, .owl-nav .owl-next {float: right;right: 0;}
 .navigation .prev:before, .owl-nav .owl-prev:before {content: '\e900';}
@@ -1356,24 +1356,108 @@ footer .form__button {position: absolute;top: 0;right: 0;padding: 0;width: 60px;
 .ratings__total {display: none;}
 }
 
-
+/** Товар: Табы **/
 .productView__tabs {margin-top: 2rem;}
+.productView__tabs > div {margin-bottom: 2rem;}
+.productView__tabs > div:last-child {margin-bottom: 0;}
+.tabs__title {margin-bottom: 1rem;font-size: 30px;font-weight: bold;}
+.tabs__more {margin-top: 1rem;color: #8d81f7;cursor: pointer;transition: all 0.3s ease;}
+.tabs__more:hover {color: #ff6711;}
+.tabs__content {display: flex;flex-wrap: wrap;width: 100%;max-height: 120px;overflow: hidden;}
+.tabs__content.active {max-height: 100%;}
+/* Товар: Характеристики */
+.features__item {margin: 0 1rem 1rem 0;width: calc(50% - 1rem);position: relative;display: flex;flex-wrap: nowrap;justify-content: space-between;align-items: flex-end;}
+.features__item:nth-child(2n) {margin: 0 0 1rem 1rem;}
+.features__name {flex-grow: 1;background-image: url("{ASSETS_IMAGES_PATH}dot.png?design=nails");background-repeat: repeat-x;background-position: 0 100%;}
+.features__name span {position: relative;overflow: hidden;background: #FFFFFF;padding: 0 0.5rem 1px 0;}
+.features__value {padding: 0 0 0 0.5rem}
+@media all and (max-width: 991px) {
+.features__item {width: 100%;margin: 0 0 1rem 0;}
+.features__item:nth-child(2n) {margin: 0 0 1rem 0;}
+}
+/* Товар: Доставка */
+.productView__tabs .productView__delivery {margin: 0;}
+.delivery__items {display: flex;flex-wrap: wrap;}
+.delivery__item {width: 50%;margin-bottom: 2rem;padding-right: 1rem;}
+.delivery__name {font-size: 18px;font-weight: bold;margin-bottom: 1rem;}
+.delivery__index {margin-right: 2rem;}
+.delivery__index:after {content: ".";}
+.delivery__text {margin-bottom: 1rem;word-break: break-all;}
+.delivery__item .delivery__price {font-weight: normal;margin: 0;}
+.delivery__item .delivery__price strong {margin-left: 4px;}
+.zone__open {display: flex;align-items: center;color: #8d81f7;font-size: 14px;font-weight: 400;margin-top: 1rem;}
+.zone__open:after {content: "\e937";font-family: 'icomoon';font-size: 1.5rem;margin-left: 1rem;line-height: 1;}
+.zone__open.active:after {content: "\e935";}
+.zone__list {display: none;}
+.zone__list > div {margin-top: 1rem;}
+.zone__list .delivery__name {margin-bottom: 0.5rem;}
+.zone__list .zone__price {margin-top: 0.25rem;}
+@media all and (max-width: 767px) {
+.delivery__item {width: 100%;}
+}
+
+/* Отзывы: Список */
+.opinion__items {width: 100%;}
+.opinion__item {display: none;margin-bottom: 2rem;}
+.opinion__item:nth-child(-n+3), .opinion__item.show {display: block;}
+.opinion__name {font-size: 1rem;font-weight: bold;margin-bottom: 1rem;display: inline-block;}
+.opinion__ratings {margin-bottom: 1rem;width: 100%;}
+.opinion__date {color: #929bb0;margin-bottom: 1rem;display: inline-block;margin-left: 1rem;}
+.opinion__text {line-height: 20px;margin-top: 0.5rem;}
+/* Отзывы: Добавление */
+.opinion__addForm {margin-top: 1rem;width: 50%;}
+.opinion__label {font-size: 2rem;font-weight: bold;margin-bottom: 1.5rem;}
+.opinion__labelText {margin-bottom: 1.5rem;}
+.opinion__block {position: relative;margin-bottom: 2rem;}
+.opinion__block label {display: none;}
+.opinion__block i {position: absolute;right: 6rem;top: 1.25rem;font-size: 24px;color: #8d81f7;cursor: pointer;}
+.opinion__block.rating {padding: 0 1rem;display: flex;flex-wrap: wrap;align-items: center;}
+.opinion__block.rating .goodsOpinionRating {margin-left: 1rem;}
+.opinion__block.rating span {font-size: 1rem;font-weight: bold;color: #7e6cd6;}
+.opinion__block .captcha__image {position: absolute;top: 5px;right: 1rem;}
+@media all and (max-width: 991px) {
+.opinion__addForm {width: 100%;}
+}
+/* Отзывы: Общий рейтинг */
+.opinion__round {margin-bottom: 2rem;display: flex;flex-wrap: wrap;}
+.rating__value {font-size: 60px;color: #8d81f7;}
+.rating__roundValue {width: 300px;}
+.rating__roundRatings {width: calc(100% - 300px);}
+.rating__label {margin-top: 1rem;}
+.grade-lines .grade-block {margin-bottom: 10px;display: -ms-flexbox;display: -webkit-flex;display: flex;-ms-flex-align: center;-webkit-align-items: center;-webkit-box-align: center;align-items: center;}
+.grade-lines .grade-block:last-child {margin-bottom: 0;}
+.grade-lines .grade-block .grade-text {width: 75px;flex-shrink: 0;}
+.grade-lines .grade-block .grade-line {display: block;width: 100%;height: 10px;background: #e2e6f1;border-radius: 10px;}
+.grade-lines .grade-block .grade-line .grade-line-count {display: block;width: 0;max-width: 100%;height: 10px;background: #8d81f7;border-radius: 10px;    transition: all .3s;}
+.grade-lines .grade-block .grade-count-number {padding-left: 15px;}
+
+.productView__inner {display: flex;flex-wrap: wrap;}
+.productView__inner > div {width: 50%;padding: 0 1rem 0 0;}
+.productView__inner > div:nth-child(2) {padding: 0 0 0 1rem;}
+.related .banners__item {width: 100%;margin: 0 0 2rem 0;}
+.related__goods + .related__views {margin-top: 2rem;}
+@media all and (max-width: 1680px) {
+.productView__inner > div {width: 100%;padding: 0;}
+.productView__inner > div:nth-child(2) {padding: 0;}
+}
+@media all and (max-width: 1440px) {
+.related .banners__items {justify-content: space-between;}
+.related .banners__item {width: calc(50% - 1rem);}
+}
+@media all and (max-width: 640px) {
+.rating__roundValue {width: 100%;}
+.rating__roundRatings {width: 100%;margin-top: 1rem;}
+}
+@media all and (max-width: 991px) {
+.related .banners__item {width: 100%;}
+}
 
 
 
 
 
-
-
-
-
-	/******************************************************************************
-			*******************************************************************************/
-
-
-
-
-
+/******************************************************************************
+		*******************************************************************************/
 
 
 

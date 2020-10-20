@@ -568,7 +568,7 @@ function goodspage() {
   // Сопутствующие товары Слайдер
   $('.related__goods .owl-carousel').owlCarousel({
     items: 4,
-    margin: 0,
+    margin: 32,
     loop: false,
     rewind: true,
     lazyLoad: true,
@@ -599,7 +599,7 @@ function goodspage() {
   // С этим товаром смотрят Слайдер
   $('.related__views .owl-carousel').owlCarousel({
     items: 4,
-    margin: 0,
+    margin: 32,
     loop: false,
     rewind: true,
     lazyLoad: true,
@@ -633,13 +633,11 @@ function goodspage() {
   if(opinionCount<=3){ opinionContent.find('.opinion__buttons').hide(); }
   opinionContent.find('.opinion__buttons .showAll').on('click',function(){
     if($(this).hasClass('active')){
-      $(this).removeClass('active').find('span').text("Все отзывы");
+      $(this).removeClass('active').find('span').text("Развернуть отзывы");
       opinionContent.find('.opinion__item').removeClass('show');
-      $('html, body').animate({scrollTop : opinionContent.offset().top }, 800);
     }else{
-      $(this).addClass('active').find('span').text("Скрыть все");
+      $(this).addClass('active').find('span').text("Свернуть все");
       opinionContent.find('.opinion__item').addClass('show');
-      $('html, body').animate({scrollTop : opinionContent.offset().top + $(window).height()}, 800);
     }
   });
   // Переключение для Положительный и Отрицательный отзыв
@@ -709,6 +707,46 @@ function goodspage() {
       $('.zone__list').slideDown(600);
     }
   });
+
+  // Счётчик рейтинга для отзывов
+  let reviewCount = $('.opinion__item').length;
+  if(reviewCount) {
+    for(let i = 1;i < 6;i++) {
+      let currentRatingStage = $('.opinion__item[data-rating='+ i +']').length;
+      $('.grade-block[data-number='+ i +'] .grade-count-number').text(currentRatingStage);
+      let percent = parseInt(100 / (reviewCount / currentRatingStage));
+      $('.grade-block[data-number='+ i +'] .grade-line-count').css('width', percent + '%');
+    }
+  }
+  // Свернуть и Развернуть дополнительное описание
+  $('.tabs__more').on('click', function(event) {
+    event.preventDefault();
+    // Старый текст ссылки
+    let txtOld = $(this).text();
+    // Новый текст ссылки
+    let txtNew = $(this).attr('rel');
+    if ($(this).hasClass('active')) {
+      $(this).removeClass('active');
+      $(this).parent().find('.tabs__content').removeClass('active');
+      $(this).html(txtNew);
+      $(this).attr('rel', txtOld);
+    }else{
+      $(this).addClass('active');
+      $(this).parent().find('.tabs__content').addClass('active');
+      $(this).html(txtNew);
+      $(this).attr('rel', txtOld);
+    }
+  });
+  // Свернуть и Развернуть отображение кнопок
+  $('.tabs__content').each(function (){
+    let contentHeight = $(this).height();
+    if(contentHeight >= 120){
+      $(this).parent().find('.tabs__more').show()
+    }else{
+      $(this).parent().find('.tabs__more').hide()
+    }
+  });
+
 }
 
 // Товары. Категории
