@@ -550,10 +550,10 @@ section {margin: 2rem 0;}
 /*** Акции ***/
 .promotion__campaign {margin: -2rem -0.5rem 0 -0.5rem;}
 .promotion__image {padding: 6rem 1rem;background-image: url("{ASSETS_IMAGES_PATH}sale.jpg");background-size: cover;background-repeat: no-repeat;display: flex;flex-wrap: wrap;align-items: center;justify-content: center;flex-direction: column;}
-.promotion__percentage {font-size: 60px;font-weight: bold;}
+.promotion__item .promotion__percentage {font-size: 60px;font-weight: bold;}
+.promotion__item .button {margin-top: 2rem;}
 .promotion__date {margin: 2rem 0;}
 .promotion__name {font-size: 20px;}
-.promotion__item .button {margin-top: 2rem;}
 .promotion__item.empty {opacity: 0.9;}
 @media all and (max-width: 640px) {
 .promotion__image {padding: 3rem 1rem;}
