@@ -548,16 +548,19 @@ section {margin: 2rem 0;}
 
 
 /*** Акции ***/
-.promotion__campaign {margin: -2rem -0.5rem 0;}
-.promotion__campaign .promotion__item {text-align: center;padding: 2rem 1rem;border-radius: 1rem;transition: all 0.3s ease;}
-.promotion__campaign .promotion__item:hover {background-color: #9085f7;border-color: #9085f7;}
-.promotion__campaign .promotion__item:hover a {color: #FFFFFF;}
-.promotion__inner {position: relative;z-index: 2;}
-.promotion__image {margin-bottom: 1rem;position: relative;}
-.promotion__item .promotion__percentage {font-size: 30px;font-weight: bold;}
-.promotion__name {font-size: 1.25rem;margin-bottom: 1rem;}
-.promotion__date {color: #b2adb9;font-size: 14px;transition: all 0.3s ease;}
-.promotion__campaign .promotion__item:hover .promotion__date {color: #FFFFFF;}
+.promotion__campaign {margin: -2rem -0.5rem 0 -0.5rem;}
+.promotion__image {padding: 6rem 1rem;background-image: url("{ASSETS_IMAGES_PATH}sale.jpg");background-size: cover;background-repeat: no-repeat;display: flex;flex-wrap: wrap;align-items: center;justify-content: center;flex-direction: column;}
+.promotion__percentage {font-size: 60px;font-weight: bold;}
+.promotion__date {margin: 2rem 0;}
+.promotion__name {font-size: 20px;}
+.promotion__item .button {margin-top: 2rem;}
+.promotion__item.empty {opacity: 0.9;}
+@media all and (max-width: 640px) {
+.promotion__image {padding: 3rem 1rem;}
+}
+@media all and (max-width: 480px) {
+.promotion__campaign .promotion__item {width: 100%;}
+}
 
 /*** Просмотр акции ***/
 .promotion__content {text-align: center;padding: 0;margin: 0 0 2rem 0;}
@@ -747,7 +750,7 @@ header .search {width: calc(100% - 76px);margin-top: 1rem;}
 header .catalog {opacity: 1;}
 header #addtoCatalog.dropdown__content {width: 100%;max-width: 100%;margin-top: 0;}
 header .catalog__items {position: relative;}
-header .catalog__item a {font-size: 1rem;padding: 1rem 1.5rem;border-radius: 1rem;display: inline-block;}
+header .catalog__item a {font-size: 1rem;padding: 1rem 1.5rem;border-radius: 1rem;display: block;}
 header .catalog__item a:hover, #addto .catalog__item a.opened {background: #f1eeff;}
 header .catalog__item a span {width: calc(100% - 40px);display: inline-block;vertical-align: middle;}
 header .catalog__item .open {margin-left: 0.25rem;vertical-align: middle;width: 30px;height: 30px;line-height: 30px;display: inline-block;text-align: center;}
@@ -861,7 +864,12 @@ header #addtoCatalog.dropdown__content.open {padding: 1rem;}
 /*** Новости ***/
 #news .news__date {margin-top: 1rem;color: #a5acc0;}
 #news .news__title {margin-top: 1rem;font-size: 1rem;line-height: 1.5rem;max-height: 4.5rem;overflow: hidden;display: block;}
+#news .news__image {height: {SETTINGS_GOODS_IMAGES_SIZE_MEDIUM | divide("2")}px;display: flex;align-items: center;justify-content: center;}
+#news .news__image img {max-width: 100%;max-height: 100%;width: auto;}
 #news .news__text {display: none;}
+@media all and (max-width: 640px) {
+#news .news__image {height: {SETTINGS_GOODS_IMAGES_SIZE_MEDIUM | divide("2.5")}px;}
+}
 
 /*** Подвал ***/
 .footer__middle {padding: 3rem 0;display: flex;align-items: flex-start;flex-wrap: wrap;}
@@ -1451,19 +1459,23 @@ footer .form__button {position: absolute;top: 0;right: 0;padding: 0;width: 60px;
 .related .banners__item {width: 100%;}
 }
 
-
+/*** Быстрый просмотр ***/
 .fancybox-content {max-width: 900px;}
 .fancybox-content.productViewBlock .thumblist {display: none;}
 .fancybox-content.productViewBlock .productView__addto .add-cart + .add-cart {width: 100%;margin: 1rem 0 0 0;}
-
-.productViewMod {max-width: 300px;}
+/*** Добавление модификации товара ***/
+.productViewMod {max-width: 340px;}
 .productViewMod .productView__imageBox {display: none;}
 .productViewMod .productView__shop {width: 100%;padding: 0;}
 .productViewMod .productView__addto .add-cart {width: 100%;margin: 1rem 0 0 0;}
-.productViewMod .productView__ratings {margin: 1rem 0 0 0;}
+.productViewMod .productView__ratings {margin: 1rem 0 0 0;width: 100%;}
 .productViewMod .ratings__total {display: none;}
 .productViewMod .ratings__label {display: none;}
+.productViewMod .productView__text {display: none;}
+.productViewMod .productView__campaign div {padding: 1rem 2rem;}
 
+
+.fancybox-close-small {background-color: rgba(255,255,255,0.5);}
 
 /******************************************************************************
 		*******************************************************************************/

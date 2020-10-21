@@ -2843,7 +2843,7 @@ function pdtBrands() {
 function pdtSlider() {
   // Функция слайдер для "Акции" на главной странице
   $('#pdt__sales .owl-carousel').owlCarousel({
-    items: 5,
+    items: 6,
     margin: 32,
     loop: false,
     rewind: true,
@@ -2870,7 +2870,8 @@ function pdtSlider() {
       768:{items:3},
       992:{items:3},
       1200:{items:4},
-      1440:{items:5}
+      1440:{items:5},
+      2000:{items:6}
     }
   });
   // Функция слайдера для "Товары на главной" на главной странице

@@ -7,12 +7,11 @@
     <div class="products__grid">
     {% FOR promotion_campaign %}
     <div class="promotion__item product__item {% IFNOT promotion_campaign.IS_WORK %}empty{% ENDIF %}">
-      <div class="promotion__inner">
-        <div class="promotion__image">
-          <a href="{promotion_campaign.URL | url_amp}" title="{promotion_campaign.NAME}" class="promotion__percentage">{promotion_campaign.PERCENTAGE}%</a>
-        </div>
-        <div class="promotion__name"><a href="{promotion_campaign.URL | url_amp}" title="{promotion_campaign.NAME}">{promotion_campaign.NAME}</a></div>
-        <div class="promotion__date"><span>{promotion_campaign.BEGINNING_TIME | date("d.m.Y")}</span> <span class="separator">-</span> <span>{promotion_campaign.EXPIRED_TIME | date("d.m.Y")}</span></div>
+      <div class="promotion__image">
+	      <a class="promotion__percentage" href="{promotion_campaign.URL | url_amp}" title="{promotion_campaign.NAME}">{promotion_campaign.PERCENTAGE}%</a>
+	      <div class="promotion__date"><span>{promotion_campaign.BEGINNING_TIME | date("d.m.Y")}</span> <span class="separator">-</span> <span>{promotion_campaign.EXPIRED_TIME | date("d.m.Y")}</span></div>
+	      <a class="promotion__name" href="{promotion_campaign.URL | url_amp}" title="{promotion_campaign.NAME}">{promotion_campaign.NAME}</a>
+	      <a class="button {% IFNOT promotion_campaign.IS_WORK %}button4{% ENDIF %}" href="{promotion_campaign.URL | url_amp}" title="{promotion_campaign.NAME}">Подробнее</a>
       </div>
     </div>
     {% ENDFOR promotion_campaign %}
