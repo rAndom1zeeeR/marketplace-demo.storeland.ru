@@ -545,7 +545,7 @@ function goodspage() {
     dots: false,
     nav: false,
     navText: [ , ],
-    autoplay: false,
+    autoplay: true,
     autoplayHoverPause: true,
     smartSpeed: 500,
     mouseDrag: true,
@@ -2139,6 +2139,7 @@ $(document).ready(function(){
       observer.observe();
     });
     preload();
+    goodspage();
     $('.fancybox-content .productView').removeClass('productViewMod');
     $('.fancybox-content .productView').addClass('productViewQuick');
     return false;
