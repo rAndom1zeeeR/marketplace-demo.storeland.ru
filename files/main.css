@@ -590,7 +590,8 @@ section {margin: 2rem 0;}
 .header__middle > div {margin-right: 3rem;}
 /** Регион **/
 .region__delivery {color: #9085f7;width: 25%;padding-right: 1rem;}
-.region__contacts {color: #58c4c5;width: 25%;padding-left: 1rem;}
+.region__contacts {width: 25%;padding-left: 1rem;}
+.region__contacts a {color: #58c4c5;}
 .region__contacts span + span {display: none;}
 /** Меню **/
 .header__menu {flex-grow: 1;position: relative;width: 50%;}
@@ -1004,6 +1005,7 @@ footer .form__button {position: absolute;top: 0;right: 0;padding: 0;width: 60px;
 #pdt__sales .product__item .product__image a {height: {SETTINGS_GOODS_IMAGES_SIZE_MEDIUM | divide("1.5")}px;}
 .product__item .product__discount {font-size: 1rem;}
 .product__item .product__addto {opacity: 1;}
+.index .product__item .product__addCart {display: block;}
 }
 @media all and (max-width: 767px) {
 
