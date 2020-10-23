@@ -2219,6 +2219,7 @@ function quickViewShow(href, atempt) {
       goodsModification();
       newModification();
       quantity();
+      preload();
       $('.fancybox-content .productView').removeClass('productViewMod');
       $('.fancybox-content .productView').addClass('productViewQuick');
     }
@@ -2231,6 +2232,7 @@ function quickViewShow(href, atempt) {
       goodsModification();
       newModification();
       quantity();
+      preload();
       $('.fancybox-content .productView').removeClass('productViewMod');
       $('.fancybox-content .productView').addClass('productViewQuick');
     });
