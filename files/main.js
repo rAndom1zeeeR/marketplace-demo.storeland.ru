@@ -814,11 +814,11 @@ function catalogpage() {
 
   $('.filters__icon').click(function(event){
     event.preventDefault();
-    if ($(this).parents().find('.sidebar').hasClass('opened')) {
-      $(this).parents().find('.sidebar').removeClass('opened');
+    if ($(this).parents().find('.block__left').hasClass('opened')) {
+      $(this).parents().find('.block__left').removeClass('opened');
       $('#overlay').removeClass('opened');
     } else {
-      $(this).parents().find('.sidebar').addClass('opened');
+      $(this).parents().find('.block__left').addClass('opened');
       $('#overlay').addClass('opened');
     }
   });
