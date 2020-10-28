@@ -234,7 +234,7 @@
 					<div class="login dropdown">
 						<a href="{USER_LOGIN_URL}" class="addto__label dropdown__open login__icon" title="Личный кабинет" data-open="login">
 							<i class="icon-login"></i>
-							<span>Войти</span>
+							<span>{% IFNOT CLIENT_IS_LOGIN %}ЛК{% ELSE %}Войти{% ENDIF %}</span>
 						</a>
 						<div id="addtoLogin" class="addto__login dropdown__content" data-open="login">
 							<div class="addto__title">Личный кабинет</div>
@@ -260,8 +260,8 @@
 										<input type="email" name="form[sites_client_mail]" value="{FORM_SITES_CLIENT_MAIL}" id="sites_client_mail"  maxlength="255" class="form__input email" placeholder="Email" required/>
 									</div>
 									<div class="form__fields">
-										<label for="sites_client_pass" class="required">Пароль: <em>*</em></label>
-										<input type="password" id="sites_client_pass" name="form[sites_client_pass]" value="{FORM_SITES_CLIENT_PASS}" maxlength="50" minlength="6" class="form__input" placeholder="Пароль" onkeyup="checkCapsWarning(event)" onfocus="checkCapsWarning(event)" onblur="removeCapsWarning()" required/>
+										<label for="sites_client_pass2" class="required">Пароль: <em>*</em></label>
+										<input type="password" id="sites_client_pass2" name="form[sites_client_pass]" value="{FORM_SITES_CLIENT_PASS}" maxlength="50" minlength="6" class="form__input sites_client_pass" placeholder="Пароль" onkeyup="checkCapsWarning(event)" onfocus="checkCapsWarning(event)" onblur="removeCapsWarning()" required/>
 										{% IFNOT user_agent_ie %}
 										<div class="showPassBlock"><a href="#" rel="Скрыть пароль" class="showPass">Показать пароль</a></div>
 										{% ENDIF %}
@@ -1190,7 +1190,7 @@
 			<div class="body">{BODY}</div>
 		</div>
 	</section>
-	{% ENDIF %}
+	{% ELSE %}
 	<!-- /END Главная страница -->
 	
 	<!-- НЕ главная -->
@@ -1481,6 +1481,7 @@
 			</div>
 		</div>
 	</section>
+	{% ENDIF %}
 	
 	<!-- Подвал -->
 	<footer id="footer">

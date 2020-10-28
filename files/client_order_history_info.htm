@@ -2,7 +2,7 @@
 {% IF no_data %}
   <div class="message">Нет такого заказа. Полный список ваших заказов доступен в разделе <a href="{USER_HISTORY_LIST_URL}">мои заказы</a>.</div>
 {% ELSE %}
-  <h3 class="client__title">Заказ <span>{% IFNOT no_data %}№{CLIENT_ORDER_NUM}{% ENDIF %}</span></h3>
+  <h3 class="client__title">Заказ {% IFNOT no_data %}№{CLIENT_ORDER_NUM}{% ENDIF %}</h3>
   <table class="table-box">
     <tr>
       <td class="cell1"><label>Создан:</label></td>

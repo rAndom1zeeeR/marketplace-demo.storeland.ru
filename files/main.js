@@ -2677,8 +2677,10 @@ function startOrder(){
     {name: 'ajax_q', value: 1},
     {name: 'fast_order', value: 1}
   ];
-  cartTable.hide();
+  cartTable.addClass('disable');
   globalOrder.show('slow');
+  $('#startOrder').hide();
+  $('#closeOrder').show();
   $.ajax({
     type: "POST",
     cache: false,
@@ -2695,7 +2697,9 @@ function startOrder(){
       $(".form__phone").mask("+7 (999) 999-9999");
       $("#sites_client_phone").mask("+7 (999) 999-9999");
       $('#closeOrder').on('click', function() {
-        cartTable.show('slow');
+        cartTable.removeClass('disable');
+        $('#startOrder').show();
+        $('#closeOrder').hide();
         globalOrder.hide();
         $('html, body').delay(400).animate({scrollTop : jQuery('#main').offset().top}, 800);
         return false;
