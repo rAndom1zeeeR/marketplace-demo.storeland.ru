@@ -120,7 +120,7 @@
       </div>
       <!-- /END Показывать по: -->
 	    </div>
-	    <div class="filters__icon">
+	    <div class="filters__icon {% FOR filter_attr_list %}{% FOR values %}{% IF filter_attr_list.values.CHECKED %}hasFilters {% ENDIF %}{% ENDFOR %}{% ENDFOR %} {% FOR filter_prop_list %}{% FOR values %}{% IF filter_prop_list.values.CHECKED %}hasFilters {% ENDIF %}{% ENDFOR %}{% ENDFOR %}">
 		    <i class="icon-control"></i>
 		    <span class="filters__label">Фильтры</span>
 	    </div>

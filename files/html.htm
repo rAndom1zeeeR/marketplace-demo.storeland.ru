@@ -76,9 +76,11 @@
 						</a>
 					</div>
 				</div>
-				{% IF SETTINGS_STORE_REGION %}
-				<div class="region__delivery">
-					<span>Ваш регион доставки: {SETTINGS_STORE_REGION}</span>
+				<!-- Телефон 1 -->
+				{% IF SETTINGS_STORE_PHONE_NUMBER1 %}
+				<div class="header__phone">
+					<!--<span>Ваш регион доставки: {SETTINGS_STORE_REGION}</span>-->
+					<a href="tel:{SETTINGS_STORE_PHONE_COUNTRY_CODE1}({SETTINGS_STORE_PHONE_CITY_CODE1}){SETTINGS_STORE_PHONE_NUMBER1}" class="contacts__phone phone" title="{SETTINGS_STORE_PHONE_COUNTRY_CODE1}({SETTINGS_STORE_PHONE_CITY_CODE1}){SETTINGS_STORE_PHONE_NUMBER1}"><i class="icon-phone"></i><span itemprop="telephone">{SETTINGS_STORE_PHONE_COUNTRY_CODE1}({SETTINGS_STORE_PHONE_CITY_CODE1}){SETTINGS_STORE_PHONE_NUMBER1}</span></a>
 				</div>
 				{% ENDIF %}
 				<div class="region__contacts">
@@ -151,7 +153,7 @@
 						<div class="inner">
 							<div class="result__category"></div>
 							<div class="result__goods"></div>
-							<div class="result__showAll button button4">все результаты</div>
+							<div class="result__showAll"><a href="#" class="button button4">все результаты</a></div>
 						</div>
 					</div>
 				</div>
@@ -1391,6 +1393,7 @@
 				<div class="block__right {% IF SHOW_GOODS_FILTERS || SHOW_GOODS_PRICE_FILTERS %}hasLeft{% ELSE %}full{% ENDIF %}">
 					<div>{BODY}</div>
 					<!--Сайдбар. Вы смотрели, Избранное, Сравнение-->
+					<div class="row">
 					<div class="sidebar">
 						<!--Избранное-->
 						<div class="sidebar__block favorites {% IF FAVORITES_GOODS_COUNT > 0 %}hasItems{% ENDIF %}">
@@ -1476,6 +1479,7 @@
 							</div>
 						</div>
 						{% ENDIF %}
+					</div>
 					</div>
 				</div>
 			</div>
@@ -1621,7 +1625,7 @@
 				<div class="title">Контакты в Нижнем Новгороде</div>
 			</div>
 			<div class="modal__content">
-				<div class="tc">Нижний Новгород</div>
+				<div class="tc">{SETTINGS_STORE_REGION}</div>
 				<div>Россия, Нижегородская обл, г Нижний Новгород</div>
 				<div class="contacts" itemscope itemtype="https://schema.org/Organization">
 					<!-- Телефон 1 -->

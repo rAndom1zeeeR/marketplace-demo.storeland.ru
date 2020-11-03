@@ -756,20 +756,6 @@ function catalogpage() {
     $(this)[0].form.submit();
   });
   
-  // Открытие каталога с сохранением вложенности
-  $('.catalog__item .open').click(function(event){
-  event.preventDefault();
-    if ($(this).closest('.parent').hasClass('opened')) {
-      $(this).parent().next('.sub').slideUp(600);
-      $(this).closest('.parent').removeClass('opened');
-      $(this).closest('.open').removeClass('opened');
-    } else {
-      $(this).parent().next('.sub').slideDown(600);
-      $(this).closest('.parent').addClass('opened');
-      $(this).closest('.open').addClass('opened');
-    }
-  });
-  
   // Открытие сортировки и показать по
   $('.selectBox .select .label').on('click',function(){
     if($(this).parent().parent().hasClass('clicked')){
@@ -870,8 +856,8 @@ function priceFilter() {
   function priceInputsChangeWidthByChars() {
     // Если есть блок указания минимальной цены
     if(priceInputMin.length) {
-      priceInputMin.css('width', (priceInputMin.val().length*7 + 20) + 'px');
-      priceInputMax.css('width', (priceInputMax.val().length*7 + 20) + 'px');
+      priceInputMin.css('width', (priceInputMin.val().length*7 + 30) + 'px');
+      priceInputMax.css('width', (priceInputMax.val().length*7 + 30) + 'px');
     }
   }
   
@@ -2382,6 +2368,15 @@ function quickOrder(formSelector) {
       });
       // Скрытое обновление корзины
       $('.hiddenUpdate').html(data);
+      // Выключение кнопки оформления заказа если не все поля заполнены
+      $(function(){
+        if($('.fastOrder__form').valid()) {
+          $(".total__buttons button").removeClass('disabled');
+          $(".total__buttons button").attr('data-tooltip', 'Оформить заказ');
+        }else{
+          $(".fastOrder__form input, .fastOrder__form textarea, .fastOrder__form select").removeClass('error');
+        }
+      });
 		}
 	});
   return false;
@@ -3176,6 +3171,20 @@ function OpenMenu() {
       $(this).addClass('opened');
       $(this).parent().addClass('opened');
       $('#overlay').addClass('opened');
+    }
+  });
+
+  // Открытие каталога с сохранением вложенности
+  $('.catalog__item .open').click(function(event){
+    event.preventDefault();
+    if ($(this).closest('.parent').hasClass('opened')) {
+      $(this).parent().next('.sub').slideUp(600);
+      $(this).closest('.parent').removeClass('opened');
+      $(this).closest('.open').removeClass('opened');
+    } else {
+      $(this).parent().next('.sub').slideDown(600);
+      $(this).closest('.parent').addClass('opened');
+      $(this).closest('.open').addClass('opened');
     }
   });
 }
