@@ -806,12 +806,18 @@ header .catalog__item .open {margin-left: 0.25rem;vertical-align: middle;width: 
 header .catalog__item .open:before {content: "\e906";font-family: 'icomoon';font-size: 0.75rem;}
 @media all and (min-width: 992px) {
 header .catalog__item .sub {display: none;position: absolute;top: 0;height: 100%;overflow-x: auto;}
-header .catalog__item .sub[data-level="4"] {display: none !important;}
+header .catalog__item .sub[data-level="3"] {display: none !important;}
 header .catalog__item:hover > .sub {display: block;}
+header .catalog__item[data-level="0"]:hover > .sub[data-level="1"] {left: 33%;width: 66%;}
+header .catalog__item[data-level="1"]:hover > .sub[data-level="2"] {left: 50%;width: 50%;}
+header .catalog__item a {max-width: 300px;}
+}
+@media all and (min-width: 1440px) {
+header .catalog__item:hover > .sub[data-level="3"] {display: block !important;}
+header .catalog__item .sub[data-level="4"] {display: none !important;}
 header .catalog__item[data-level="0"]:hover > .sub[data-level="1"] {left: 25%;width: 75%;}
 header .catalog__item[data-level="1"]:hover > .sub[data-level="2"] {left: 33%;width: 66%;}
 header .catalog__item[data-level="2"]:hover > .sub[data-level="3"] {left: 50%;width: 50%;}
-header .catalog__item a {max-width: 300px;}
 }
 @media all and (max-width: 1199px) {
 header #addtoCatalog.dropdown__content.open {padding: 1rem;}
@@ -932,19 +938,20 @@ header .catalog__item .open.opened:before {content: "\e937";}
 }
 
 /*** Подвал ***/
-.footer__middle {padding: 3rem 0;display: flex;align-items: flex-start;flex-wrap: wrap;}
-.footer__block {width: 25%;padding: 0 1rem;}
+.footer__middle {padding: 1rem 0 3rem 0;display: flex;align-items: flex-start;flex-wrap: wrap;}
+.footer__block {width: 25%;padding: 2rem 1rem 0 1rem;}
 .footer__title {font-size: 1rem;font-weight: bold;margin-bottom: 2rem;}
 .footer__text {line-height: 1.6;}
 /** Подвал.Логотип **/
 footer .logo {margin-bottom: 2rem;}
 footer .copyright {line-height: 1.6;}
 /** Подвал.Меню **/
-.footer__menu {background-color: #8776d9;border-radius: 1rem;}
+.footer__menu {background-color: #8776d9;border-radius: 1rem;position: relative;}
 .footer__menu .mainnav__list {padding: 1rem;display: flex;align-items: center;justify-content: center;flex-wrap: wrap;}
 .footer__menu .mainnav__item {padding: 0.5rem 2rem;display: inline-block;}
 .footer__menu .mainnav__link {color: #FFFFFF;font-size: 18px;}
 .footer__menu .mainnav__link:hover {color: #614ccb;}
+.footer__menu .menu__icon {display: none;}
 /** Подвал.Соц Сети **/
 .social__links {margin-bottom: 2rem;}
 .social__links a {display: inline-block;margin-right: 0.5rem;}
@@ -967,12 +974,16 @@ footer .form__button {position: absolute;top: 0;right: 0;padding: 0;width: 60px;
 }
 @media all and (max-width: 1199px) {
 .footer__block {width: 50%;}
-.footer__block:nth-child(3) {margin-top: 2rem;}
-.footer__block:nth-child(4) {margin-top: 2rem;}
+.footer__menu .menu__icon {display: block;color: #FFFFFF;font-size: 18px;text-align: center;padding: 1.5rem;}
+.footer__menu .menu__icon:hover {color: #614ccb;}
+.footer__menu .menu__icon i {margin-right: 0.5rem;}
+.footer__menu .mainnav__list {opacity: 0;position: absolute;bottom: 100%;left: calc(50% - 140px);width: 280px;padding: 1rem 0;background: #FFFFFF;border-radius: 1rem;display: block;box-shadow: 0px 0px 100px 0px #e6e0fe;z-index: -1;}
+.footer__menu.opened .mainnav__list {opacity: 1;margin-top: 1.25rem;z-index: 10;}
+.footer__menu .mainnav__list a {color: initial;display: block;padding: 0.75rem 1.25rem;border-radius: 1rem;line-height: 1.2;}
+.footer__menu .mainnav__list a:hover {background: #f1eeff;}
 }
 @media all and (max-width: 640px) {
 .footer__block {width: 100%;}
-.footer__block:nth-child(2) {margin-top: 2rem;}
 }
 
 
@@ -1014,10 +1025,9 @@ footer .form__button {position: absolute;top: 0;right: 0;padding: 0;width: 60px;
 /*** Товары большой таблицей ***/
 .products__container {margin: 0 -0.5rem;}
 .products__list {position: relative;width: 100%;display: flex;align-items: stretch;flex-wrap: wrap;justify-content: flex-start;}
-.products__list .product__item {width: calc(20% - 1rem);}
+.products__list .product__item {width: calc(25% - 1rem);}
 @media all and (max-width: 1680px) {
 .product__item {width: calc(20% - 1rem);}
-.products__list .product__item {width: calc(25% - 1rem);}
 }
 @media all and (max-width: 1440px) {
 .product__item {width: calc(25% - 1rem);}
@@ -1326,11 +1336,11 @@ footer .form__button {position: absolute;top: 0;right: 0;padding: 0;width: 60px;
 .fastOrderForm .total__pp {width: 100%;text-align: center;margin-top: 1rem;padding: 0rem;font-size: 13px;}
 .fastOrderForm .total__pp a {text-decoration: underline;}
 .delivery__fields {margin-top: 1rem;}
-.delivery__price, .zones__price {margin-left: 0.5rem;font-weight: bold;}
+.delivery__price, .zones__price {margin-left: 0.5rem;font-weight: bold;vertical-align: middle;}
 .delivery__price .label {margin-right: 0.5rem;}
 .delivery__zones {margin-top: 1rem;padding-left: 1rem;}
-.delivery__zone {margin-top: 0.5rem;}
-.delivery__zone > div {margin-top: 1rem;}
+.delivery__zone {margin-top: 0.75rem;}
+.delivery__zone > div {margin-top: 0.75rem;}
 .delivery__option {margin-bottom: 2rem;}
 .delivery__option input {display: inline-block;vertical-align: middle;border: 0;}
 .delivery__option label {width: calc(100% - 45px);margin: 0;display: inline-block;vertical-align: middle;}
@@ -1460,6 +1470,10 @@ footer .form__button {position: absolute;top: 0;right: 0;padding: 0;width: 60px;
 @media all and (max-width: 480px) {
 .productView__addto .add-cart {width: 100%;margin-top: 1rem;}
 .ratings__total {display: none;}
+.productView__campaign {text-align: center;}
+}
+@media all and (max-width: 374px) {
+.productView__campaign div {font-size: 1rem;padding: 1rem 2rem;}
 }
 
 /** Товар: Табы **/
@@ -1569,6 +1583,7 @@ footer .form__button {position: absolute;top: 0;right: 0;padding: 0;width: 60px;
 .productViewQuick .thumblist__item img {max-width: 100px;max-height: 100px;}
 /*** Добавление модификации товара ***/
 .productViewMod {max-width: 340px;}
+.productViewMod .productView__box {display: none;}
 .productViewMod .productView__articles {display: none !important;}
 .productViewMod .productView__available {display: none;}
 .productViewMod .productView__imageBox {display: none;}

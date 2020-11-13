@@ -1239,10 +1239,10 @@ function Compare() {
       $('.navigation').css('display', 'none');
     }
   }
-  $('.CompareGoods__page .navigation .prev, .toLeft').click(function(event) {
+  $('.CompareGoods__page .navigation .nav-prev').click(function(event) {
     $('.CompareGoodsTableTbody .owl-carousel').trigger('prev.owl.carousel');
   });
-  $('.CompareGoods__page .navigation .next, .toRight').click(function(event) {
+  $('.CompareGoods__page .navigation .nav-next').click(function(event) {
     $('.CompareGoodsTableTbody .owl-carousel').trigger('next.owl.carousel');
   });
   // Сравнение товаров. Фильтр в верхней навигации. Отображение всех и различающихся характеристик товара
@@ -2763,15 +2763,12 @@ function coupons() {
         $('.total__coupons').show();
         // Получаем новую итоговую стоимость заказа
         let totalSum = totalBlock.find('.total-sum').data('total-sum');
-        let deliveryPrice = parseInt($('.delivery__price .changeprice').text());
+        let deliveryPrice = parseInt($('.cartSumDelivery .num').text());
         let newTotalSum = totalSum + deliveryPrice;
+        console.log('totalSum', totalSum)
+        console.log('deliveryPrice', deliveryPrice)
+        console.log('newTotalSum', newTotalSum);
         let cartSum = $('.cartSumTotal').data('value');
-        // Обновляем значение итоговой стоимости
-        $('.cartSumTotal .num').text(newTotalSum);
-        $('.cartSumTotal').attr('data-value', newTotalSum);
-        $('.cartSumCoupons').attr('data-value', newTotalSum);
-        $('.cartSumTotalHide').attr('data-value', newTotalSum);
-        $('.cartSumTotalHide .num').text(newTotalSum);
         if (newTotalSum >= cartSum) {
           cuponInput.parent().addClass('error');
           cuponInput.parent().removeClass('active');
@@ -2782,6 +2779,12 @@ function coupons() {
           cuponInput.parent().removeClass('error');
           cuponInput.parent().addClass('active');
           $('.total__coupons').show();
+          // Обновляем значение итоговой стоимости
+          $('.cartSumTotal .num').text(newTotalSum);
+          $('.cartSumTotal').attr('data-value', newTotalSum);
+          $('.cartSumCoupons').attr('data-value', newTotalSum);
+          $('.cartSumTotalHide').attr('data-value', newTotalSum);
+          $('.cartSumTotalHide .num').text(newTotalSum);
         }
       },
       error: function(data){
@@ -2795,6 +2798,12 @@ function coupons() {
     setTimeout(function(){
       $('.total__coupons').hide();
       $('.total__discount').show();
+      let cartSum = $('.cartSum').data('value');
+      $('.cartSumTotal .num').text(cartSum);
+      $('.cartSumTotal').attr('data-value', cartSum);
+      $('.cartSumCoupons').attr('data-value', cartSum);
+      $('.cartSumTotalHide').attr('data-value', cartSum);
+      $('.cartSumTotalHide .num').text(cartSum);
       cuponInput.parent().removeClass('error');
       cuponInput.parent().removeClass('active');
       cuponInput.val("").attr("placeholder", "Введите купон");

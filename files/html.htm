@@ -1492,6 +1492,10 @@
 		<div class="container">
 			<!-- Подвал.Меню -->
 			<div class="footer__menu">
+				<div class="menu__icon dropdown__open" data-open="footer-menu">
+					<i class="icon-menu"></i>
+					<span>Меню</span>
+				</div>
 				<div class="mainnav__list" itemscope itemtype="https://schema.org/SiteNavigationElement">
 					{% FOR menu %}
 						{% FOR footer %}
@@ -1670,10 +1674,10 @@
 					{ANTISPAM_CODE}
 					<div class="form__fields">
 						<div class="form__field">
-							<input id="form[{ANTISPAM_FORM_FIELD_NAME_CALLBACK_PERSON}]" class="form__input form__person" type="text" name="form[{ANTISPAM_FORM_FIELD_NAME_CALLBACK_PERSON}]" value="{FORM_CALLBACK_PERSON}" placeholder="Владимир П." autocomplete="off"/>
+							<input class="form__input form__person" type="text" name="form[{ANTISPAM_FORM_FIELD_NAME_CALLBACK_PERSON}]" value="{FORM_CALLBACK_PERSON}" placeholder="Владимир П." autocomplete="off"/>
 						</div>
 						<div class="form__field">
-							<input id="form[{ANTISPAM_FORM_FIELD_NAME_CALLBACK_PHONE}]" class="form__input form__phone" type="tel" name="form[{ANTISPAM_FORM_FIELD_NAME_CALLBACK_PHONE}]" value="{FORM_CALLBACK_PHONE}" placeholder="+7 (987) 654-3210" autocomplete="off"/>
+							<input class="form__input form__phone" type="tel" name="form[{ANTISPAM_FORM_FIELD_NAME_CALLBACK_PHONE}]" value="{FORM_CALLBACK_PHONE}" placeholder="+7 (987) 654-3210" autocomplete="off"/>
 						</div>
 						<div class="form__buttons">
 							<button type="submit" title=">Заказать звонок" class="form__button button">Заказать звонок</button>
@@ -1726,10 +1730,10 @@
 					{ANTISPAM_CODE}
 					<div class="form__fields">
 						<div class="form__field">
-							<input id="form[{ANTISPAM_FORM_FIELD_NAME_CALLBACK_PERSON}]" class="form__input form__person" type="text" name="form[{ANTISPAM_FORM_FIELD_NAME_CALLBACK_PERSON}]" value="{FORM_CALLBACK_PERSON}" placeholder="Владимир П." autocomplete="off"/>
+							<input class="form__input form__person" type="text" name="form[{ANTISPAM_FORM_FIELD_NAME_CALLBACK_PERSON}]" value="{FORM_CALLBACK_PERSON}" placeholder="Владимир П." autocomplete="off"/>
 						</div>
 						<div class="form__field">
-							<input id="form[{ANTISPAM_FORM_FIELD_NAME_CALLBACK_PHONE}]" class="form__input form__phone" type="tel" name="form[{ANTISPAM_FORM_FIELD_NAME_CALLBACK_PHONE}]" value="{FORM_CALLBACK_PHONE}" placeholder="+7 (987) 654-3210" autocomplete="off"/>
+							<input class="form__input form__phone" type="tel" name="form[{ANTISPAM_FORM_FIELD_NAME_CALLBACK_PHONE}]" value="{FORM_CALLBACK_PHONE}" placeholder="+7 (987) 654-3210" autocomplete="off"/>
 						</div>
 					</div>
 					<div class="form__buttons">
