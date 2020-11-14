@@ -945,6 +945,7 @@ function quantity() {
     $('.goodsDataMainModificationId').val($(this).val());
     // Количество
     let val = parseInt($(this).val());
+    let valMax = parseInt($(this).attr('max'));
     // Цена товара без изменений
     let price = parseInt($('.productView__price .price__now').attr('content'));
     let newPrice = 0;
@@ -955,8 +956,18 @@ function quantity() {
         newPrice += parseInt($(this).attr('data-price'))
       });
     }
-    // Считаем новую сумму товара с учетом добавленных
-    let multi = String(val * price + newPrice);
+    // Если в настройках "Отключить возможность класть в корзину больше товара, чем есть в наличии"
+    if ($(this).parent().hasClass('maxVal')) {
+      if (val > valMax) {
+        $(this).val(valMax);
+        // Считаем новую сумму товара с учетом добавленных
+        var multi = String(valMax * price + newPrice);
+      }else {
+        var multi = String(val * price + newPrice);
+      }
+    } else {
+      var multi = String(val * price + newPrice);
+    }
     // Обновляем новую сумму
     $('.productView__price .price__now').attr('data-price', multi);
     $('.productView__price .price__now').find('.num').text(addSpaces(multi));
