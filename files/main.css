@@ -812,7 +812,7 @@ header .catalog__item[data-level="0"]:hover > .sub[data-level="1"] {left: 33%;wi
 header .catalog__item[data-level="1"]:hover > .sub[data-level="2"] {left: 50%;width: 50%;}
 header .catalog__item a {max-width: 300px;}
 }
-@media all and (min-width: 1440px) {
+@media all and (min-width: 1441px) {
 header .catalog__item:hover > .sub[data-level="3"] {display: block !important;}
 header .catalog__item .sub[data-level="4"] {display: none !important;}
 header .catalog__item[data-level="0"]:hover > .sub[data-level="1"] {left: 25%;width: 75%;}
@@ -850,7 +850,7 @@ header .catalog__item .open.opened:before {content: "\e937";}
 #slideshow .owl-nav .owl-next {border-radius: 40px 0 0 40px;}
 /** Баннеры **/
 .cat-banners {width: 660px;position: relative;display: flex;align-items: stretch;flex-wrap: wrap;}
-.cat-banners__item {margin-left: 2rem;width: calc(50% - 2rem);height: 380px;border-radius: 1rem;text-align: center;background-repeat: no-repeat;background-position: center center;background-size: cover;display: flex;align-items: flex-end;justify-content: center;}
+.cat-banners__item {margin-left: 2rem;width: calc(50% - 2rem);height: 380px;border-radius: 1rem;text-align: center;background-repeat: no-repeat;background-position: center 20%;background-size: 60%;display: flex;align-items: flex-end;justify-content: center;}
 .cat-banners__item:hover {opacity: 0.6;}
 .cat-banners__item:nth-child(1) {background-color: #ccfeff;}
 .cat-banners__item:nth-child(2) {background-color: #f0edff;}
@@ -860,7 +860,7 @@ header .catalog__item .open.opened:before {content: "\e937";}
 @media all and (max-width: 1600px) {
 .slider {width: 100%;}
 .cat-banners {width: 100%;padding: 2rem 0 0 0;}
-.cat-banners__item {width: calc(50% - 1rem);height: 220px;text-align: left;background-position: 0 0;background-size: contain;align-items: center;justify-content: flex-end;}
+.cat-banners__item {width: calc(50% - 1rem);height: 220px;text-align: left;background-position: 2rem 1rem;background-size: 140px;align-items: center;justify-content: flex-end;}
 .cat-banners__item:nth-child(1) {margin-left: 0;}
 .cat-banners__title {border-radius: 1rem 0 0 1rem;padding: 1rem 2rem;}
 .cat-banners__name {font-size: 30px;}
@@ -871,7 +871,7 @@ header .catalog__item .open.opened:before {content: "\e937";}
 .cat-banners__subname {font-size: 16px;}
 }
 @media all and (max-width: 991px) {
-.cat-banners__item {height: 300px;text-align: center;background-position: center center;align-items: flex-end;justify-content: center;}
+.cat-banners__item {height: 300px;text-align: center;background-position: center 1rem;align-items: flex-end;justify-content: center;}
 .cat-banners__title {border-radius: 1rem 1rem 0 0;}
 }
 @media all and (max-width: 480px) {
@@ -881,7 +881,7 @@ header .catalog__item .open.opened:before {content: "\e937";}
 .slider__subtitle {font-size: 18px;}
 .slider__button {display: none;}
 .cat-banners {padding: 1rem 0 0 0;}
-.cat-banners__item {width: calc(50% - 0.5rem);height: 180px;margin-left: 1rem;}
+.cat-banners__item {width: calc(50% - 0.5rem);height: 180px;margin-left: 1rem;background-size: 100px;}
 .cat-banners__name {font-size: 14px;}
 .cat-banners__subname {display: none;}
 }
