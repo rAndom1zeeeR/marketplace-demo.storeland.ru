@@ -960,7 +960,7 @@ footer .copyright {line-height: 1.6;}
 .footer__menu .mainnav__list {padding: 1rem;display: flex;align-items: center;justify-content: center;flex-wrap: wrap;}
 .footer__menu .mainnav__item {padding: 0.5rem 2rem;display: inline-block;}
 .footer__menu .mainnav__link {color: #FFFFFF;font-size: 18px;}
-.footer__menu .mainnav__link:hover {color: #614ccb;}
+.footer__menu .mainnav__link:hover {text-decoration: underline;}
 .footer__menu .menu__icon {display: none;}
 /** Подвал.Соц Сети **/
 .social__links {margin-bottom: 2rem;}
@@ -985,7 +985,7 @@ footer .form__button {position: absolute;top: 0;right: 0;padding: 0;width: 60px;
 @media all and (max-width: 1199px) {
 .footer__block {width: 50%;}
 .footer__menu .menu__icon {display: block;color: #FFFFFF;font-size: 18px;text-align: center;padding: 1.5rem;}
-.footer__menu .menu__icon:hover {color: #614ccb;}
+.footer__menu .menu__icon:hover span {text-decoration: underline;}
 .footer__menu .menu__icon i {margin-right: 0.5rem;}
 .footer__menu .mainnav__list {opacity: 0;position: absolute;bottom: 100%;left: calc(50% - 140px);width: 280px;padding: 1rem 0;background: #FFFFFF;border-radius: 1rem;display: block;box-shadow: 0px 0px 100px 0px #e6e0fe;z-index: -1;}
 .footer__menu.opened .mainnav__list {opacity: 1;margin-top: 1.25rem;z-index: 10;}
