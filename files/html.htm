@@ -418,7 +418,7 @@
 								<img class="goods-image-medium lozad" src="{ASSETS_IMAGES_PATH}placeholder.png?design=marketplace" data-src="{% IF index_page_goods.IMAGE_EMPTY %}{ASSETS_IMAGES_PATH}no-photo.png?design=marketplace{% ELSE %}{index_page_goods.IMAGE_MEDIUM}{% ENDIF %}" alt="{index_page_goods.NAME}" itemprop="image">
 							</a>
 							<div class="product__ico">
-								{% IF index_page_goods.MIN_PRICE_OLD>index_page_goods.MIN_PRICE_NOW %}<span class="ico__sales"></span>{% ENDIF %}
+								{% IF index_page_goods.MIN_PRICE_OLD>index_page_goods.MIN_PRICE_NOW || index_page_goods.MIN_PRICE_NOW_WITHOUT_DISCOUNT>index_page_goods.MIN_PRICE_NOW %}<span class="ico__sales"></span>{% ENDIF %}
 								{% IF index_page_goods.IS_PLACE_ON_INDEX_PAGE %}<span class="ico__sale"></span>{% ENDIF %}
 								<!--{% IF index_page_goods.IS_TOP %}<span class="ico__best"></span>{% ENDIF %}
 								{% IF index_page_goods.IS_NEW %}<span class="ico__new"></span>{% ENDIF %}-->
@@ -612,7 +612,7 @@
 								<img class="goods-image-medium lozad" src="{ASSETS_IMAGES_PATH}placeholder.png?design=marketplace" data-src="{% IF index_page_sale_goods.IMAGE_EMPTY %}{ASSETS_IMAGES_PATH}no-photo.png?design=marketplace{% ELSE %}{index_page_sale_goods.IMAGE_MEDIUM}{% ENDIF %}" alt="{index_page_sale_goods.NAME}" itemprop="image">
 							</a>
 							<div class="product__ico">
-								{% IF index_page_sale_goods.MIN_PRICE_OLD>index_page_sale_goods.MIN_PRICE_NOW %}<span class="ico__sales"></span>{% ENDIF %}
+								{% IF index_page_sale_goods.MIN_PRICE_OLD>index_page_sale_goods.MIN_PRICE_NOW || index_page_sale_goods.MIN_PRICE_NOW_WITHOUT_DISCOUNT>index_page_sale_goods.MIN_PRICE_NOW %}<span class="ico__sales"></span>{% ENDIF %}
 								{% IF index_page_sale_goods.IS_PLACE_ON_INDEX_PAGE %}<span class="ico__sale"></span>{% ENDIF %}
 								<!--{% IF index_page_sale_goods.IS_TOP %}<span class="ico__best"></span>{% ENDIF %}
 								{% IF index_page_sale_goods.IS_NEW %}<span class="ico__new"></span>{% ENDIF %}-->
@@ -787,7 +787,7 @@
 								<img class="goods-image-medium lozad" src="{ASSETS_IMAGES_PATH}placeholder.png?design=marketplace" data-src="{% IF index_page_new_goods.IMAGE_EMPTY %}{ASSETS_IMAGES_PATH}no-photo.png?design=marketplace{% ELSE %}{index_page_new_goods.IMAGE_MEDIUM}{% ENDIF %}" alt="{index_page_new_goods.NAME}" itemprop="image">
 							</a>
 							<div class="product__ico">
-								{% IF index_page_new_goods.MIN_PRICE_OLD>index_page_new_goods.MIN_PRICE_NOW %}<span class="ico__sales"></span>{% ENDIF %}
+								{% IF index_page_new_goods.MIN_PRICE_OLD>index_page_new_goods.MIN_PRICE_NOW || index_page_new_goods.MIN_PRICE_NOW_WITHOUT_DISCOUNT>index_page_new_goods.MIN_PRICE_NOW %}<span class="ico__sales"></span>{% ENDIF %}
 								{% IF index_page_new_goods.IS_NEW %}<span class="ico__new"></span>{% ENDIF %}
 								<!--{% IF index_page_new_goods.IS_PLACE_ON_INDEX_PAGE %}<span class="ico__sale"></span>{% ENDIF %}
 								{% IF index_page_new_goods.IS_TOP %}<span class="ico__best"></span>{% ENDIF %}-->
@@ -1024,7 +1024,7 @@
 								<img class="goods-image-medium lozad" src="{ASSETS_IMAGES_PATH}placeholder.png?design=marketplace" data-src="{% IF index_page_favorites_goods.IMAGE_EMPTY %}{ASSETS_IMAGES_PATH}no-photo.png?design=marketplace{% ELSE %}{index_page_favorites_goods.IMAGE_MEDIUM}{% ENDIF %}" alt="{index_page_favorites_goods.NAME}" itemprop="image">
 							</a>
 							<div class="product__ico">
-								{% IF index_page_favorites_goods.MIN_PRICE_OLD>index_page_favorites_goods.MIN_PRICE_NOW %}<span class="ico__sales"></span>{% ENDIF %}
+								{% IF index_page_favorites_goods.MIN_PRICE_OLD>index_page_favorites_goods.MIN_PRICE_NOW || index_page_favorites_goods.MIN_PRICE_NOW_WITHOUT_DISCOUNT>index_page_favorites_goods.MIN_PRICE_NOW %}<span class="ico__sales"></span>{% ENDIF %}
 								{% IF index_page_favorites_goods.IS_TOP %}<span class="ico__best"></span>{% ENDIF %}
 								<!--{% IF index_page_favorites_goods.IS_PLACE_ON_INDEX_PAGE %}<span class="ico__sale"></span>{% ENDIF %}
 								{% IF index_page_favorites_goods.IS_NEW %}<span class="ico__new"></span>{% ENDIF %}-->
