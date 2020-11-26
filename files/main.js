@@ -718,6 +718,7 @@ function goodspage() {
       $('.grade-block[data-number='+ i +'] .grade-line-count').css('width', percent + '%');
     }
   }
+
   // Свернуть и Развернуть дополнительное описание
   $('.tabs__more').on('click', function(event) {
     event.preventDefault();
@@ -727,12 +728,12 @@ function goodspage() {
     let txtNew = $(this).attr('rel');
     if ($(this).hasClass('active')) {
       $(this).removeClass('active');
-      $(this).parent().find('.tabs__content').removeClass('active');
+      $(this).parent().find('.tabs__content').addClass('mask').removeClass('active');
       $(this).html(txtNew);
       $(this).attr('rel', txtOld);
     }else{
       $(this).addClass('active');
-      $(this).parent().find('.tabs__content').addClass('active');
+      $(this).parent().find('.tabs__content').addClass('active').removeClass('mask');
       $(this).html(txtNew);
       $(this).attr('rel', txtOld);
     }
@@ -741,9 +742,11 @@ function goodspage() {
   $('.tabs__content').each(function (){
     let contentHeight = $(this).height();
     if(contentHeight >= 120){
-      $(this).parent().find('.tabs__more').show()
+      $(this).parent().find('.tabs__more').show();
+      $(this).parent().find('.tabs__content').addClass('mask');
     }else{
-      $(this).parent().find('.tabs__more').hide()
+      $(this).parent().find('.tabs__more').hide();
+      $(this).parent().find('.tabs__content').removeClass('mask');
     }
   });
 

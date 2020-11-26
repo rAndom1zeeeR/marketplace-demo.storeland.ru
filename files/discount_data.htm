@@ -120,8 +120,9 @@
     </form>
     </noindex>
   </div>
-  <!-- END Верхний блок, изменяющий отображение данных выдачи товаров -->
   {% ENDIF %}
+	<!-- END Верхний блок, изменяющий отображение данных выдачи товаров -->
+	
   <!-- Вывод товаров -->
 	<div class="products__container">
 		<!-- Вывод товаров ТАБЛИЦЕЙ -->
@@ -139,7 +140,7 @@
 						</a>
 						<div class="product__ico">
 							{% IF goods.MIN_PRICE_OLD>goods.MIN_PRICE_NOW || goods.MIN_PRICE_NOW_WITHOUT_DISCOUNT>goods.MIN_PRICE_NOW %}<span class="ico__sales"></span>{% ENDIF %}
-							{% IF goods.IS_PLACE_ON_INDEX_PAGE %}<span class="ico__sale"></span>{% ENDIF %}
+							<!--{% IF goods.IS_PLACE_ON_INDEX_PAGE %}<span class="ico__sale"></span>{% ENDIF %}-->
 							{% IF goods.IS_TOP %}<span class="ico__best"></span>{% ENDIF %}
 							{% IF goods.IS_NEW %}<span class="ico__new"></span>{% ENDIF %}
 						</div>
@@ -301,7 +302,7 @@
 						</a>
 						<div class="product__ico">
 							{% IF goods.MIN_PRICE_OLD>goods.MIN_PRICE_NOW || goods.MIN_PRICE_NOW_WITHOUT_DISCOUNT>goods.MIN_PRICE_NOW %}<span class="ico__sales"></span>{% ENDIF %}
-							{% IF goods.IS_PLACE_ON_INDEX_PAGE %}<span class="ico__sale"></span>{% ENDIF %}
+							<!--{% IF goods.IS_PLACE_ON_INDEX_PAGE %}<span class="ico__sale"></span>{% ENDIF %}-->
 							{% IF goods.IS_TOP %}<span class="ico__best"></span>{% ENDIF %}
 							{% IF goods.IS_NEW %}<span class="ico__new"></span>{% ENDIF %}
 						</div>
@@ -454,6 +455,7 @@
 		{% ENDIF %}
 	</div>
   <!-- END Вывод товаров -->
+	
   <!-- Страницы -->
   {% IF show_pages %}
   <div class="toolbar bottom">
