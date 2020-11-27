@@ -160,7 +160,7 @@
 	        {% FOR goods_images %}
 		        <!--{% IF goods_images.ID = GOODS_IMAGE_ID %}{continue}{% ENDIF %}-->
 	          <div class="thumblist__item" data-id="{goods_images.ID}" data-index="{goods_images.index}">
-	            <a href="{goods_images.LARGE}" data-fancybox="images">
+	            <a href="{goods_images.LARGE}" data-fancybox="thumblist-images">
 	              <img class="goods-image-icon lozad" src="{ASSETS_IMAGES_PATH}placeholder.png?design=marketplace" data-src="{goods_images.ICON}" alt="{goods_images.NAME}" itemprop="image" />
 	            </a>
 	          </div>
