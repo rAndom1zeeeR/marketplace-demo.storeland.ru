@@ -2779,9 +2779,6 @@ function coupons() {
         let totalSum = totalBlock.find('.total-sum').data('total-sum');
         let deliveryPrice = parseInt($('.cartSumDelivery .num').text());
         let newTotalSum = totalSum + deliveryPrice;
-        console.log('totalSum', totalSum)
-        console.log('deliveryPrice', deliveryPrice)
-        console.log('newTotalSum', newTotalSum);
         let cartSum = $('.cartSumTotal').data('value');
         if (newTotalSum >= cartSum) {
           cuponInput.parent().addClass('error');
