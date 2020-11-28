@@ -1453,7 +1453,7 @@ footer .form__button {position: absolute;top: 0;right: 0;padding: 0;width: 60px;
 .productView__notify .add-notify:after {margin-left: 1rem;font-size: 30px;}
 /* Модификации */
 .goodsModificationsBlock {display: flex;flex-wrap: wrap;margin: 0 -0.5rem 0.5rem -0.5rem;}
-.goodsModificationsProperty label {display: none;}
+.goodsModificationsProperty label {display: block;margin: 0 0 0.5rem 0.5rem;}
 .goodsModificationsProperty {margin: 0 0.5rem 1rem 0.5rem;flex-grow: 1;}
 .goodsModDescription {width: 100%;margin-bottom: 0.5rem;padding: 0 10px;overflow: hidden;word-break: break-word;}
 /* Товар: Нет в наличии */
