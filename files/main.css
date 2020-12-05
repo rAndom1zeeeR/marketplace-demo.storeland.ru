@@ -1245,6 +1245,7 @@ footer .form__button {position: absolute;top: 0;right: 0;padding: 0;width: 60px;
 .cart__qty {position: relative;}
 .cartTable.disable .cart__qty:before {content: "";display: block;width: 100%;height: 60px;z-index: 2;position: absolute;}
 .cartTable.disable .cart__qty a, .cartTable.disable .cart__qty input {background-color: #e2e6f1;}
+.cartTable.disable .cart__delete {opacity: 0;}
 .cart__page .cart {display: none;}
 .cart__page .cart__count {display: none;}
 .related__cart {margin-top: 2rem;}
