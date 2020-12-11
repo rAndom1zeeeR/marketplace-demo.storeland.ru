@@ -311,7 +311,7 @@ section {margin: 2rem 0;}
 .addto__remove:before {content: '\e902';font-family: 'icomoon';}
 .addto__remove span {display: none;}
 .addto__title {display: none;font-size: 1.5rem;font-weight: bold;margin-bottom: 2rem;}
-.addto__empty {display: block;text-align: center;}
+.addto__empty {display: block;text-align: center;max-width: 280px;}
 .addto__empty .addto__title {display: block;font-weight: normal;}
 .addto__buttons {display: none;justify-content: space-between;align-items: center;}
 .addto__buttons a {padding: 0 2.5rem;}
