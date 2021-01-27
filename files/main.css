@@ -635,7 +635,7 @@ header .mainnav__list a.active {color: #7e6cd6;}
 .logo .title {font-size: 36px;font-weight: bold;padding-left: 1rem;display: flex;align-items: flex-start;justify-content: center;flex-direction: column;}
 .logo span + span {font-size: 14px;font-weight: normal;color: #929bb0;margin-top: 0.25rem;display: block;}
 .logo a {display: flex;}
-.logo img {max-width: 80px;width: auto;}
+.logo img {max-width: 200px;max-height: 70px;width: auto;}
 /** Каталог **/
 .catalog__icon {font-size: 1rem;background-color: #cefcff;color: #58c4c5;border-radius: 1rem;padding: 1.25rem;display: flex;align-items: center;}
 .catalog__icon i + span {margin-left: 0.75rem;}
@@ -663,7 +663,6 @@ header .mainnav__list a:hover {background: #f1eeff;}
 .header__menu {flex-grow: 0;}
 }
 @media all and (max-width: 767px) {
-.logo img {max-height: 50px;}
 .header__middle {justify-content: center;padding: 1rem 0 0;}
 .header__middle .catalog {margin: 0 0 0 1rem;}
 .region__contacts {padding: 0 1rem 0 0;}
@@ -681,7 +680,6 @@ header .mainnav__list a:hover {background: #f1eeff;}
 @media all and (max-width: 374px) {
 .header__middle {justify-content: space-evenly;}
 .logo .title {max-width: 150px;display: none;}
-.logo img {max-width: 60px;}
 }
 
 /*** Контакты в модальном окне ***/
