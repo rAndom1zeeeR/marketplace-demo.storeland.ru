@@ -94,7 +94,7 @@ select {cursor: pointer;-webkit-appearance: menulist;}
 input[type="file"] {margin-top: 0.25rem;height: auto;line-height: 1;border: 0;padding: 0;border-radius: 0;background: transparent;}
 /* Селект через input */
 .selectBox {position: relative;height: auto;display: flex;align-items: center;justify-content: flex-start;}
-.selectBox:after {content: '\e909';font-family: 'icomoon';position: absolute;top: 0;right: 0;line-height: 60px;padding: 0 1rem;display: flex;align-items: center;justify-content: center;transition: all 0.3s ease;pointer-events: none;box-sizing: border-box;}
+.selectBox:after {content: '\e909';font-family: 'icomoon';position: absolute;bottom: 0;right: 0;line-height: 60px;padding: 0 1rem;display: flex;align-items: center;justify-content: center;transition: all 0.3s ease;pointer-events: none;box-sizing: border-box;}
 .selectBox:hover:after {color: #8776d9;}
 .selectBox select, .selectBox .select {padding: 0 3rem 0 1.5rem;-webkit-appearance: none;-moz-appearance: none;appearance: none;}
 /* Текст в не активном инпуте */
@@ -635,7 +635,7 @@ header .mainnav__list a.active {color: #7e6cd6;}
 .logo .title {font-size: 36px;font-weight: bold;padding-left: 1rem;display: flex;align-items: flex-start;justify-content: center;flex-direction: column;}
 .logo span + span {font-size: 14px;font-weight: normal;color: #929bb0;margin-top: 0.25rem;display: block;}
 .logo a {display: flex;}
-.logo img {max-width: 80px;}
+.logo img {max-width: 80px;width: auto;}
 /** Каталог **/
 .catalog__icon {font-size: 1rem;background-color: #cefcff;color: #58c4c5;border-radius: 1rem;padding: 1.25rem;display: flex;align-items: center;}
 .catalog__icon i + span {margin-left: 0.75rem;}
@@ -663,6 +663,7 @@ header .mainnav__list a:hover {background: #f1eeff;}
 .header__menu {flex-grow: 0;}
 }
 @media all and (max-width: 767px) {
+.logo img {max-height: 50px;}
 .header__middle {justify-content: center;padding: 1rem 0 0;}
 .header__middle .catalog {margin: 0 0 0 1rem;}
 .region__contacts {padding: 0 1rem 0 0;}
@@ -678,7 +679,8 @@ header .mainnav__list a:hover {background: #f1eeff;}
 .header__middle .catalog {margin: 0;}
 }
 @media all and (max-width: 374px) {
-.logo .title {max-width: 150px;}
+.header__middle {justify-content: space-evenly;}
+.logo .title {max-width: 150px;display: none;}
 .logo img {max-width: 60px;}
 }
 
@@ -1356,6 +1358,8 @@ footer .form__button {position: absolute;top: 0;right: 0;padding: 0;width: 60px;
 .fastOrderForm .form__fields {width: 100%;margin-bottom: 1rem;}
 .fastOrderForm .form__fields:last-child {margin-bottom: 0;}
 .fastOrderForm .form__fields input[type="checkbox"] {height: 1.5rem;border-radius: 5px;padding: 0;border: 0;}
+.fastOrderForm .deliveryConvenientDate {flex-wrap: wrap;}
+.fastOrderForm .deliveryConvenientDate label {display: block;width: 100%;}
 .fastOrderForm .deliveryConvenientDate:nth-child(1) {width: calc(50% - 0.5rem);margin-right: 0.5rem;}
 .fastOrderForm .deliveryConvenientDate:nth-child(2) {width: calc(50% - 0.5rem);margin-left: 0.5rem;}
 .fastOrderForm .cart__total {display: flex;flex-wrap: wrap;align-items: center;width: 100%;padding: 2rem 0 0 0;margin-top: 0;}
@@ -1474,8 +1478,8 @@ footer .form__button {position: absolute;top: 0;right: 0;padding: 0;width: 60px;
 .productView__notify .add-notify:after {margin-left: 1rem;font-size: 30px;}
 /* Модификации */
 .goodsModificationsBlock {display: flex;flex-wrap: wrap;margin: 0 -0.5rem 0.5rem -0.5rem;}
+.goodsModificationsProperty {margin: 0 0.5rem 1rem 0.5rem;flex-grow: 0.5;}
 .goodsModificationsProperty label {display: block;margin: 0 0 0.5rem 0.5rem;}
-.goodsModificationsProperty {margin: 0 0.5rem 1rem 0.5rem;flex-grow: 1;}
 .goodsModDescription {width: 100%;margin-bottom: 0.5rem;padding: 0 10px;overflow: hidden;word-break: break-word;}
 /* Товар: Нет в наличии */
 .empty .productView__notify {display: inline-block;}
