@@ -3317,6 +3317,7 @@ $(document).ready(function(){
   });
   // Уведомить при отсутствии товара
   $('.add-notify').on('click', function(){
+    $('#fancy__info').val('Уведомить -- ' + $(this).attr('data-name'));
     $('#fancy__name').val($(this).attr('data-name'));
     $('#fancy__art').val($(this).attr('data-art'));
   });
