@@ -944,14 +944,18 @@ function quantity() {
     if($(this).val() < 1){
       $(this).val(1);
     }
-    // Обновление кол-ва для функций "Добавить"
-    $('.goodsDataMainModificationId').val($(this).val());
     // Количество
     let val = parseInt($(this).val());
     let valMax = parseInt($(this).attr('max'));
     // Цена товара без изменений
     let price = parseInt($('.productView__price .price__now').attr('content'));
     let newPrice = 0;
+    // Обновление кол-ва для функций "Добавить"
+    $('.goodsDataMainModificationId').val($(this).val());
+    // Проверяем макс кол-во добавляемых товаров
+    if ($(this).val() > valMax) {
+      $('.goodsDataMainModificationId').val(valMax);
+    }
     // Проверяем наличие добавленных товаров вместе с основным
     if ($('.productView__form [class^="goodsID-"]').length) {
       $('.productView__form [class^="goodsID-"]').each(function(){
